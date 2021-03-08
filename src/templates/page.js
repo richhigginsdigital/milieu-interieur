@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,10 +10,9 @@ const ComponentName = ({ data }) => (
   <Layout>
     <SEO title={data.contentfulPage.title} />
     <h1>{data.contentfulPage.title}</h1>
+    {renderRichText(data.contentfulPage.mainContent, {})}
   </Layout>
 )
-
-// query($slug: String!, $sectionSlug: String!)
 
 export const query = graphql`
   query($slug: String!) {
@@ -19,6 +20,9 @@ export const query = graphql`
       id
       title
       slug
+      mainContent {
+        raw
+      }
     }
   }
 `
