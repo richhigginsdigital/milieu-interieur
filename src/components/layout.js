@@ -30,10 +30,13 @@ const Layout = ({ children, locale }) => {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
+          padding: `0 1em`,
           textAlign: "right",
         }}
       >
-        <Link to="/fr/">FR</Link>
+        <Link to="/fr/" title="Version française">
+          FR
+        </Link>
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
@@ -50,7 +53,7 @@ const Layout = ({ children, locale }) => {
           }}
         >
           <nav>
-            <ul style={{ listStyle: "none", margin: 0 }}>
+            <ul style={{ listStyle: "none", margin: "1em 0" }}>
               <li style={{ display: "inline", marginRight: "1em" }}>
                 <Link to={`/${locale}/contact-us/`}>Contact us</Link>
               </li>
@@ -59,7 +62,8 @@ const Layout = ({ children, locale }) => {
               </li>
             </ul>
           </nav>
-          © {new Date().getFullYear()}
+
+          <p>© {new Date().getFullYear()}</p>
         </footer>
       </div>
     </>

@@ -43,7 +43,7 @@ export const query = graphql`
           ... on ContentfulAsset {
             __typename
             contentful_id
-            gatsbyImageData(width: 920, placeholder: BLURRED)
+            gatsbyImageData(width: 663, placeholder: BLURRED)
           }
           ... on ContentfulPage {
             __typename
