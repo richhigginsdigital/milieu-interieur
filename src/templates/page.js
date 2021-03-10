@@ -7,10 +7,9 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Page = ({ data }) => (
-  <Layout>
+const Page = ({ data, pageContext }) => (
+  <Layout locale={pageContext.locale.replace(/-[A-Z]*/, "")}>
     <SEO title={data.contentfulPage.title} />
-    {/*<pre>{JSON.stringify(data.contentfulPage, null, 2)}</pre>*/}
     <h1>{data.contentfulPage.title}</h1>
     {renderRichText(data.contentfulPage.mainContent, {
       renderNode: {

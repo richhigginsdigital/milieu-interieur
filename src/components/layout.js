@@ -13,7 +13,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, locale }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -26,6 +26,15 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 960,
+          textAlign: "right",
+        }}
+      >
+        <Link to="/fr/">FR</Link>
+      </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -42,8 +51,11 @@ const Layout = ({ children }) => {
         >
           <nav>
             <ul style={{ listStyle: "none", margin: 0 }}>
-              <li>
-                <Link to="/en/contact-us/">Contact us</Link>
+              <li style={{ display: "inline", marginRight: "1em" }}>
+                <Link to={`/${locale}/contact-us/`}>Contact us</Link>
+              </li>
+              <li style={{ display: "inline" }}>
+                <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
               </li>
             </ul>
           </nav>

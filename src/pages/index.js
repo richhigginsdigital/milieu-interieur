@@ -1,18 +1,10 @@
-import * as React from "react"
-
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import React from "react"
+import Helmet from "react-helmet"
 
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h2>A big bold project overview statement</h2>
-    <p>
-      Providing insight into the core of human diversity by dissecting the
-      interplay between genetics and environment and their impact on the immune
-      system.
-    </p>
-  </Layout>
+  <Helmet>
+    <meta httpEquiv="refresh" content="0;url=/en/" />
+  </Helmet>
 )
 
 export default IndexPage
