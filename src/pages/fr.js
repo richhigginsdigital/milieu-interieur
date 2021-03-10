@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 
 const EnIndexPage = () => (
   <Layout locale="fr">
-    <SEO title="Home" />
+    <SEO title="Home" lang="fr" />
     <h1>Une grande déclaration de vue d'ensemble du projet audacieuse</h1>
     <p>
       Fournir un aperçu du cœur de la diversité humaine en disséquant

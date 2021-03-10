@@ -7,29 +7,32 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Page = ({ data, pageContext }) => (
-  <Layout locale={pageContext.locale.replace(/-[A-Z]*/, "")}>
-    <SEO title={data.contentfulPage.title} />
-    <h1>{data.contentfulPage.title}</h1>
-    {renderRichText(data.contentfulPage.mainContent, {
-      renderNode: {
-        [BLOCKS.EMBEDDED_ASSET]: node => {
-          return <GatsbyImage image={node.data.target.gatsbyImageData} />
-        },
-        [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-          const localePrefix =
-            node.data.target.node_locale === "fr" ? `fr` : `en`
+const Page = ({ data, pageContext }) => {
+  const locale = pageContext.locale.replace(/-[A-Z]*/, "")
+  return (
+    <Layout locale={locale}>
+      <SEO title={data.contentfulPage.title} lang={locale} />
+      <h1>{data.contentfulPage.title}</h1>
+      {renderRichText(data.contentfulPage.mainContent, {
+        renderNode: {
+          [BLOCKS.EMBEDDED_ASSET]: node => {
+            return <GatsbyImage image={node.data.target.gatsbyImageData} />
+          },
+          [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+            const localePrefix =
+              node.data.target.node_locale === "fr" ? `fr` : `en`
 
-          return (
-            <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
-              {children[0]}
-            </Link>
-          )
+            return (
+              <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
+                {children[0]}
+              </Link>
+            )
+          },
         },
-      },
-    })}
-  </Layout>
-)
+      })}
+    </Layout>
+  )
+}
 
 export const query = graphql`
   query($slug: String!, $locale: String!) {
