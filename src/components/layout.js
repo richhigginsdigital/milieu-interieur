@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
           <nav>
             <ul style={{ listStyle: "none", margin: 0 }}>
               <li>
-                <Link to="/contact-us/">Contact us</Link>
+                <Link to="/en/contact-us/">Contact us</Link>
               </li>
             </ul>
           </nav>

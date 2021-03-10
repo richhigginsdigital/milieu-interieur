@@ -16,10 +16,11 @@ const createContentfulPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/page.js")
   pages.forEach(page => {
     createPage({
-      path: `/${page.slug}/`,
+      path: `/${page.node_locale.replace(/-[A-Z]*/, "")}/${page.slug}/`,
       component: pageTemplate,
       context: {
         slug: page.slug,
+        locale: page.node_locale,
       },
     })
   })
@@ -31,6 +32,7 @@ const createPages = async ({ graphql, actions }) => {
       allContentfulPage {
         nodes {
           slug
+          node_locale
         }
       }
     }
