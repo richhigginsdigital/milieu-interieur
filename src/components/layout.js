@@ -9,6 +9,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import { useStaticQuery, graphql } from "gatsby"
+import CookieConsent from "react-cookie-consent"
 
 import Header from "./header"
 import "./layout.css"
@@ -26,6 +27,16 @@ const Layout = ({ children, locale }) => {
 
   return (
     <>
+      <CookieConsent
+        location="bottom"
+        buttonText="Accept"
+        declineButtonText="Decline"
+        cookieName="gatsby-gdpr-google-analytics"
+        enableDeclineButton
+      >
+        We'd like to set Google Analytics cookies to help us to improve our
+        website by collecting and reporting information on how you use it.
+      </CookieConsent>
       <div
         style={{
           margin: `0 auto`,
