@@ -16,7 +16,12 @@ const Page = ({ data, pageContext }) => {
       {renderRichText(data.contentfulPage.mainContent, {
         renderNode: {
           [BLOCKS.EMBEDDED_ASSET]: node => {
-            return <GatsbyImage image={node.data.target.gatsbyImageData} />
+            return (
+              <GatsbyImage
+                alt={node.data.target.description}
+                image={node.data.target.gatsbyImageData}
+              />
+            )
           },
           [INLINES.ENTRY_HYPERLINK]: (node, children) => {
             const localePrefix =
@@ -47,6 +52,7 @@ export const query = graphql`
             __typename
             contentful_id
             gatsbyImageData(width: 663, placeholder: BLURRED)
+            description
           }
           ... on ContentfulPage {
             __typename
