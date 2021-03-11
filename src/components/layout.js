@@ -34,9 +34,15 @@ const Layout = ({ children, locale }) => {
           textAlign: "right",
         }}
       >
-        <Link to="/fr/" title="Version française">
-          FR
-        </Link>
+        {locale === "fr" ? (
+          <Link to="/en/" title="English version">
+            EN
+          </Link>
+        ) : (
+          <Link to="/fr/" title="Version française">
+            FR
+          </Link>
+        )}
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
