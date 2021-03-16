@@ -21,6 +21,7 @@ const createContentfulPages = (pages, createPage) => {
       context: {
         slug: page.slug,
         locale: page.node_locale,
+        section: page.section,
       },
     })
   })
@@ -33,6 +34,7 @@ const createPages = async ({ graphql, actions }) => {
         nodes {
           slug
           node_locale
+          section
         }
       }
     }
