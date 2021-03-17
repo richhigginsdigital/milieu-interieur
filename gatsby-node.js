@@ -30,7 +30,7 @@ const createContentfulPages = (pages, createPage) => {
     const sectionSlug = page.parentPage
       ? page.parentPage.parentPage
         ? page.parentPage.parentPage.slug
-        : null
+        : page.parentPage.slug
       : null
 
     createPage({
