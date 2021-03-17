@@ -11,6 +11,7 @@ import { Link } from "gatsby"
 import { useStaticQuery, graphql } from "gatsby"
 import CookieConsent from "react-cookie-consent"
 
+//import { pageLink } from "../helpers/pageLink"
 import Header from "./header"
 import "./layout.css"
 
@@ -56,6 +57,7 @@ const Layout = ({ children, locale }) => {
         )}
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+
       <div
         style={{
           margin: `0 auto`,
@@ -63,6 +65,29 @@ const Layout = ({ children, locale }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
+        <h2>Primary navigation</h2>
+        <nav>
+          <ul style={{ marginLeft: 0 }}>
+            <li style={{ display: "inline-block", marginRight: "1em" }}>
+              <Link to={`/${locale}/about-us/project-overview/the-project/`}>
+                About us
+              </Link>
+            </li>
+            <li style={{ display: "inline-block", marginRight: "1em" }}>
+              <Link to={`/${locale}/research/`}>Research</Link>
+            </li>
+            <li style={{ display: "inline-block", marginRight: "1em" }}>
+              <Link
+                to={`/${locale}/technology-and-protocols/truculture-tubes/whole-blood-assay/`}
+              >
+                Technology &amp; Protocol
+              </Link>
+            </li>
+            <li style={{ display: "inline-block" }}>
+              <Link to="#">Data Exploration</Link>
+            </li>
+          </ul>
+        </nav>
         <main>{children}</main>
         <footer
           style={{

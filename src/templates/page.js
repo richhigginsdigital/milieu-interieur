@@ -4,6 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -16,45 +17,61 @@ const Page = ({ data, pageContext }) => {
 
   return (
     <Layout locale={locale}>
+      section:{pageContext.sectionSlug}
+      <br />
+      parent:{pageContext.parentSlug}
       <SEO title={data.contentfulPage.title} lang={locale} />
+      {/*
+      <pre>{JSON.stringify(data.contentfulPage, null, 2)}</pre>
+      <pre>{JSON.stringify(data.menuPages, null, 2)}</pre>
+      <pre>{JSON.stringify(data.menuSubPages, null, 2)}</pre>
+*/}
+      <h2>Section navigation</h2>
+      <nav>
+        <ul>
+          {data.menuPages.edges.map(page => (
+            <li>
+              {pageLink(page.node)}
 
+              {page.node.slug === pageContext.parentSlug && (
+                <ul>
+                  {data.menuSubPages.edges.map(page => (
+                    <li>{pageLink(page.node)}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
       {/*<nav>
         <ul>
-          {data.allContentfulSectionMenu.edges[0].node.pages.map(page => {
-            return (
-              <>
-                {page.redirectTo ? (
-                  <li>
-                    <Link
-                      to={`/${locale}/${page.redirectTo.parentPage.slug}/${page.redirectTo.slug}/`}
-                    >
-                      {page.title}
-                    </Link>
-                  </li>
-                ) : page.parentPage ? (
-                  // handle sublist open/closing
-                  <ul>
-                    <li>
-                      <Link
-                        to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
-                      >
-                        {page.title}
-                      </Link>
-                    </li>
-                  </ul>
-                ) : (
-                  <li>
-                    <Link
-                      style={{ fontWeight: "bold" }}
-                      to={`/${locale}/${page.slug}/`}
-                    >
-                      {page.title}
-                    </Link>
-                  </li>
-                )}
-              </>
-            )
-          })}
+          {data.allContentfulPage.edges.length
+            ? data.allContentfulSectionMenu.edges[0].node.pages.map(page => {
+                return (
+                  <>
+                    {page.redirectTo ? (
+                      <li>
+                        <Link
+                          to={`/${locale}/${page.redirectTo.parentPage.slug}/${page.redirectTo.slug}/`}
+                        >
+                          {page.title}
+                        </Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link
+                          style={{ fontWeight: "bold" }}
+                          to={`/${locale}/${page.slug}/`}
+                        >
+                          {page.title}
+                        </Link>
+                      </li>
+                    )}
+                  </>
+                )
+              })
+            : ""}
         </ul>
       </nav>*/}
       <h1>{data.contentfulPage.title}</h1>
@@ -86,7 +103,12 @@ const Page = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-  query($slug: String!, $locale: String!, $section: String) {
+  query(
+    $slug: String!
+    $locale: String!
+    $parentSlug: String
+    $sectionSlug: String
+  ) {
     contentfulPage(slug: { eq: $slug }, node_locale: { eq: $locale }) {
       id
       title
@@ -108,33 +130,61 @@ export const query = graphql`
           }
         }
       }
+      parentPage {
+        title
+        slug
+      }
     }
-    allContentfulSectionMenu(
-      filter: { title: { eq: $section }, node_locale: { eq: $locale } }
+    menuPages: allContentfulPage(
+      filter: {
+        parentPage: { slug: { eq: $sectionSlug }, node_locale: { eq: $locale } }
+      }
+      sort: { order: ASC, fields: menuOrder }
     ) {
       edges {
         node {
-          id
-          node_locale
-          pages {
-            ... on ContentfulPage {
+          title
+          slug
+          parentPage {
+            slug
+          }
+          redirectPage {
+            slug
+            parentPage {
               slug
-              title
-              redirectTo {
-                slug
-                parentPage {
-                  slug
-                }
-              }
-            }
-            ... on ContentfulSubPage {
-              slug
-              title
               parentPage {
                 slug
               }
             }
+            node_locale
           }
+          node_locale
+        }
+      }
+    }
+    menuSubPages: allContentfulPage(
+      filter: {
+        parentPage: { slug: { eq: $parentSlug }, node_locale: { eq: $locale } }
+      }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      edges {
+        node {
+          title
+          slug
+          parentPage {
+            slug
+            parentPage {
+              slug
+            }
+          }
+          redirectPage {
+            slug
+            parentPage {
+              slug
+            }
+          }
+          node_locale
         }
       }
     }
