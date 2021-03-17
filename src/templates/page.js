@@ -11,16 +11,13 @@ import SEO from "../components/seo"
 const Page = ({ data, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
-  // TODO loop through allContentfulSectionMenu making
-  // subpages into properties for nested map() iteration
-  // something like {...pages[{title:'this page', slug:'this-page', subpages:[{'this page', slug:'this-page'}, {'this page', slug:'this-page'}]}
-
   return (
     <Layout locale={locale}>
-      section:{pageContext.sectionSlug}
-      <br />
-      parent:{pageContext.parentSlug}
+      <small style={{ position: "absolute", top: 0 }}>
+        section:{pageContext.sectionSlug}, parent:{pageContext.parentSlug}
+      </small>
       <SEO title={data.contentfulPage.title} lang={locale} />
+
       {/*
       <pre>{JSON.stringify(data.contentfulPage, null, 2)}</pre>
       <pre>{JSON.stringify(data.menuPages, null, 2)}</pre>
@@ -33,6 +30,11 @@ const Page = ({ data, pageContext }) => {
             <li>
               {pageLink(page.node)}
 
+              {
+                // todo, also display subpage links if current page is a parent
+                // (not just when a subpage)
+              }
+
               {page.node.slug === pageContext.parentSlug && (
                 <ul>
                   {data.menuSubPages.edges.map(page => (
@@ -44,36 +46,7 @@ const Page = ({ data, pageContext }) => {
           ))}
         </ul>
       </nav>
-      {/*<nav>
-        <ul>
-          {data.allContentfulPage.edges.length
-            ? data.allContentfulSectionMenu.edges[0].node.pages.map(page => {
-                return (
-                  <>
-                    {page.redirectTo ? (
-                      <li>
-                        <Link
-                          to={`/${locale}/${page.redirectTo.parentPage.slug}/${page.redirectTo.slug}/`}
-                        >
-                          {page.title}
-                        </Link>
-                      </li>
-                    ) : (
-                      <li>
-                        <Link
-                          style={{ fontWeight: "bold" }}
-                          to={`/${locale}/${page.slug}/`}
-                        >
-                          {page.title}
-                        </Link>
-                      </li>
-                    )}
-                  </>
-                )
-              })
-            : ""}
-        </ul>
-      </nav>*/}
+
       <h1>{data.contentfulPage.title}</h1>
       {data.contentfulPage.mainContent &&
         renderRichText(data.contentfulPage.mainContent, {

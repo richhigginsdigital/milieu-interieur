@@ -84,7 +84,7 @@ const Layout = ({ children, locale }) => {
               </Link>
             </li>
             <li style={{ display: "inline-block" }}>
-              <Link to="#">Data Exploration</Link>
+              <Link to={`/${locale}/data-exploration/`}>Data Exploration</Link>
             </li>
           </ul>
         </nav>
