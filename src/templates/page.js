@@ -13,14 +13,12 @@ const Page = ({ data, pageContext }) => {
 
   return (
     <Layout locale={locale}>
-      {/*<small style={{ position: "absolute", top: 0 }}>
-        sectionSlug:{pageContext.sectionSlug}, parentSlug:
-        {pageContext.parentSlug}
-  </small>*/}
       <SEO title={data.contentfulPage.title} lang={locale} />
 
-      <div class="grid">
-        <div class="section-menu">
+      {/*
+
+      // display section nav (a-la old site)
+      <div class="section-menu">
           <nav>
             <ul>
               {data.menuPages.edges.map(page => (
@@ -38,40 +36,65 @@ const Page = ({ data, pageContext }) => {
               ))}
             </ul>
           </nav>
-        </div>
-        <div>
-          {data.contentfulPage.parentPage &&
-            data.contentfulPage.parentPage.parentPage && (
-              <nav style={{ marginBottom: "1em" }}>
-                Part of: {pageLink(data.contentfulPage.parentPage)}
-              </nav>
-            )}
+                      </div>*/}
+      <div>
+        {data.contentfulPage.parentPage && (
+          <nav style={{ marginBottom: "1em", textAlign: "center" }}>
+            Part of: {pageLink(data.contentfulPage.parentPage)}
+          </nav>
+        )}
+        <h1>{data.contentfulPage.title}</h1>
 
-          <h1>{data.contentfulPage.title}</h1>
-          {data.contentfulPage.mainContent &&
-            renderRichText(data.contentfulPage.mainContent, {
-              renderNode: {
-                [BLOCKS.EMBEDDED_ASSET]: node => {
-                  return (
-                    <GatsbyImage
-                      alt={node.data.target.description}
-                      image={node.data.target.gatsbyImageData}
-                    />
-                  )
-                },
-                [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                  const localePrefix =
-                    node.data.target.node_locale === "fr" ? `fr` : `en`
+        {/*<pre>{JSON.stringify(data.allMenuSubPages, null, 2)}</pre>*/}
 
-                  return (
-                    <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
-                      {children[0]}
-                    </Link>
-                  )
-                },
+        {!data.contentfulPage.parentPage && (
+          // landing page full section nav, TODO add the sub-pages
+          <div class="section-menu">
+            <nav>
+              <ul>
+                {data.menuPages.edges.map(page => (
+                  <li>
+                    {page.node.redirectPage
+                      ? page.node.title
+                      : pageLink(page.node)}
+
+                    <ul>
+                      {data.allMenuSubPages.edges.map(subPage => {
+                        if (subPage.node.parentPage.slug === page.node.slug)
+                          return <li>{pageLink(subPage.node)}</li>
+                        else return <></>
+                      })}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        )}
+
+        {data.contentfulPage.mainContent &&
+          renderRichText(data.contentfulPage.mainContent, {
+            renderNode: {
+              [BLOCKS.EMBEDDED_ASSET]: node => {
+                return (
+                  <GatsbyImage
+                    alt={node.data.target.description}
+                    image={node.data.target.gatsbyImageData}
+                  />
+                )
               },
-            })}
-        </div>
+              [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+                const localePrefix =
+                  node.data.target.node_locale === "fr" ? `fr` : `en`
+
+                return (
+                  <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
+                    {children[0]}
+                  </Link>
+                )
+              },
+            },
+          })}
       </div>
     </Layout>
   )
@@ -158,6 +181,27 @@ export const query = graphql`
             }
           }
           redirectPage {
+            slug
+            parentPage {
+              slug
+            }
+          }
+          node_locale
+        }
+      }
+    }
+    allMenuSubPages: allContentfulPage(
+      filter: {
+        parentPage: { parentPage: { slug: { eq: $sectionSlug } } }
+        node_locale: { eq: $locale }
+      }
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug
+          parentPage {
             slug
             parentPage {
               slug

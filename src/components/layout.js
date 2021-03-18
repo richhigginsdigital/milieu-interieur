@@ -47,13 +47,19 @@ const Layout = ({ children, locale }) => {
         }}
       >
         {locale === "fr" ? (
-          <Link to="/en/" title="English version">
-            EN
-          </Link>
-        ) : (
-          <Link to="/fr/" title="Version française">
+          <>
+            <Link to="/en/" title="English version">
+              EN
+            </Link>{" "}
             FR
-          </Link>
+          </>
+        ) : (
+          <>
+            EN{" "}
+            <Link to="/fr/" title="Version française">
+              FR
+            </Link>
+          </>
         )}
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
@@ -65,7 +71,7 @@ const Layout = ({ children, locale }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <nav>
+        <nav style={{ textAlign: "center" }}>
           <ul style={{ marginLeft: 0 }}>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
               <Link to={`/${locale}/about-us/`}>About us</Link>
@@ -83,6 +89,17 @@ const Layout = ({ children, locale }) => {
             </li>
           </ul>
         </nav>
+      </div>
+
+      <hr />
+
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 960,
+          padding: `0 1.0875rem 1.45rem`,
+        }}
+      >
         <main>{children}</main>
         <footer
           style={{
