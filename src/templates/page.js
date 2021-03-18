@@ -37,13 +37,13 @@ const Page = ({ data, pageContext }) => {
             </ul>
           </nav>
                       </div>*/}
-      <div>
+      <div style={{ maxWidth: "827px", margin: "auto" }}>
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "1em", textAlign: "center" }}>
             Part of: {pageLink(data.contentfulPage.parentPage)}
           </nav>
         )}
-        <h1>{data.contentfulPage.title}</h1>
+        <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
 
         {/*<pre>{JSON.stringify(data.allMenuSubPages, null, 2)}</pre>*/}
 
@@ -195,6 +195,7 @@ export const query = graphql`
         parentPage: { parentPage: { slug: { eq: $sectionSlug } } }
         node_locale: { eq: $locale }
       }
+      sort: { order: ASC, fields: menuOrder }
     ) {
       edges {
         node {
