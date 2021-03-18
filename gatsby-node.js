@@ -35,7 +35,7 @@ const createContentfulPages = (pages, createPage) => {
       ? page.parentPage.parentPage
         ? page.parentPage.parentPage.slug
         : page.parentPage.slug
-      : null
+      : page.slug
 
     createPage({
       path: path,

@@ -65,7 +65,6 @@ const Layout = ({ children, locale }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <div>Primary navigation</div>
         <nav>
           <ul style={{ marginLeft: 0 }}>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
@@ -97,7 +96,7 @@ const Layout = ({ children, locale }) => {
           <nav>
             <ul style={{ listStyle: "none", margin: "1em 0" }}>
               <li style={{ display: "inline", marginRight: "1em" }}>
-                <Link to={`/${locale}/contact-us/`}>Contact us</Link>
+                <Link to={`/${locale}/about-us/contact-us/`}>Contact us</Link>
               </li>
               <li style={{ display: "inline" }}>
                 <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>

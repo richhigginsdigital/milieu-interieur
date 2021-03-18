@@ -13,58 +13,66 @@ const Page = ({ data, pageContext }) => {
 
   return (
     <Layout locale={locale}>
-      <small style={{ position: "absolute", top: 0 }}>
+      {/*<small style={{ position: "absolute", top: 0 }}>
         sectionSlug:{pageContext.sectionSlug}, parentSlug:
         {pageContext.parentSlug}
-      </small>
+  </small>*/}
       <SEO title={data.contentfulPage.title} lang={locale} />
-      <div>Section navigation</div>
-      <nav>
-        <ul>
-          {data.menuPages.edges.map(page => (
-            <li>
-              {pageLink(page.node)}
 
-              {page.node.slug === pageContext.parentSlug && (
-                <ul>
-                  {data.menuSubPages.edges.map(page => (
-                    <li>{pageLink(page.node)}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div class="grid">
+        <div class="section-menu">
+          <nav>
+            <ul>
+              {data.menuPages.edges.map(page => (
+                <li>
+                  {pageLink(page.node)}
 
-      {data.contentfulPage.parentPage.parentPage && (
-        <>Part of: {pageLink(data.contentfulPage.parentPage)}</>
-      )}
+                  {page.node.slug === pageContext.parentSlug && (
+                    <ul>
+                      {data.menuSubPages.edges.map(page => (
+                        <li>{pageLink(page.node)}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <div>
+          {data.contentfulPage.parentPage &&
+            data.contentfulPage.parentPage.parentPage && (
+              <nav style={{ marginBottom: "1em" }}>
+                Part of: {pageLink(data.contentfulPage.parentPage)}
+              </nav>
+            )}
 
-      <h1>{data.contentfulPage.title}</h1>
-      {data.contentfulPage.mainContent &&
-        renderRichText(data.contentfulPage.mainContent, {
-          renderNode: {
-            [BLOCKS.EMBEDDED_ASSET]: node => {
-              return (
-                <GatsbyImage
-                  alt={node.data.target.description}
-                  image={node.data.target.gatsbyImageData}
-                />
-              )
-            },
-            [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-              const localePrefix =
-                node.data.target.node_locale === "fr" ? `fr` : `en`
+          <h1>{data.contentfulPage.title}</h1>
+          {data.contentfulPage.mainContent &&
+            renderRichText(data.contentfulPage.mainContent, {
+              renderNode: {
+                [BLOCKS.EMBEDDED_ASSET]: node => {
+                  return (
+                    <GatsbyImage
+                      alt={node.data.target.description}
+                      image={node.data.target.gatsbyImageData}
+                    />
+                  )
+                },
+                [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+                  const localePrefix =
+                    node.data.target.node_locale === "fr" ? `fr` : `en`
 
-              return (
-                <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
-                  {children[0]}
-                </Link>
-              )
-            },
-          },
-        })}
+                  return (
+                    <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
+                      {children[0]}
+                    </Link>
+                  )
+                },
+              },
+            })}
+        </div>
+      </div>
     </Layout>
   )
 }
