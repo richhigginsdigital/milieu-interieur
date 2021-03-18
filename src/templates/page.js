@@ -14,26 +14,16 @@ const Page = ({ data, pageContext }) => {
   return (
     <Layout locale={locale}>
       <small style={{ position: "absolute", top: 0 }}>
-        section:{pageContext.sectionSlug}, parent:{pageContext.parentSlug}
+        sectionSlug:{pageContext.sectionSlug}, parentSlug:
+        {pageContext.parentSlug}
       </small>
       <SEO title={data.contentfulPage.title} lang={locale} />
-
-      {/*
-      <pre>{JSON.stringify(data.contentfulPage, null, 2)}</pre>
-      <pre>{JSON.stringify(data.menuPages, null, 2)}</pre>
-      <pre>{JSON.stringify(data.menuSubPages, null, 2)}</pre>
-*/}
-      <h2>Section navigation</h2>
+      <div>Section navigation</div>
       <nav>
         <ul>
           {data.menuPages.edges.map(page => (
             <li>
               {pageLink(page.node)}
-
-              {
-                // todo, also display subpage links if current page is a parent
-                // (not just when a subpage)
-              }
 
               {page.node.slug === pageContext.parentSlug && (
                 <ul>
@@ -46,6 +36,10 @@ const Page = ({ data, pageContext }) => {
           ))}
         </ul>
       </nav>
+
+      {data.contentfulPage.parentPage.parentPage && (
+        <>Part of: {pageLink(data.contentfulPage.parentPage)}</>
+      )}
 
       <h1>{data.contentfulPage.title}</h1>
       {data.contentfulPage.mainContent &&
@@ -106,6 +100,10 @@ export const query = graphql`
       parentPage {
         title
         slug
+        node_locale
+        parentPage {
+          slug
+        }
       }
     }
     menuPages: allContentfulPage(

@@ -25,7 +25,11 @@ const createContentfulPages = (pages, createPage) => {
           }/${page.slug}/` // secondary page
       : `/${page.node_locale.replace(/-[A-Z]*/, "")}/${page.slug}/` // primary page
 
-    const parentSlug = page.parentPage ? page.parentPage.slug : null
+    const parentSlug = page.parentPage
+      ? page.parentPage.parentPage
+        ? page.parentPage.slug
+        : page.slug
+      : null
 
     const sectionSlug = page.parentPage
       ? page.parentPage.parentPage
