@@ -68,17 +68,13 @@ const Layout = ({ children, locale }) => {
         <nav>
           <ul style={{ marginLeft: 0 }}>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link to={`/${locale}/about-us/project-overview/the-project/`}>
-                About us
-              </Link>
+              <Link to={`/${locale}/about-us/`}>About us</Link>
             </li>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
               <Link to={`/${locale}/research/`}>Research</Link>
             </li>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link
-                to={`/${locale}/technology-and-protocols/truculture-tubes/whole-blood-assay/`}
-              >
+              <Link to={`/${locale}/technology-and-protocols/`}>
                 Technology &amp; Protocol
               </Link>
             </li>
