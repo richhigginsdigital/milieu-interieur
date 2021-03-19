@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Milieu Intérieur project`,
+    title: `Milieu Intérieur`,
     description: `The Milieu Intérieur project provides insight into the core of human diversity by dissecting the interplay between genetics and environment and their impact on the immune system.`,
     author: `@institutpasteur`,
   },

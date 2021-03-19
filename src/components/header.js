@@ -5,7 +5,6 @@ import { Link } from "gatsby"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      marginBottom: `1.45rem`,
       textAlign: `center`,
     }}
   >
@@ -16,7 +15,7 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <div className="h1" style={{ margin: 0, fontWeight: "normal" }}>
+      <div style={{ margin: 0, fontWeight: "normal" }}>
         <Link
           to="/en/"
           style={{

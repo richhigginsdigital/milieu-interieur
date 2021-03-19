@@ -25,7 +25,7 @@ const Page = ({ data, pageContext }) => {
 
       <div style={{ maxWidth: "827px", margin: "auto" }}>
         {data.contentfulPage.parentPage && (
-          <nav style={{ marginBottom: "1em", textAlign: "center" }}>
+          <nav style={{ marginBottom: "40px", textAlign: "center" }}>
             Part of: {pageLink(data.contentfulPage.parentPage)}
           </nav>
         )}
