@@ -6,12 +6,8 @@ import SEO from "../components/seo"
 const EnIndexPage = () => (
   <Layout locale="fr">
     <SEO title="Home" lang="fr" />
-    <h1>Une grande déclaration de vue d'ensemble du projet audacieuse</h1>
-    <p>
-      Fournir un aperçu du cœur de la diversité humaine en disséquant
-      l'interaction entre la génétique et l'environnement et leur impact sur le
-      système immunitaire.
-    </p>
+    <h1 style={{fontFamily: 'georgia, serif'}}>Le projet Milieu Intérieur pose un regard inédit sur le système immunitaire humain en examinant les facteurs génétiques et environnementaux contribuant à la variabilité des réponses immunitaires.</h1>
+    <p>[+ homepage content modules]</p>
   </Layout>
 )
 
