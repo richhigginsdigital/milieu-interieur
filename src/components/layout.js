@@ -15,7 +15,7 @@ import CookieConsent from "react-cookie-consent"
 import Header from "./header"
 import "./layout.css"
 
-const Layout = ({ children, locale }) => {
+const Layout = ({ children, locale, sectionSlug }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -72,20 +72,20 @@ const Layout = ({ children, locale }) => {
         }}
       >
         <nav style={{ textAlign: "center" }}>
-          <ul style={{ marginLeft: 0 }}>
+          <ul style={{ marginLeft: 0 }} className="primary-nav">
             <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link to={`/${locale}/about-us/`}>About us</Link>
+              <Link className={sectionSlug === 'about-us' ? 'selected' : ''} to={`/${locale}/about-us/`}>About us</Link>
             </li>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link to={`/${locale}/research/`}>Research</Link>
+              <Link className={sectionSlug === 'research' ? 'selected' : ''} to={`/${locale}/research/`}>Research</Link>
             </li>
             <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link to={`/${locale}/technology-and-protocols/`}>
-                Technology &amp; Protocol
+              <Link className={sectionSlug === 'technology-and-protocols' ? 'selected' : ''} to={`/${locale}/technology-and-protocols/`}>
+                Technology &amp; Protocols
               </Link>
             </li>
             <li style={{ display: "inline-block" }}>
-              <Link to={`/${locale}/data-exploration/`}>Data Exploration</Link>
+              <Link className={sectionSlug === 'data-exploration' ? 'selected' : ''} to={`/${locale}/data-exploration/`}>Data Exploration</Link>
             </li>
           </ul>
         </nav>

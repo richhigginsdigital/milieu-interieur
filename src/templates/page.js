@@ -7,36 +7,22 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import SectionMenu from "../components/sectionMenu"
 
 const Page = ({ data, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
+  data.menuPages.edges.forEach((item, index) => {
+    const childPages = data.allMenuSubPages.edges.filter(
+      page => page.node.parentPage.slug === item.node.slug
+    )
+    data.menuPages.edges[index].node.childPages = childPages
+  })
+
   return (
-    <Layout locale={locale}>
+    <Layout locale={locale} sectionSlug={pageContext.sectionSlug}>
       <SEO title={data.contentfulPage.title} lang={locale} />
 
-      {/*
-
-      // display section nav (a-la old site)
-      <div class="section-menu">
-          <nav>
-            <ul>
-              {data.menuPages.edges.map(page => (
-                <li>
-                  {pageLink(page.node)}
-
-                  {page.node.slug === pageContext.parentSlug && (
-                    <ul>
-                      {data.menuSubPages.edges.map(page => (
-                        <li>{pageLink(page.node)}</li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
-                      </div>*/}
       <div style={{ maxWidth: "827px", margin: "auto" }}>
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "1em", textAlign: "center" }}>
@@ -45,31 +31,9 @@ const Page = ({ data, pageContext }) => {
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
 
-        {/*<pre>{JSON.stringify(data.allMenuSubPages, null, 2)}</pre>*/}
-
         {!data.contentfulPage.parentPage && (
-          // landing page full section nav, TODO add the sub-pages
-          <div class="section-menu">
-            <nav>
-              <ul>
-                {data.menuPages.edges.map(page => (
-                  <li>
-                    {page.node.redirectPage
-                      ? page.node.title
-                      : pageLink(page.node)}
-
-                    <ul>
-                      {data.allMenuSubPages.edges.map(subPage => {
-                        if (subPage.node.parentPage.slug === page.node.slug)
-                          return <li>{pageLink(subPage.node)}</li>
-                        else return <></>
-                      })}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          // a top level page so we display the section menu
+          <SectionMenu pages={data.menuPages.edges} />
         )}
 
         {data.contentfulPage.mainContent &&
@@ -150,16 +114,6 @@ export const query = graphql`
           parentPage {
             slug
           }
-          redirectPage {
-            slug
-            parentPage {
-              slug
-              parentPage {
-                slug
-              }
-            }
-            node_locale
-          }
           node_locale
         }
       }
@@ -175,12 +129,6 @@ export const query = graphql`
           title
           slug
           parentPage {
-            slug
-            parentPage {
-              slug
-            }
-          }
-          redirectPage {
             slug
             parentPage {
               slug

@@ -16,9 +16,7 @@ const createPath = page => {
 }
 
 export const pageLink = page => {
-  const path = page.redirectPage
-    ? createPath(page.redirectPage)
-    : createPath(page)
+  const path = createPath(page)
 
   return <Link to={path}>{page.title}</Link>
 }
