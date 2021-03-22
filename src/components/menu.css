@@ -1,0 +1,59 @@
+.menu {
+  margin-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.js .menu {
+  display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .menu {
+    text-align: center;
+  }
+
+  .js .menu {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .menu li {
+    display: inline-block;
+    margin-right: 1em;
+  }
+  .menu li:last-child {
+    margin-right: 0;
+  }
+}
+
+.menu a {
+  padding: 0.5rem;
+  border: 1px solid transparent;
+}
+.menu a.selected {
+  border-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu-toggle {
+  width: 100%;
+  text-align: left;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .js .menu-toggle {
+    margin-right: -1rem;
+  }
+}
+.js .menu-toggle {
+  display: block;
+}
+
+.js .is-open {
+  display: block;
+}

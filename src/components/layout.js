@@ -65,7 +65,15 @@ const Layout = ({ children, locale, sectionSlug }) => {
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
-      <Menu locale={locale} sectionSlug={sectionSlug} />
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 960,
+          padding: `0 1.0875rem 1.45rem`,
+        }}
+      >
+        <Menu locale={locale} sectionSlug={sectionSlug} />
+      </div>
       <hr />
 
       <div
