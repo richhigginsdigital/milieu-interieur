@@ -47,11 +47,8 @@
 
 @media screen and (max-width: 1023px) {
   .js .menu-toggle {
-    margin-right: -1rem;
+    display: block;
   }
-}
-.js .menu-toggle {
-  display: block;
 }
 
 .js .is-open {
