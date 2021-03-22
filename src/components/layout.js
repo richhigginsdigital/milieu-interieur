@@ -13,6 +13,7 @@ import CookieConsent from "react-cookie-consent"
 
 //import { pageLink } from "../helpers/pageLink"
 import Header from "./header"
+import Menu from "./menu"
 import "./layout.css"
 
 const Layout = ({ children, locale, sectionSlug }) => {
@@ -64,33 +65,7 @@ const Layout = ({ children, locale, sectionSlug }) => {
       </div>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <nav style={{ textAlign: "center" }}>
-          <ul style={{ marginLeft: 0 }} className="primary-nav">
-            <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link className={sectionSlug === 'about-us' ? 'selected' : ''} to={`/${locale}/about-us/`}>About us</Link>
-            </li>
-            <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link className={sectionSlug === 'research' ? 'selected' : ''} to={`/${locale}/research/`}>Research</Link>
-            </li>
-            <li style={{ display: "inline-block", marginRight: "1em" }}>
-              <Link className={sectionSlug === 'technology-and-protocols' ? 'selected' : ''} to={`/${locale}/technology-and-protocols/`}>
-                Technology &amp; Protocols
-              </Link>
-            </li>
-            <li style={{ display: "inline-block" }}>
-              <Link className={sectionSlug === 'data-exploration' ? 'selected' : ''} to={`/${locale}/data-exploration/`}>Data Exploration</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
+      <Menu locale={locale} sectionSlug={sectionSlug} />
       <hr />
 
       <div
