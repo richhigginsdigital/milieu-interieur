@@ -1,14 +1,14 @@
-.menu button {
+.menu > button {
   width: 100%;
   text-align: left;
 }
 
-.menu button {
+.menu > button {
   display: none;
 }
 
 @media screen and (max-width: 1023px) {
-  .js .menu button {
+  .js .menu > button {
     display: block;
   }
 }
