@@ -12,18 +12,17 @@ const Menu = ({ locale, sectionSlug }) => {
   }
 
   return (
-    <nav>
+    <nav className="menu">
       <button
         onClick={() => {
           toggleMenu()
         }}
-        className="menu-toggle"
         aria-expanded={menuOpen}
         aria-controls="menu"
       >
         Menu
       </button>
-      <ul id="menu" className={`menu ${menuOpen ? `is-open` : ``}`}>
+      <ul id="menu" className={menuOpen ? undefined : `hidden`}>
         <li>
           <Link
             className={sectionSlug === "about-us" ? "selected" : ""}

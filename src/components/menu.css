@@ -1,56 +1,50 @@
-.menu {
+.menu button {
+  width: 100%;
+  text-align: left;
+}
+
+.menu button {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .js .menu button {
+    display: block;
+  }
+}
+
+.menu ul {
   margin-left: 0;
   margin-bottom: 0;
   list-style: none;
 }
 
-.js .menu {
-  display: none;
+@media screen and (max-width: 1023px) {
+  .js .menu ul.hidden {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-  .menu {
+  .menu ul {
     text-align: center;
   }
-
-  .js .menu {
-    display: block;
-  }
 }
 
 @media only screen and (min-width: 1024px) {
-  .menu li {
+  .menu ul li {
     display: inline-block;
     margin-right: 1em;
   }
-  .menu li:last-child {
+  .menu ul li:last-child {
     margin-right: 0;
   }
 }
 
-.menu a {
+.menu ul a {
   padding: 0.5rem;
   border: 1px solid transparent;
 }
-.menu a.selected {
+.menu ul a.selected {
   border-color: rgba(0, 0, 0, 0.8);
-}
-
-.menu-toggle {
-  width: 100%;
-  text-align: left;
-}
-
-.menu-toggle {
-  display: none;
-}
-
-@media screen and (max-width: 1023px) {
-  .js .menu-toggle {
-    display: block;
-  }
-}
-
-.js .is-open {
-  display: block;
 }

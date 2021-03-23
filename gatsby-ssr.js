@@ -1,14 +1,12 @@
-//const React = require("react")
-//const Layout = require("./src/components/layout")
+const React = require("react")
 
-// Adds a class name to the body element
-exports.onRenderBody = ({ setBodyAttributes }, pluginOptions) => {
-  setBodyAttributes({
-    className: "js",
-  })
+exports.onRenderBody = ({ setHeadComponents }, pluginOptions) => {
+  const headComponents = [
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `document.getElementsByTagName('html')[0].className += 'js';`,
+      }}
+    />,
+  ]
+  setHeadComponents(headComponents)
 }
-
-// Wraps every page in a component
-//exports.wrapPageElement = ({ element, props }) => {
-//  return <Layout {...props}>{element}</Layout>
-//}
