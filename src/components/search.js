@@ -68,9 +68,11 @@ const Search = ({ locale }) =>
         <SearchBox
           //onClick={event => {
           //console.log(event.currentTarget)
-          //alert("scroll to top lad")
+          //alert("TODO scroll to top for mobile")
           //}}
-          translations={{ placeholder: "Search" }}
+          translations={{
+            placeholder: locale === "en" ? "Search" : "Rechercher",
+          }}
         />
         <Content />
       </InstantSearch>
