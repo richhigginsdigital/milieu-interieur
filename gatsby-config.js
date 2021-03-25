@@ -2,7 +2,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-// gatsby-config.js
+const RichTextRenderer = require("@contentful/rich-text-plain-text-renderer")
+
 const myQuery = `{
   pages: allContentfulPage {
     nodes {
@@ -15,6 +16,9 @@ const myQuery = `{
           slug
         }
       }
+      mainContent{
+        raw
+      }
       node_locale
       updatedAt
     }
@@ -24,7 +28,16 @@ const myQuery = `{
 const queries = [
   {
     query: myQuery,
-    transformer: ({ data }) => data.pages.nodes, // optional
+    transformer: ({ data }) => {
+      return data.pages.nodes.map(node => {
+        if (node.mainContent) {
+          node.mainContent = RichTextRenderer.documentToPlainTextString(
+            JSON.parse(node.mainContent.raw)
+          )
+        }
+        return node
+      })
+    }, // optional
     //    indexName: "index name to target", // overrides main index name, optional
     //    settings: {
     // optional, any index settings
@@ -110,9 +123,11 @@ module.exports = {
         queries,
         chunkSize: 10000, // default: 1000
         settings: {
+          attributesToSnippet: ["mainContent"],
+          snippetEllipsisText: "…",
           attributesForFaceting: ["node_locale"],
         },
-        enablePartialUpdates: true, // default: false
+        enablePartialUpdates: false, // default: false
         matchFields: ["updatedAt"], // Array<String> default: ['modified']
         concurrentQueries: false, // default: true
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development

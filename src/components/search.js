@@ -68,7 +68,7 @@ const Search = ({ locale }) =>
         <SearchBox
           //onClick={event => {
           //console.log(event.currentTarget)
-          //alert("TODO scroll to top for mobile")
+          // trigger any UI stuff here - e.g. scroll to top, focused search modal etc...
           //}}
           translations={{
             placeholder: locale === "en" ? "Search" : "Rechercher",

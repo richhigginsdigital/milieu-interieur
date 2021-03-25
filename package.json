@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "gatsby": "^3.1.1",
     "gatsby-cli": "^3.1.0",
     "gatsby-plugin-algolia": "^0.17.0",
