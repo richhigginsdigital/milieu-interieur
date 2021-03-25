@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import "./menu.css"
-//import Search from "./search"
+import Search from "./search"
 
 const Menu = ({ locale, sectionSlug }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -57,7 +57,9 @@ const Menu = ({ locale, sectionSlug }) => {
             Data Exploration
           </Link>
         </li>
-        {/*<li><Search /></li>*/}
+        <li>
+          <Search locale={locale} />
+        </li>
       </ul>
     </nav>
   )

@@ -1,42 +1,30 @@
 import React from "react"
-//import { Link } from "gatsby"
-/*import algoliasearch from "algoliasearch/lite"
+import { Link } from "gatsby"
+import algoliasearch from "algoliasearch/lite"
 import {
   InstantSearch,
-  SearchBox,
   Hits,
+  SearchBox,
   Highlight,
   Snippet,
   PoweredBy,
+  Configure,
 } from "react-instantsearch-dom"
 import { connectStateResults } from "react-instantsearch/connectors"
+import "instantsearch.css/themes/reset.css"
+import "instantsearch.css/themes/satellite.css"
 import "./search.css"
-*/
 
-/*
+import { pageLink } from "../helpers/pageLink"
+
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_API_KEY
 )
 
 const Hit = ({ hit }) => {
-  let path = `/${hit.slug}/` // default, a section index page
-
-  if (hit.section) {
-    if (hit.section.slug === "/") {
-      // root section
-      if (hit.slug === "") {
-        path = `/` // home page
-      } else {
-        path = `/${hit.slug}/` // root page
-      }
-    } else {
-      path = `/${hit.section.slug}/${hit.slug}/` // standard page
-    }
-  }
-
-  return hit.section ? (
-    <Link className="hit" to={path}>
+  return hit.parentPage ? (
+    <Link className="hit" to={pageLink(hit, true)}>
       <strong>
         <Highlight attribute="title" hit={hit} />
       </strong>
@@ -44,7 +32,7 @@ const Hit = ({ hit }) => {
       <Snippet attribute="mainContent" hit={hit} />
     </Link>
   ) : (
-    <Link className="hit" to={path}>
+    <Link className="hit" to={pageLink(hit, true)}>
       <strong>
         <Highlight attribute="title" hit={hit} />
       </strong>
@@ -54,7 +42,7 @@ const Hit = ({ hit }) => {
   )
 }
 
-const Content = connectStateResults(({ searchState, searchResults }) => {
+const Content = connectStateResults(({ searchState }) => {
   const hasQuery = searchState && searchState.query
 
   return hasQuery ? (
@@ -66,35 +54,41 @@ const Content = connectStateResults(({ searchState, searchResults }) => {
     <></>
   )
 })
-*/
 
-const Search = ({ locale }) => (
-  /*typeof window !== "undefined" ? (
-    <InstantSearch
-      indexName={process.env.GATSBY_ALGOLIA_INDEX}
-      searchClient={searchClient}
-    >
-      <SearchBox
-        translations={{ placeholder: "Search the Readability Guidelines" }}
-      />
-      <Content />
-    </InstantSearch>
-  ) : (*/
-
-  // fallback google search
-  <div className="search">
-    <form
-      method="get"
-      action="https://www.google.com/webhp?q=site:www.milieuinterieur.fr"
-    >
-      <input placeholder="Search" type="search" name="q" />
-      <input type="hidden" name="sitesearch" value="www.milieuinterieur.fr" />
-      <button type="submit" title="Submit your search query.">
-        Submit
-      </button>
-    </form>
-  </div>
-)
-// )
+const Search = ({ locale }) =>
+  typeof window !== "undefined" ? (
+    <div className="search">
+      <InstantSearch
+        indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
+        searchClient={searchClient}
+      >
+        <Configure
+          filters={`node_locale:${locale === "en" ? `en-US` : locale}`}
+        />
+        <SearchBox
+          //onClick={event => {
+          //console.log(event.currentTarget)
+          //alert("scroll to top lad")
+          //}}
+          translations={{ placeholder: "Search" }}
+        />
+        <Content />
+      </InstantSearch>
+    </div>
+  ) : (
+    // non js fallback search on google
+    <div className="search">
+      <form
+        method="get"
+        action="https://www.google.com/webhp?q=site:www.milieuinterieur.fr"
+      >
+        <input placeholder="Search" type="search" name="q" />
+        <input type="hidden" name="sitesearch" value="www.milieuinterieur.fr" />
+        <button type="submit" title="Submit your search query.">
+          Submit
+        </button>
+      </form>
+    </div>
+  )
 
 export default Search

@@ -610,12 +610,3 @@ pre tt:after {
     }
   }
 }
-
-@media only screen and (min-width: 1024px) {
-  .search {
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    margin-left: -462px;
-  }
-}

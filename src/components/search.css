@@ -1,0 +1,81 @@
+@media only screen and (min-width: 1024px) {
+  .search {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    margin-left: -462px;
+    max-width: 222px;
+  }
+}
+
+.menu .ais-Hits-list {
+  text-align: left;
+}
+
+.ais-Hits-list {
+  margin-top: 0;
+}
+.ais-Hits-item {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid #c4c8d8;
+  border-top: none;
+}
+.ais-Hits-item a {
+  display: block;
+  padding: 1em 0.4em;
+  color: #333;
+}
+.ais-Hits-item a:hover {
+  background: #333;
+  color: #fff;
+}
+
+.hit {
+  text-decoration: none;
+}
+
+.hit .ais-Highlight {
+  text-decoration: underline;
+}
+
+.ais-PoweredBy {
+  background: #fff;
+  float: right;
+}
+
+.ais-SearchBox-form::before {
+  display: none;
+}
+
+.ais-SearchBox-input {
+  box-shadow: none;
+  padding: 5px 5px 5px 25px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.ais-SearchBox-submit {
+  display: block;
+}
+
+.ais-SearchBox-submitIcon {
+  position: absolute;
+  top: 10px;
+  left: 6px;
+}
+.ais-SearchBox-resetIcon path,
+.ais-SearchBox-submitIcon path {
+  fill: #c4c8d8;
+}
+.ais-SearchBox-submitIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.ais-SearchBox-form {
+  display: block;
+  position: relative;
+}

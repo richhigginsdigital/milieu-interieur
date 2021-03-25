@@ -15,8 +15,8 @@ const createPath = page => {
   return path
 }
 
-export const pageLink = page => {
+export const pageLink = (page, pathOnly = false) => {
   const path = createPath(page)
 
-  return <Link to={path}>{page.title}</Link>
+  return pathOnly ? path : <Link to={path}>{page.title}</Link>
 }
