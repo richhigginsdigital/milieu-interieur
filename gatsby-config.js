@@ -110,10 +110,9 @@ module.exports = {
         queries,
         chunkSize: 10000, // default: 1000
         settings: {
-          // optional, any index settings
-          // Note: by supplying settings, you will overwrite all existing settings on the index
+          attributesForFaceting: ["node_locale"],
         },
-        enablePartialUpdates: false, // default: false
+        enablePartialUpdates: true, // default: false
         matchFields: ["updatedAt"], // Array<String> default: ['modified']
         concurrentQueries: false, // default: true
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development
