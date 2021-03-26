@@ -5,6 +5,7 @@
     left: 50%;
     margin-left: -462px;
     max-width: 960px;
+    z-index: 1;
   }
 }
 
@@ -85,4 +86,18 @@
   display: block;
   position: relative;
   height: initial;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
+}
+
+.overlay.hidden {
+  display: none;
 }

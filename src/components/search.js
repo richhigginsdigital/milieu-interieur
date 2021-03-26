@@ -1,4 +1,4 @@
-import React from "react"
+import React /*, { useState }*/ from "react"
 import { Link } from "gatsby"
 import algoliasearch from "algoliasearch/lite"
 import {
@@ -55,31 +55,33 @@ const Content = connectStateResults(({ searchState }) => {
   )
 })
 
-const Search = ({ locale }) =>
-  typeof window !== "undefined" ? (
-    <div className="search">
-      <InstantSearch
-        indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
-        searchClient={searchClient}
-      >
-        <Configure
-          filters={`node_locale:${locale === "en" ? `en-US` : locale}`}
-        />
-        <SearchBox
-          /*onFocus={event => {
-            const offset = event.currentTarget.getBoundingClientRect().top
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            })
-          }}*/
-          translations={{
-            placeholder: locale === "en" ? "Search" : "Rechercher",
-          }}
-        />
-        <Content />
-      </InstantSearch>
-    </div>
+const Search = ({ locale }) => {
+  //  const [searchOpen, setSearchOpen] = useState(false)
+  //  const toggleOverlay = () => {
+  //    searchOpen ? setSearchOpen(false) : setSearchOpen(true)
+  //  }
+
+  return typeof window !== "undefined" ? (
+    <>
+      <div className="search">
+        <InstantSearch
+          indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
+          searchClient={searchClient}
+        >
+          <Configure
+            filters={`node_locale:${locale === "en" ? `en-US` : locale}`}
+          />
+          <SearchBox
+            //            onFocus={event => toggleOverlay()}
+            translations={{
+              placeholder: locale === "en" ? "Search" : "Rechercher",
+            }}
+          />
+          <Content />
+        </InstantSearch>
+      </div>
+      {/*<div className={searchOpen ? `overlay` : `overlay hidden`} />*/}
+    </>
   ) : (
     <div className="search">
       <form method="get" action="https://www.google.co.uk/search">
@@ -103,5 +105,6 @@ const Search = ({ locale }) =>
       </form>
     </div>
   )
+}
 
 export default Search
