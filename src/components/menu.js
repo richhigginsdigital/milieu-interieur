@@ -67,7 +67,7 @@ const Menu = ({ locale, sectionSlug }) => {
 
 Menu.propTypes = {
   locale: PropTypes.string.isRequired,
-  sectionSlug: PropTypes.string.isRequired,
+  sectionSlug: PropTypes.string,
 }
 
 export default Menu
