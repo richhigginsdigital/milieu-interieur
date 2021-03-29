@@ -19,6 +19,11 @@ const Page = ({ data, pageContext }) => {
     data.menuPages.edges[index].node.childPages = childPages
   })
 
+  const showSectionMenu =
+    !data.contentfulPage.parentPage && data.menuPages.edges.length
+      ? true
+      : false
+
   return (
     <Layout locale={locale} sectionSlug={pageContext.sectionSlug}>
       <SEO title={data.contentfulPage.title} lang={locale} />
@@ -31,10 +36,7 @@ const Page = ({ data, pageContext }) => {
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
 
-        {!data.contentfulPage.parentPage && (
-          // a top level page so we display the section menu
-          <SectionMenu pages={data.menuPages.edges} />
-        )}
+        {showSectionMenu && <SectionMenu pages={data.menuPages.edges} />}
 
         {data.contentfulPage.mainContent &&
           renderRichText(data.contentfulPage.mainContent, {
@@ -59,6 +61,16 @@ const Page = ({ data, pageContext }) => {
               },
             },
           })}
+
+        {data.contentfulPage.slug === "publications" && (
+          // Algolia instantsearch component
+          <pre>&lt;Publications listing component /&gt;</pre>
+        )}
+
+        {data.contentfulPage.slug === "events" && (
+          // Algolia instantsearch component
+          <pre>&lt;Events listing component /&gt;</pre>
+        )}
       </div>
     </Layout>
   )
