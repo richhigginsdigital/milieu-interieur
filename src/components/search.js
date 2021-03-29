@@ -84,14 +84,27 @@ const Search = ({ locale }) => {
     </>
   ) : (
     <div className="search">
-      <form method="get" action="https://www.google.co.uk/search">
-        <input placeholder="Search" type="search" name="q" />
+      <form
+        className="ais-SearchBox-form"
+        method="get"
+        action="https://www.google.co.uk/search"
+      >
+        <input
+          className="ais-SearchBox-input"
+          placeholder="Search"
+          type="search"
+          name="q"
+        />
         <input
           type="hidden"
           name="as_sitesearch"
           value="www.milieuinterieur.fr"
         />
-        <button type="submit" title="Submit your search query.">
+        <button
+          className="ais-SearchBox-submit"
+          type="submit"
+          title="Submit your search query."
+        >
           <svg
             class="ais-SearchBox-submitIcon"
             xmlns="http://www.w3.org/2000/svg"
