@@ -45,8 +45,18 @@ const Layout = ({ children, locale, sectionSlug }) => {
             to="/en/"
             style={{ display: "block" }}
           >
-            <img style={{ marginRight: ".5rem" }} src={MilieuInterieurlogo} />
-            <img style={{ marginLeft: ".5rem" }} src={Pasteurlogo} />
+            <img
+              width="139"
+              height="44"
+              style={{ marginRight: ".5rem" }}
+              src={MilieuInterieurlogo}
+            />
+            <img
+              width="161"
+              height="44"
+              style={{ marginLeft: ".5rem" }}
+              src={Pasteurlogo}
+            />
           </Link>
         </div>
         <main>{children}</main>
