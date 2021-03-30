@@ -10,7 +10,7 @@ const EnIndexPage = () => (
     {process.env.GATSBY_HOLDING_PAGE ? (
       <div
         style={{
-          maxWidth: 600,
+          maxWidth: 680,
           margin: "auto",
         }}
       >
@@ -24,6 +24,10 @@ const EnIndexPage = () => (
         </p>
 
         <p>To contact us please send an email to milieuinterieur@pasteur.fr.</p>
+
+        <p>
+          <small>Copyright 2021 Milieuinterieur.fr</small>
+        </p>
       </div>
     ) : (
       <>
