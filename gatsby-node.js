@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -78,6 +82,8 @@ const createPages = async ({ graphql, actions }) => {
   }
 }
 
-module.exports = {
-  createPages,
+if (!process.env.HOLDING_PAGE) {
+  module.exports = {
+    createPages,
+  }
 }
