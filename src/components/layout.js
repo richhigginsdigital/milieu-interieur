@@ -50,12 +50,14 @@ const Layout = ({ children, locale, sectionSlug }) => {
               height="44"
               style={{ marginRight: ".5rem" }}
               src={MilieuInterieurlogo}
+              alt="Milieu Intérieur project logo"
             />
             <img
               width="161"
               height="44"
               style={{ marginLeft: ".5rem" }}
               src={Pasteurlogo}
+              alt="Institut Pasteur logo"
             />
           </Link>
         </div>

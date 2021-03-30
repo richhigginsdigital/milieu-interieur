@@ -23,13 +23,7 @@ const EnIndexPage = () => (
           Project.
         </p>
 
-        <p>
-          To contact us please{" "}
-          <a href="mailto:milieuinterieur@pasteur.fr?subject=milieuinterieur%40pasteur.fr">
-            send an email
-          </a>
-          .
-        </p>
+        <p>To contact us please send an email to milieuinterieur@pasteur.fr.</p>
       </div>
     ) : (
       <>
