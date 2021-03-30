@@ -8,22 +8,29 @@ const EnIndexPage = () => (
     <SEO title="Home" />
 
     {process.env.GATSBY_HOLDING_PAGE ? (
-      <>
-        <h1>Milieu Intérieur Project</h1>
+      <div
+        style={{
+          maxWidth: 600,
+          margin: "auto",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <h1>Milieu Intérieur Project</h1>
+        </div>
 
         <p>
-          We are currently redeveloping the Milieu Intérieur Project website.
+          We are currently developing a new website for The Milieu Intérieur
+          Project.
         </p>
 
-        <h2>Contact us</h2>
-
         <p>
-          To contact us, please{" "}
+          To contact us please{" "}
           <a href="mailto:milieuinterieur@pasteur.fr?subject=milieuinterieur%40pasteur.fr">
-            send us an email
+            send an email
           </a>
+          .
         </p>
-      </>
+      </div>
     ) : (
       <>
         <h1 style={{ fontFamily: "georgia, serif" }}>

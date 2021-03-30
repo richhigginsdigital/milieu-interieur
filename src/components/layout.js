@@ -16,6 +16,9 @@ import Header from "./header"
 import Menu from "./menu"
 import "./layout.css"
 
+import MilieuInterieurlogo from "../images/milieu-interieur.svg"
+import Pasteurlogo from "../images/institut-pasteur.svg"
+
 const Layout = ({ children, locale, sectionSlug }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -33,9 +36,19 @@ const Layout = ({ children, locale, sectionSlug }) => {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          padding: `1rem`,
         }}
       >
+        <div style={{ textAlign: "center" }}>
+          <Link
+            title="Go to Milieu Intérieur home page"
+            to="/en/"
+            style={{ display: "block" }}
+          >
+            <img style={{ marginRight: ".5rem" }} src={MilieuInterieurlogo} />
+            <img style={{ marginLeft: ".5rem" }} src={Pasteurlogo} />
+          </Link>
+        </div>
         <main>{children}</main>
       </div>
     </>
