@@ -82,8 +82,12 @@ const createPages = async ({ graphql, actions }) => {
   }
 }
 
-if (!process.env.HOLDING_PAGE) {
-  module.exports = {
-    createPages,
-  }
+const onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  if (page.path === "/fr/") deletePage(page)
 }
+
+module.exports = process.env.GATSBY_HOLDING_PAGE
+  ? { onCreatePage }
+  : { createPages }
