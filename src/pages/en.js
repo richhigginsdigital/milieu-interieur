@@ -18,23 +18,28 @@ const EnIndexPage = () => (
           <h1>Milieu Intérieur Project</h1>
         </div>
 
-        <p>
-          We are currently developing a new website for The Milieu Intérieur
-          Project.
-        </p>
+        <section>
+          <p>
+            We are currently developing a new website for The Milieu Intérieur
+            Project.
+          </p>
 
-        <p>To contact us please send an email to milieuinterieur@pasteur.fr.</p>
+          <p>
+            To contact us please send an email to milieuinterieur@pasteur.fr.
+          </p>
+        </section>
 
-        <p>
-          Nous sommes en train de développer un nouveau site web pour le projet
-          Milieu Intérieur.
-        </p>
+        <section lang="fr">
+          <p>
+            Nous sommes en train de développer un nouveau site web pour le
+            projet Milieu Intérieur.
+          </p>
 
-        <p>
-          Pour nous contacter, veuillez envoyer un courriel à
-          milieuinterieur@pasteur.fr.
-        </p>
-
+          <p>
+            Pour nous contacter, veuillez envoyer un courriel à
+            milieuinterieur@pasteur.fr.
+          </p>
+        </section>
         <p>
           <small>Copyright 2021 Milieuinterieur.fr</small>
         </p>
