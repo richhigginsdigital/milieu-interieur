@@ -2,6 +2,9 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
+import MilieuInterieurlogo from "../images/milieu-interieur.svg"
+import Pasteurlogo from "../images/institut-pasteur.svg"
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -15,15 +18,26 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <div style={{ margin: 0, fontWeight: "normal" }}>
+      <div style={{ textAlign: "center" }}>
         <Link
+          title="Go to Milieu Intérieur home page"
           to="/en/"
-          style={{
-            color: `hsla(0, 0%, 0%, 0.8)`,
-            textDecoration: `none`,
-          }}
+          style={{ display: "block" }}
         >
-          {siteTitle}
+          <img
+            width="139"
+            height="44"
+            style={{ marginRight: ".5rem" }}
+            src={MilieuInterieurlogo}
+            alt="Milieu Intérieur project logo"
+          />
+          <img
+            width="161"
+            height="44"
+            style={{ marginLeft: ".5rem" }}
+            src={Pasteurlogo}
+            alt="Institut Pasteur logo"
+          />
         </Link>
       </div>
     </div>

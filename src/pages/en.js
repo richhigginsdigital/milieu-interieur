@@ -26,6 +26,16 @@ const EnIndexPage = () => (
         <p>To contact us please send an email to milieuinterieur@pasteur.fr.</p>
 
         <p>
+          Nous sommes en train de développer un nouveau site web pour le projet
+          Milieu Intérieur.
+        </p>
+
+        <p>
+          Pour nous contacter, veuillez envoyer un courriel à
+          milieuinterieur@pasteur.fr.
+        </p>
+
+        <p>
           <small>Copyright 2021 Milieuinterieur.fr</small>
         </p>
       </div>
