@@ -88,6 +88,7 @@ const onCreatePage = ({ page, actions }) => {
   if (page.path === "/fr/") deletePage(page)
 }
 
-module.exports = process.env.GATSBY_HOLDING_PAGE
-  ? { onCreatePage }
-  : { createPages }
+module.exports =
+  process.env.GATSBY_HOLDING_PAGE === "true"
+    ? { onCreatePage }
+    : { createPages }

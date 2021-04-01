@@ -7,7 +7,7 @@ const EnIndexPage = () => (
   <Layout locale="en">
     <SEO title="Home" />
 
-    {process.env.GATSBY_HOLDING_PAGE ? (
+    {process.env.GATSBY_HOLDING_PAGE === "true" ? (
       <div
         style={{
           maxWidth: 680,

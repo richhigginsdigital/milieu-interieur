@@ -30,7 +30,7 @@ const Layout = ({ children, locale, sectionSlug }) => {
     }
   `)
 
-  return process.env.GATSBY_HOLDING_PAGE ? (
+  return process.env.GATSBY_HOLDING_PAGE === "true" ? (
     <>
       <div
         style={{
