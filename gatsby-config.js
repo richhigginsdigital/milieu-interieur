@@ -133,5 +133,6 @@ module.exports = {
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development
       },
     },
+    `gatsby-plugin-netlify`,
   ],
 }
