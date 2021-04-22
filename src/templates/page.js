@@ -6,7 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import SectionMenu from "../components/sectionMenu"
 
 const Page = ({ data, pageContext }) => {
@@ -26,7 +26,7 @@ const Page = ({ data, pageContext }) => {
 
   return (
     <Layout locale={locale} sectionSlug={pageContext.sectionSlug}>
-      <SEO title={data.contentfulPage.title} lang={locale} />
+      <Seo title={data.contentfulPage.title} lang={locale} />
 
       <div style={{ maxWidth: "827px", margin: "auto" }}>
         {data.contentfulPage.parentPage && (

@@ -1,11 +1,11 @@
 import * as React from "react"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const EnIndexPage = () => (
   <Layout locale="en">
-    <SEO title="Home" />
+    <Seo title="Home" />
 
     {process.env.GATSBY_HOLDING_PAGE === "true" ? (
       <div
