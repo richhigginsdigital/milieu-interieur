@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 import "./menu.css"
-import Search from "./search"
+import { pageLink } from "../helpers/pageLink"
 
-const Menu = ({ locale, sectionSlug }) => {
+const Menu = ({ locale, sectionSlug, data }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -23,7 +22,10 @@ const Menu = ({ locale, sectionSlug }) => {
         Menu
       </button>
       <ul id="menu" className={menuOpen ? undefined : `hidden`}>
-        <li>
+        {data.pages.map(page => (
+          <li>{pageLink(page)}</li>
+        ))}
+        {/*<li>
           <Link
             className={sectionSlug === "about-us" ? "selected" : ""}
             to={`/${locale}/about-us/`}
@@ -60,6 +62,7 @@ const Menu = ({ locale, sectionSlug }) => {
         <li>
           <Search locale={locale} />
         </li>
+            */}
       </ul>
     </nav>
   )

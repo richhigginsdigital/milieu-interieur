@@ -25,7 +25,11 @@ const Page = ({ data, pageContext }) => {
       : false
 
   return (
-    <Layout locale={locale} sectionSlug={pageContext.sectionSlug}>
+    <Layout
+      locale={locale}
+      sectionSlug={pageContext.sectionSlug}
+      menuData={data.contentfulMenu}
+    >
       <Seo title={data.contentfulPage.title} lang={locale} />
 
       <div style={{ maxWidth: "827px", margin: "auto" }}>
@@ -169,6 +173,16 @@ export const query = graphql`
             }
           }
           node_locale
+        }
+      }
+    }
+    contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
+      pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
         }
       }
     }

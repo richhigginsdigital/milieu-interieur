@@ -19,9 +19,9 @@ import "./layout.css"
 import MilieuInterieurlogo from "../images/milieu-interieur.svg"
 import Pasteurlogo from "../images/institut-pasteur.svg"
 
-const Layout = ({ children, locale, sectionSlug }) => {
+const Layout = ({ children, locale, sectionSlug, menuData }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query LayoutQuery {
       site {
         siteMetadata {
           title
@@ -76,6 +76,7 @@ const Layout = ({ children, locale, sectionSlug }) => {
         We'd like to set Google Analytics cookies to help us to improve our
         website by collecting and reporting information on how you use it.
       </CookieConsent>
+
       <div
         style={{
           margin: `0 auto`,
@@ -109,7 +110,7 @@ const Layout = ({ children, locale, sectionSlug }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <Menu locale={locale} sectionSlug={sectionSlug} />
+        <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
       </div>
       <hr />
 

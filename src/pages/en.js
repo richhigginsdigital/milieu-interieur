@@ -1,61 +1,79 @@
 import * as React from "react"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const EnIndexPage = () => (
-  <Layout locale="en">
-    <Seo title="Home" />
+const EnIndexPage = ({ data }) => {
+  return (
+    <Layout locale="en" menuData={data.contentfulMenu}>
+      <Seo title="Home" />
 
-    {process.env.GATSBY_HOLDING_PAGE === "true" ? (
-      <div
-        style={{
-          maxWidth: 680,
-          margin: "auto",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <h1>Milieu Intérieur Project</h1>
+      {process.env.GATSBY_HOLDING_PAGE === "true" ? (
+        <div
+          style={{
+            maxWidth: 680,
+            margin: "auto",
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h1>Milieu Intérieur Project</h1>
+          </div>
+
+          <section>
+            <p>
+              We are currently developing a new website for The Milieu Intérieur
+              Project.
+            </p>
+
+            <p>
+              To contact us please send an email to milieuinterieur@pasteur.fr.
+            </p>
+          </section>
+
+          <section lang="fr">
+            <p>
+              Nous sommes en train de développer un nouveau site web pour le
+              projet Milieu Intérieur.
+            </p>
+
+            <p>
+              Pour nous contacter, veuillez envoyer un courriel à
+              milieuinterieur@pasteur.fr.
+            </p>
+          </section>
+          <p>
+            <small>Copyright 2021 Milieuinterieur.fr</small>
+          </p>
         </div>
+      ) : (
+        <>
+          <h1 style={{ fontFamily: "georgia, serif" }}>
+            The Milieu Intérieur project takes an unprecedented look at the
+            human immune system by examining the genetic and environmental
+            factors contributing to the variability of immune responses.
+          </h1>
 
-        <section>
-          <p>
-            We are currently developing a new website for The Milieu Intérieur
-            Project.
-          </p>
+          <p>[+ homepage content modules]</p>
+        </>
+      )}
+    </Layout>
+  )
+}
 
-          <p>
-            To contact us please send an email to milieuinterieur@pasteur.fr.
-          </p>
-        </section>
-
-        <section lang="fr">
-          <p>
-            Nous sommes en train de développer un nouveau site web pour le
-            projet Milieu Intérieur.
-          </p>
-
-          <p>
-            Pour nous contacter, veuillez envoyer un courriel à
-            milieuinterieur@pasteur.fr.
-          </p>
-        </section>
-        <p>
-          <small>Copyright 2021 Milieuinterieur.fr</small>
-        </p>
-      </div>
-    ) : (
-      <>
-        <h1 style={{ fontFamily: "georgia, serif" }}>
-          The Milieu Intérieur project takes an unprecedented look at the human
-          immune system by examining the genetic and environmental factors
-          contributing to the variability of immune responses.
-        </h1>
-
-        <p>[+ homepage content modules]</p>
-      </>
-    )}
-  </Layout>
-)
+export const query = graphql`
+  query {
+    contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "en-US" }) {
+      pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+  }
+`
 
 export default EnIndexPage
