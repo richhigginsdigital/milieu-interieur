@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import "./menu.css"
+import Search from "./search"
 import { pageLink } from "../helpers/pageLink"
 
 const Menu = ({ locale, sectionSlug, data }) => {
@@ -25,6 +26,9 @@ const Menu = ({ locale, sectionSlug, data }) => {
         {data.pages.map(page => (
           <li>{pageLink(page)}</li>
         ))}
+        <li>
+          <Search locale={locale} />
+        </li>
         {/*<li>
           <Link
             className={sectionSlug === "about-us" ? "selected" : ""}
