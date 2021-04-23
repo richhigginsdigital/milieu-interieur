@@ -30,7 +30,14 @@ const Page = ({ data, pageContext }) => {
       sectionSlug={pageContext.sectionSlug}
       menuData={data.contentfulMenu}
     >
-      <Seo title={data.contentfulPage.title} lang={locale} />
+      <Seo
+        description={
+          data.contentfulPage.metaDescription &&
+          data.contentfulPage.metaDescription.metaDescription
+        }
+        title={data.contentfulPage.title}
+        lang={locale}
+      />
 
       <div style={{ maxWidth: "827px", margin: "auto" }}>
         {data.contentfulPage.parentPage && (
@@ -115,6 +122,9 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+      metaDescription {
+        metaDescription
       }
     }
     menuPages: allContentfulPage(
