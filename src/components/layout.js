@@ -18,6 +18,8 @@ import "./layout.css"
 
 import MilieuInterieurlogo from "../images/milieu-interieur.svg"
 import Pasteurlogo from "../images/institut-pasteur.svg"
+import { ReactComponent as EllipseLeft } from "../images/ellipse-left.svg"
+import { ReactComponent as EllipseRight } from "../images/ellipse-right.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData }) => {
   const data = useStaticQuery(graphql`
@@ -65,7 +67,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
       </div>
     </>
   ) : (
-    <>
+    <div className="overflow-x-hidden">
       <CookieConsent
         location="bottom"
         buttonText="Accept"
@@ -77,51 +79,79 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         website by collecting and reporting information on how you use it.
       </CookieConsent>
 
-      <div
+      <span
         style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1em`,
-          textAlign: "right",
+          color: "#C1D7EE",
+          position: "absolute",
+          top: "0",
+          left: "50%",
+          zIndex: "-1",
+          marginLeft: "-236px", // 876 - 404
         }}
       >
-        {locale === "fr" ? (
-          <>
-            <Link to="/en/" title="English version">
-              EN
-            </Link>{" "}
-            FR
-          </>
-        ) : (
-          <>
-            EN{" "}
-            <Link to="/fr/" title="Version française">
-              FR
-            </Link>
-          </>
-        )}
-      </div>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <EllipseRight />
+      </span>
+      <span
+        style={{
+          color: "#D8E6F4",
+          position: "absolute",
+          top: "132px",
+          zIndex: "-2",
+          left: "50%",
+          marginLeft: "-644px", // 914 - 270
+        }}
+      >
+        <EllipseLeft />
+      </span>
 
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
+      <div style={{ background: "white" }}>
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 1184,
+            padding: `0 1em`,
+            textAlign: "right",
+          }}
+        >
+          {locale === "fr" ? (
+            <>
+              <Link to="/en/" title="English version">
+                EN
+              </Link>{" "}
+              FR
+            </>
+          ) : (
+            <>
+              EN{" "}
+              <Link to="/fr/" title="Version française">
+                FR
+              </Link>
+            </>
+          )}
+        </div>
+        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+            padding: `0 1.0875rem`,
+          }}
+        >
+          <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
+        </div>
       </div>
       <hr />
 
-      <div
+      <main>{children}</main>
+
+      {/*<div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1184,
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
         <footer
           style={{
             marginTop: `2rem`,
@@ -129,9 +159,6 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         >
           <nav>
             <ul style={{ listStyle: "none", margin: "1em 0" }}>
-              <li style={{ display: "inline", marginRight: "1em" }}>
-                <Link to={`/${locale}/about-us/contact-us/`}>Contact us</Link>
-              </li>
               <li style={{ display: "inline" }}>
                 <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
               </li>
@@ -140,8 +167,8 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
 
           <p>© {new Date().getFullYear()}</p>
         </footer>
-      </div>
-    </>
+        </div>*/}
+    </div>
   )
 }
 

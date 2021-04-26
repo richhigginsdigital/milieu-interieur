@@ -57,6 +57,7 @@ const Page = ({ data, pageContext }) => {
                   <GatsbyImage
                     alt={node.data.target.description}
                     image={node.data.target.gatsbyImageData}
+                    style={{ marginBottom: `1em` }}
                   />
                 )
               },

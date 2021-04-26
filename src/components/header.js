@@ -6,19 +6,15 @@ import MilieuInterieurlogo from "../images/milieu-interieur.svg"
 import Pasteurlogo from "../images/institut-pasteur.svg"
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      textAlign: `center`,
-    }}
-  >
+  <header>
     <div
       style={{
         margin: `0 auto`,
-        maxWidth: 960,
+        maxWidth: 1184,
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <div style={{ textAlign: "center" }}>
+      <div>
         <Link
           title="Go to Milieu Intérieur home page"
           to="/en/"

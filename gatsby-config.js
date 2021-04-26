@@ -134,5 +134,17 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-svgr`,
+      options: {
+        svgoConfig: {
+          plugins: [
+            { removeViewBox: false }, // always keep the viewBox please, ta
+            { prefixClassNames: false },
+            { prefixIds: false },
+          ],
+        },
+      },
+    },
   ],
 }
