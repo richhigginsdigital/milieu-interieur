@@ -20,7 +20,7 @@ const Header = ({ siteTitle }) => (
         <Link
           title="Go to Milieu Intérieur home page"
           to="/en/"
-          style={{ display: "block" }}
+          style={{ display: "inline-block" }}
         >
           <MilieuInterieurlogo style={{ marginRight: ".5rem" }} />
           <Pasteurlogo style={{ marginLeft: ".5rem" }} />
