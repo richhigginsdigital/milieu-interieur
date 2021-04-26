@@ -301,7 +301,7 @@ h2,
   font-family: "IBM Plex Serif", Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
   text-rendering: optimizeLegibility;
-  font-size: 1.62671rem;
+  font-size: 1rem;
   line-height: 1.1;
 }
 h3 {
@@ -680,4 +680,5 @@ ol {
 .overflow-x-hidden {
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
 }
