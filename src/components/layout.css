@@ -69,6 +69,7 @@ a {
   height: 0;
   margin-bottom: 1em;
   border-radius: 12px;
+  z-index: 1;
 }
 
 .video iframe {
@@ -117,4 +118,26 @@ a {
   box-sizing: border-box;
   max-width: 827px;
   margin: auto;
+}
+
+.language-menu {
+  display: inline-block;
+  border-left: 1px solid black;
+}
+
+.language-menu a,
+.language-menu span {
+  display: inline-block;
+  border: 1px solid black;
+  border-width: 1px 1px 1px 0;
+  margin-right: -4px;
+  padding: 0.4375rem 1rem;
+}
+
+.language-menu span {
+  background: #eb924a;
+}
+
+.language-menu a {
+  text-decoration: none;
 }

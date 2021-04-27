@@ -111,29 +111,10 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
           marginBottom: "2em",
         }}
       >
-        <div
-          className="l-constrained-wide"
-          style={{
-            textAlign: "right",
-          }}
-        >
-          {locale === "fr" ? (
-            <>
-              <Link to="/en/" title="English version">
-                EN
-              </Link>{" "}
-              FR
-            </>
-          ) : (
-            <>
-              EN{" "}
-              <Link to="/fr/" title="Version française">
-                FR
-              </Link>
-            </>
-          )}
-        </div>
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Header
+          locale={locale}
+          siteTitle={data.site.siteMetadata?.title || `Title`}
+        />
 
         <div className="l-constrained-wide">
           <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
