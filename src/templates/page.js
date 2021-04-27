@@ -9,7 +9,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import SectionMenu from "../components/sectionMenu"
 
-const Page = ({ data, pageContext }) => {
+const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   data.menuPages.edges.forEach((item, index) => {
@@ -29,6 +29,7 @@ const Page = ({ data, pageContext }) => {
       locale={locale}
       sectionSlug={pageContext.sectionSlug}
       menuData={data.contentfulMenu}
+      location={location}
     >
       <Seo
         description={
@@ -39,10 +40,10 @@ const Page = ({ data, pageContext }) => {
         lang={locale}
       />
 
-      <div style={{ maxWidth: "827px", margin: "auto" }}>
+      <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "39px", textAlign: "center" }}>
-            Part of: {pageLink(data.contentfulPage.parentPage)}
+            <p>Part of: {pageLink(data.contentfulPage.parentPage)}</p>
           </nav>
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>

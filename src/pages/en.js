@@ -48,13 +48,7 @@ const EnIndexPage = ({ data }) => {
         </div>
       ) : (
         <>
-          <div
-            style={{
-              margin: `0 auto`,
-              maxWidth: 1184,
-              padding: `0 1.0875rem 1.45rem`,
-            }}
-          >
+          <div className="l-constrained-wide">
             <div className="flex-row">
               <div className="flex-column">
                 <div className="video">
@@ -81,13 +75,7 @@ const EnIndexPage = ({ data }) => {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              margin: `0 auto`,
-              maxWidth: 982,
-              padding: `0 1.0875rem 1.45rem`,
-            }}
-          >
+          <div className="l-constrained">
             <h2>Consortium members</h2>
             [grid of logos]
             <br />

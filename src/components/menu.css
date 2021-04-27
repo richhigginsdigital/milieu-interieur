@@ -1,6 +1,13 @@
 .menu > button {
   width: 100%;
   text-align: left;
+  margin: 1em 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white;
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
 }
 
 .menu > button {
@@ -14,9 +21,8 @@
 }
 
 .menu ul {
-  margin-left: 0;
-  margin-bottom: 0;
   list-style: none;
+  padding: 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -27,6 +33,7 @@
 
 @media only screen and (min-width: 1024px) {
   .menu ul {
+    margin-top: 1em;
     text-align: center;
   }
 }
@@ -44,6 +51,7 @@
 .menu ul a {
   padding: 0.5rem;
   text-decoration: none;
+  color: inherit;
 }
 .menu ul a.selected {
   text-decoration: underline;

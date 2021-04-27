@@ -9,13 +9,15 @@ const SectionMenu = ({ pages }) => (
       <nav>
         <ul>
           {pages.map(page => (
-            <li>
+            <li style={{ marginBottom: ".725rem" }}>
               {pageLink(page.node)}
 
               {page.node.childPages && (
-                <ul>
+                <ul style={{ marginTop: ".725rem" }}>
                   {page.node.childPages.map(subPage => (
-                    <li>{pageLink(subPage.node)}</li>
+                    <li style={{ marginBottom: ".725rem" }}>
+                      {pageLink(subPage.node)}
+                    </li>
                   ))}
                 </ul>
               )}

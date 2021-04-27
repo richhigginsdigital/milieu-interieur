@@ -9,13 +9,7 @@ import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
 
 const Header = ({ siteTitle }) => (
   <header>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 1184,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+    <div className="l-constrained-wide">
       <div>
         <Link
           title="Go to Milieu Intérieur home page"

@@ -67,7 +67,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
       </div>
     </>
   ) : (
-    <div className="overflow-x-hidden">
+    <div className="l-outer-wrapper">
       <CookieConsent
         location="bottom"
         buttonText="Accept"
@@ -95,7 +95,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         style={{
           color: "#D8E6F4",
           position: "absolute",
-          top: "132px",
+          top: "102px",
           zIndex: "-2",
           left: "50%",
           marginLeft: "-644px", // 914 - 270
@@ -104,12 +104,16 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         <EllipseLeft />
       </span>
 
-      <div style={{ background: "white" }}>
+      <div
+        style={{
+          background: "white",
+          borderBottom: "1px solid black",
+          marginBottom: "2em",
+        }}
+      >
         <div
+          className="l-constrained-wide"
           style={{
-            margin: `0 auto`,
-            maxWidth: 1184,
-            padding: `0 1em`,
             textAlign: "right",
           }}
         >
@@ -131,17 +135,10 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         </div>
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
 
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0 1.0875rem`,
-          }}
-        >
+        <div className="l-constrained-wide">
           <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
         </div>
       </div>
-      <hr />
 
       <main>{children}</main>
 
