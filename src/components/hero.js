@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const Hero = ({ locale }) => (
   <div className="l-constrained-wide">
@@ -41,5 +42,9 @@ const Hero = ({ locale }) => (
     </div>
   </div>
 )
+
+Hero.propTypes = {
+  locale: PropTypes.string,
+}
 
 export default Hero
