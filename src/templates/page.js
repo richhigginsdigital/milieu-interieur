@@ -43,7 +43,10 @@ const Page = ({ data, location, pageContext }) => {
       <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "39px", textAlign: "center" }}>
-            <p>Part of: {pageLink(data.contentfulPage.parentPage)}</p>
+            <p>
+              {locale === "fr" ? "Partie de" : "Part of"}:{" "}
+              {pageLink(data.contentfulPage.parentPage)}
+            </p>
           </nav>
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
