@@ -5,6 +5,7 @@ import { Location } from "@reach/router"
 import "./menu.css"
 //import Search from "./search"
 import { pageLink } from "../helpers/pageLink"
+import { ReactComponent as MenuIcon } from "../images/menu-icon.svg"
 
 const Menu = ({ locale, sectionSlug, data }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -23,8 +24,10 @@ const Menu = ({ locale, sectionSlug, data }) => {
             }}
             aria-expanded={menuOpen}
             aria-controls="menu"
+            style={{ textAlign: "right" }}
           >
-            Menu
+            <span style={{ float: "left" }}>Menu</span>{" "}
+            <MenuIcon style={{ marginBottom: "-2px" }} />
           </button>
 
           <ul id="menu" className={menuOpen ? undefined : `hidden`}>
