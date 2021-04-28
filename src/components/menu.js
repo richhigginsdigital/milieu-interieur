@@ -35,7 +35,7 @@ const Menu = ({ locale, sectionSlug, data }) => {
               <li>
                 <Link
                   className={
-                    location.pathname.match(page.slug) ? "selected" : ""
+                    location.pathname.match(`/${page.slug}/`) ? "selected" : ""
                   }
                   to={pageLink(page, true)}
                 >
