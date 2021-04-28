@@ -4,8 +4,6 @@ import { Link } from "gatsby"
 import LanguageMenu from "./languageMenu"
 import "./header.css"
 
-//import MilieuInterieurlogo from "../images/milieu-interieur.svg"
-//import Pasteurlogo from "../images/institut-pasteur.svg"
 import { ReactComponent as MilieuInterieurlogo } from "../images/milieu-interieur.svg"
 import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
 
