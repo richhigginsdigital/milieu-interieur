@@ -111,33 +111,11 @@ a {
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 1184px;
-  padding: 0 1em;
+  padding: 0 1rem;
 }
 
 .l-constrained-narrow {
-  box-sizing: border-box;
   max-width: 827px;
+  padding: 0 1rem;
   margin: auto;
-}
-
-.language-menu {
-  display: inline-block;
-  border-left: 1px solid black;
-}
-
-.language-menu a,
-.language-menu span {
-  display: inline-block;
-  border: 1px solid black;
-  border-width: 1px 1px 1px 0;
-  margin-right: -4px;
-  padding: 0.4375rem 1rem;
-}
-
-.language-menu span {
-  background: #eb924a;
-}
-
-.language-menu a {
-  text-decoration: none;
 }

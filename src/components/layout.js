@@ -8,10 +8,8 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { useStaticQuery, graphql } from "gatsby"
 import CookieConsent from "react-cookie-consent"
 
-//import { pageLink } from "../helpers/pageLink"
 import Header from "./header"
 import Menu from "./menu"
 import "./layout.css"
@@ -22,16 +20,6 @@ import { ReactComponent as EllipseLeft } from "../images/ellipse-left.svg"
 import { ReactComponent as EllipseRight } from "../images/ellipse-right.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData }) => {
-  const data = useStaticQuery(graphql`
-    query LayoutQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return process.env.GATSBY_HOLDING_PAGE === "true" ? (
     <>
       <div
@@ -111,10 +99,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
           marginBottom: "2em",
         }}
       >
-        <Header
-          locale={locale}
-          siteTitle={data.site.siteMetadata?.title || `Title`}
-        />
+        <Header locale={locale} />
 
         <div className="l-constrained-wide">
           <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />

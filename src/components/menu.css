@@ -53,6 +53,13 @@
   text-decoration: none;
   color: inherit;
 }
+
+@media screen and (max-width: 1023px) {
+  .menu ul a {
+    display: block;
+  }
+}
+
 .menu ul a.selected {
   text-decoration: underline;
   text-underline-position: under;

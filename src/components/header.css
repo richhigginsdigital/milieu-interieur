@@ -1,0 +1,38 @@
+header {
+  padding-top: 1em;
+}
+
+@media screen and (min-width: 1024px) {
+  header {
+    padding-top: 2em;
+  }
+}
+
+.language-menu {
+  display: inline-block;
+  border-left: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .language-menu {
+    margin-bottom: 0;
+  }
+}
+
+.language-menu a,
+.language-menu span {
+  display: inline-block;
+  border: 1px solid black;
+  border-width: 1px 1px 1px 0;
+  margin-right: -4px;
+  padding: 0.4375rem 1rem;
+}
+
+.language-menu span {
+  background: #eb924a;
+}
+
+.language-menu a {
+  text-decoration: none;
+}
