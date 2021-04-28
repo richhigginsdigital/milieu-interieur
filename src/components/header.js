@@ -18,8 +18,12 @@ const Header = ({ locale }) => (
       <LanguageMenu locale={locale} />
       <div style={{ float: "left" }}>
         <Link
-          title="Go to Milieu Intérieur home page"
-          to="/en/"
+          title={
+            locale === "fr"
+              ? "Aller à la page d'accueil de Milieu Intérieur"
+              : "Go to Milieu Intérieur home page"
+          }
+          to={locale === "fr" ? "/fr/" : "/en/"}
           style={{ display: "inline-block" }}
         >
           <MilieuInterieurlogo style={{ marginRight: ".5rem" }} />
