@@ -8,10 +8,11 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import CookieConsent from "react-cookie-consent"
 
+import CookieBanner from "./cookieBanner"
 import Header from "./header"
 import Menu from "./menu"
+
 import "./layout.css"
 
 import MilieuInterieurlogo from "../images/milieu-interieur.svg"
@@ -56,16 +57,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
     </>
   ) : (
     <div className="l-outer-wrapper">
-      <CookieConsent
-        location="bottom"
-        buttonText="Accept"
-        declineButtonText="Decline"
-        cookieName="gatsby-gdpr-google-analytics"
-        enableDeclineButton
-      >
-        We'd like to set Google Analytics cookies to help us to improve our
-        website by collecting and reporting information on how you use it.
-      </CookieConsent>
+      <CookieBanner />
 
       <span
         style={{

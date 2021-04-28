@@ -24,8 +24,10 @@ const Header = ({ locale }) => (
           to={locale === "fr" ? "/fr/" : "/en/"}
           style={{ display: "inline-block" }}
         >
-          <MilieuInterieurlogo style={{ marginRight: ".5rem" }} />
-          <Pasteurlogo style={{ marginLeft: ".5rem" }} />
+          <MilieuInterieurlogo
+            style={{ paddingRight: "1.5rem", borderRight: "1px solid #30293e" }}
+          />
+          <Pasteurlogo style={{ marginLeft: "1.5rem" }} />
         </Link>
       </div>
     </div>

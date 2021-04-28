@@ -27,6 +27,12 @@ body {
   margin: 0;
 }
 
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
 h1,
 .h1,
 h2,
