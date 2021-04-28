@@ -54,6 +54,38 @@ const createContentfulPages = (pages, createPage) => {
   })
 }
 
+const createPreviewPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/page.js")
+  pages.forEach(page => {
+    const path = `/preview/${page.node_locale.replace(/-[A-Z]*/, "")}/${
+      page.slug
+    }/` // primary page
+
+    const parentSlug = page.parentPage
+      ? page.parentPage.parentPage
+        ? page.parentPage.slug
+        : page.slug
+      : null
+
+    const sectionSlug = page.parentPage
+      ? page.parentPage.parentPage
+        ? page.parentPage.parentPage.slug
+        : page.parentPage.slug
+      : page.slug
+
+    createPage({
+      path: path,
+      component: pageTemplate,
+      context: {
+        slug: page.slug,
+        locale: page.node_locale,
+        parentSlug: parentSlug,
+        sectionSlug: sectionSlug,
+      },
+    })
+  })
+}
+
 const createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
@@ -77,6 +109,9 @@ const createPages = async ({ graphql, actions }) => {
   } else {
     const { createPage } = actions
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
+
+    if (process.env.CONTENTFUL_HOST === "preview.contentful.com")
+      createPreviewPages(result.data.allContentfulPage.nodes, createPage)
   }
 }
 
