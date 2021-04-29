@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -66,14 +66,7 @@ const Page = ({ data, location, pageContext }) => {
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                const localePrefix =
-                  node.data.target.node_locale === "fr" ? `fr` : `en`
-
-                return (
-                  <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
-                    {children[0]}
-                  </Link>
-                )
+                return pageLink(node.data.target)
               },
             },
           })}
@@ -116,7 +109,14 @@ export const query = graphql`
             __typename
             contentful_id
             slug
+            title
             node_locale
+            parentPage {
+              slug
+              parentPage {
+                slug
+              }
+            }
           }
         }
       }

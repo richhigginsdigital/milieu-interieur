@@ -16,6 +16,25 @@ require("dotenv").config({
  */
 
 // You can delete this file if you're not using it
+const createContentfulEventPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/event.js")
+
+  pages.forEach(page => {
+    const path = `/${page.node_locale.replace(/-[A-Z]*/, "")}/events/${
+      page.slug
+    }/`
+
+    createPage({
+      path: path,
+      component: pageTemplate,
+      context: {
+        slug: page.slug,
+        locale: page.node_locale,
+      },
+    })
+  })
+}
+
 const createContentfulPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/page.js")
   pages.forEach(page => {
@@ -101,6 +120,12 @@ const createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulEvent {
+        nodes {
+          slug
+          node_locale
+        }
+      }
     }
   `)
 
@@ -109,6 +134,7 @@ const createPages = async ({ graphql, actions }) => {
   } else {
     const { createPage } = actions
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
+    createContentfulEventPages(result.data.allContentfulEvent.nodes, createPage)
 
     if (process.env.CONTENTFUL_HOST === "preview.contentful.com")
       createPreviewPages(result.data.allContentfulPage.nodes, createPage)
