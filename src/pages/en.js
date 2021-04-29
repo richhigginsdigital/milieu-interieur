@@ -63,10 +63,6 @@ const EnIndexPage = ({ data }) => {
             [latest publications]
             <br />
             <br />
-            <h2>News</h2>
-            [latest publications]
-            <br />
-            <br />
           </div>
         </>
       )}
