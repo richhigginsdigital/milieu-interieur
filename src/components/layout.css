@@ -22,7 +22,7 @@
 body {
   font-family: "IBM Plex Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #f0f6fd;
+
   color: #30293e;
   margin: 0;
 }
@@ -102,6 +102,8 @@ a {
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
+  background: #f0f6fd;
+  z-index: 0;
 }
 
 .l-constrained {
