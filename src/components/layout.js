@@ -17,8 +17,7 @@ import "./layout.css"
 
 import MilieuInterieurlogo from "../images/milieu-interieur.svg"
 import Pasteurlogo from "../images/institut-pasteur.svg"
-import { ReactComponent as EllipseLeft } from "../images/ellipse-left.svg"
-import { ReactComponent as EllipseRight } from "../images/ellipse-right.svg"
+import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData }) => {
   return process.env.GATSBY_HOLDING_PAGE === "true" ? (
@@ -63,13 +62,13 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         style={{
           color: "#C1D7EE",
           position: "absolute",
-          top: "0",
+          top: "-150px",
           left: "50%",
           zIndex: "-1",
-          marginLeft: "-236px", // 876 - 404
+          marginLeft: "-236px", // 1184 - 404
         }}
       >
-        <EllipseRight />
+        <Ellipse />
       </span>
       <span
         style={{
@@ -78,10 +77,10 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
           top: "102px",
           zIndex: "-2",
           left: "50%",
-          marginLeft: "-644px", // 914 - 270
+          marginLeft: "-914px", // 1184 - 270
         }}
       >
-        <EllipseLeft />
+        <Ellipse />
       </span>
 
       <div
