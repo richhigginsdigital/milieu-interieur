@@ -9,13 +9,27 @@ const FrIndexPage = ({ data }) => {
   return (
     <Layout locale="fr" menuData={data.contentfulMenu}>
       <Seo title="Home" lang="fr" />
-      <Hero locale="fr" />
+      <Hero
+        locale="fr"
+        text={data.contentfulHomepage.missionStatement.missionStatement}
+        video={data.contentfulHomepage.videoUrl}
+      />
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
+    contentfulHomepage(title: { eq: "Homepage" }, node_locale: { eq: "fr" }) {
+      missionStatement {
+        missionStatement
+      }
+      videoUrl
+      consortiumLogos {
+        gatsbyImageData(width: 141, placeholder: BLURRED)
+        description
+      }
+    }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "fr" }) {
       pages {
         title

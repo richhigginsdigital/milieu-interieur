@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -49,20 +50,29 @@ const EnIndexPage = ({ data }) => {
         </div>
       ) : (
         <>
-          <Hero locale="en" />
+          <Hero
+            locale="en"
+            text={data.contentfulHomepage.missionStatement.missionStatement}
+            video={data.contentfulHomepage.videoUrl}
+          />
           <div className="l-constrained">
             <h2>Consortium members</h2>
-            [grid of logos]
-            <br />
-            <br />
-            <h2>Publications</h2>
-            [latest publications]
-            <br />
-            <br />
-            <h2>Events</h2>
-            [latest publications]
-            <br />
-            <br />
+
+            <div className="grid-logos">
+              {data.contentfulHomepage.consortiumLogos.map(logo => (
+                <div>
+                  <GatsbyImage
+                    alt={logo.description}
+                    image={logo.gatsbyImageData}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {
+              //<h2>Publications</h2>
+              //<h2>Events</h2>
+            }
           </div>
         </>
       )}
@@ -72,6 +82,19 @@ const EnIndexPage = ({ data }) => {
 
 export const query = graphql`
   query {
+    contentfulHomepage(
+      title: { eq: "Homepage" }
+      node_locale: { eq: "en-US" }
+    ) {
+      missionStatement {
+        missionStatement
+      }
+      videoUrl
+      consortiumLogos {
+        gatsbyImageData(width: 141, placeholder: BLURRED)
+        description
+      }
+    }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "en-US" }) {
       pages {
         title

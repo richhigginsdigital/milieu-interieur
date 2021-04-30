@@ -123,3 +123,23 @@ a {
   padding: 0 1rem;
   margin: auto;
 }
+
+.grid-logos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .grid-logos {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.grid-logos > div {
+  background: white;
+  padding: 16px;
+}
