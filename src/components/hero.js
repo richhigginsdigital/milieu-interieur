@@ -5,7 +5,7 @@ const Hero = ({ locale, text, video }) => {
   const splitVideoUrl = video.split("v=")
 
   return (
-    <div className="l-constrained-wide">
+    <div className="l-constrained-wide" style={{ marginBottom: "2rem" }}>
       <div className="flex-row">
         <div className="flex-column">
           <div className="video">

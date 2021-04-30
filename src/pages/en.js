@@ -1,10 +1,10 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
+import ConsortiumLogos from "../components/consortiumLogos"
 
 const EnIndexPage = ({ data }) => {
   return (
@@ -55,19 +55,10 @@ const EnIndexPage = ({ data }) => {
             text={data.contentfulHomepage.missionStatement.missionStatement}
             video={data.contentfulHomepage.videoUrl}
           />
-          <div className="l-constrained">
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2>Consortium members</h2>
 
-            <div className="grid-logos">
-              {data.contentfulHomepage.consortiumLogos.map(logo => (
-                <div>
-                  <GatsbyImage
-                    alt={logo.description}
-                    image={logo.gatsbyImageData}
-                  />
-                </div>
-              ))}
-            </div>
+            <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />
 
             {
               //<h2>Publications</h2>
@@ -91,7 +82,7 @@ export const query = graphql`
       }
       videoUrl
       consortiumLogos {
-        gatsbyImageData(width: 141, placeholder: BLURRED)
+        gatsbyImageData(width: 104, placeholder: BLURRED)
         description
       }
     }

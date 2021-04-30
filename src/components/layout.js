@@ -99,29 +99,58 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
 
       <main>{children}</main>
 
-      {/*<div
+      <div
         style={{
-          margin: `0 auto`,
-          maxWidth: 1184,
-          padding: `0 1.0875rem 1.45rem`,
+          background: "#EB924A",
+          overflow: "hidden",
+          borderTop: "1px solid black",
+          padding: "1.5rem 0",
         }}
       >
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          <nav>
-            <ul style={{ listStyle: "none", margin: "1em 0" }}>
-              <li style={{ display: "inline" }}>
-                <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
-              </li>
-            </ul>
-          </nav>
+        <div className="l-constrained" style={{ position: "relative" }}>
+          <h2>How to collaborate with us</h2>
+          <p style={{ maxWidth: "680px" }}>
+            Researchers can obtain access to the Milieu Intérieur data,
+            biological samples and methodology by submitting a research proposal
+            to:{" "}
+            <span
+              style={{
+                background: "white",
+                padding: "7px 24px",
+                position: "absolute",
+                right: 0,
+                top: "2.5rem",
+                border: "1px solid black",
+              }}
+            >
+              milieuinterieur@pasteur.fr
+            </span>
+          </p>
+        </div>
+      </div>
 
-          <p>© {new Date().getFullYear()}</p>
-        </footer>
-        </div>*/}
+      <div style={{ background: "#2C4258", overflow: "hidden" }}>
+        <div className="l-constrained">
+          <footer
+            style={{
+              paddingTop: `1rem`,
+            }}
+          >
+            {/*<nav>
+              <ul style={{ listStyle: "none", margin: "1em 0" }}>
+                <li style={{ display: "inline" }}>
+                  <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
+                </li>
+              </ul>
+            </nav>*/}
+
+            <p style={{ color: "white", fontSize: "1rem" }}>
+              Copyright {new Date().getFullYear()} Millieuinterieur.fr |
+              Pasteur.fr
+            </p>
+          </footer>
+        </div>
+      </div>
     </div>
   )
 }
