@@ -127,9 +127,10 @@ a {
 .grid-logos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.5rem;
+  padding: 0;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -139,7 +140,7 @@ a {
   }
 }
 
-.grid-logos > div {
+.grid-logos > li {
   background: white;
   padding: 16px;
   display: flex;
