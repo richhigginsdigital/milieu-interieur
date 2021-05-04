@@ -22,8 +22,7 @@
 body {
   font-family: "IBM Plex Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-
-  color: #30293e;
+  color: #000;
   margin: 0;
 }
 
@@ -54,6 +53,16 @@ ol {
 
 a {
   color: inherit;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 @supports (display: grid) {

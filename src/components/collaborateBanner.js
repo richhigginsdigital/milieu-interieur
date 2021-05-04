@@ -48,9 +48,13 @@ const CollaborateBanner = () => {
             </span>
             {copied && (
               <span
-                style={{ position: "absolute", right: 0, marginTop: "2rem" }}
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  marginTop: "2.5rem",
+                }}
               >
-                copied to clipboard
+                Copied to clipboard
               </span>
             )}
           </span>
