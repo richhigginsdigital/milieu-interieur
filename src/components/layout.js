@@ -88,7 +88,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         style={{
           background: "white",
           borderBottom: "1px solid black",
-          marginBottom: "2em",
+          marginBottom: "2.5rem",
         }}
       >
         <Header locale={locale} />
@@ -98,9 +98,11 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         </div>
       </div>
 
-      <main>{children}</main>
+      <main style={{ marginBottom: "4rem" }}>{children}</main>
 
-      <CollaborateBanner />
+      <div>
+        <CollaborateBanner />
+      </div>
 
       <div style={{ background: "#2C4258", overflow: "hidden" }}>
         <div className="l-constrained">

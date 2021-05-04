@@ -55,7 +55,7 @@ const EnIndexPage = ({ data }) => {
             text={data.contentfulHomepage.missionStatement.missionStatement}
             video={data.contentfulHomepage.videoUrl}
           />
-          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
+          <div className="l-constrained">
             <h2>Consortium members</h2>
 
             <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />

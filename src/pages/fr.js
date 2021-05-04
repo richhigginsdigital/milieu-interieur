@@ -16,7 +16,7 @@ const FrIndexPage = ({ data }) => {
         video={data.contentfulHomepage.videoUrl}
       />
 
-      <div className="l-constrained" style={{ marginBottom: "2rem" }}>
+      <div className="l-constrained">
         <h2>Membres du consortium</h2>
 
         <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />
