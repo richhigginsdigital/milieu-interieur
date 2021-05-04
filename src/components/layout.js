@@ -12,6 +12,7 @@ import { Link } from "gatsby"
 import CookieBanner from "./cookieBanner"
 import Header from "./header"
 import Menu from "./menu"
+import CollaborateBanner from "./collaborateBanner"
 
 import "./layout.css"
 
@@ -99,35 +100,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
 
       <main>{children}</main>
 
-      <div
-        style={{
-          background: "#EB924A",
-          overflow: "hidden",
-          borderTop: "1px solid black",
-          padding: "1.5rem 0",
-        }}
-      >
-        <div className="l-constrained" style={{ position: "relative" }}>
-          <h2>How to collaborate with us</h2>
-          <p style={{ maxWidth: "680px" }}>
-            Researchers can obtain access to the Milieu Intérieur data,
-            biological samples and methodology by submitting a research proposal
-            to:{" "}
-            <span
-              style={{
-                background: "white",
-                padding: "7px 24px",
-                position: "absolute",
-                right: 0,
-                top: "2.5rem",
-                border: "1px solid black",
-              }}
-            >
-              milieuinterieur@pasteur.fr
-            </span>
-          </p>
-        </div>
-      </div>
+      <CollaborateBanner />
 
       <div style={{ background: "#2C4258", overflow: "hidden" }}>
         <div className="l-constrained">
