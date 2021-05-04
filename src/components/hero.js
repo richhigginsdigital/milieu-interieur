@@ -6,8 +6,8 @@ const Hero = ({ locale, text, video }) => {
 
   return (
     <div className="l-constrained-wide" style={{ marginBottom: "2rem" }}>
-      <div className="flex-row">
-        <div className="flex-column">
+      <div className="grid-hero">
+        <div>
           <div className="video">
             <iframe
               src={`https://www.youtube.com/embed/${
