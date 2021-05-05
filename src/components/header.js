@@ -9,12 +9,9 @@ import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
 
 const Header = ({ locale }) => (
   <header>
-    <div
-      className="l-constrained-wide"
-      style={{ textAlign: "right", overflow: "hidden" }}
-    >
+    <div className="l-constrained-wide">
       <LanguageMenu locale={locale} />
-      <div style={{ float: "left" }}>
+      <div className="logos">
         <Link
           title={
             locale === "fr"
@@ -22,12 +19,9 @@ const Header = ({ locale }) => (
               : "Go to Milieu Intérieur home page"
           }
           to={locale === "fr" ? "/fr/" : "/en/"}
-          style={{ display: "inline-block" }}
         >
-          <MilieuInterieurlogo
-            style={{ paddingRight: "1.5rem", borderRight: "1px solid #30293e" }}
-          />
-          <Pasteurlogo style={{ marginLeft: "1.5rem" }} />
+          <MilieuInterieurlogo />
+          <Pasteurlogo />
         </Link>
       </div>
     </div>

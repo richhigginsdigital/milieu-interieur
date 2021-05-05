@@ -93,22 +93,6 @@ h1 {
   position: absolute;
 }
 
-/*
-@media only screen and (min-width: 1024px) {
-  .flex-row {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .flex-column {
-    width: 60%;
-  }
-  .flex-column:last-child {
-    width: 40%;
-    padding: 2em 2.5em 0 0;
-  }
-}
-*/
-
 .l-outer-wrapper {
   position: relative;
   overflow-x: hidden;
@@ -175,4 +159,14 @@ h1 {
   .grid-hero > div:last-child {
     padding: 2rem 2.5rem 0 0;
   }
+}
+
+.button {
+  background: white;
+  padding: 8px 26px 8px 26px;
+  top: 2.5rem;
+  border: 1px solid black;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
 }

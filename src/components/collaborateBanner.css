@@ -47,4 +47,5 @@
 .copy-button > div {
   position: absolute;
   margin-top: 0.5rem;
+  padding-left: 26px;
 }
