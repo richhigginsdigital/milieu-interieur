@@ -148,4 +148,8 @@ module.exports = {
       },
     },
   ],
+  // your existing config
+  flags: {
+    FAST_REFRESH: true,
+  },
 }
