@@ -12,7 +12,7 @@ const LanguageMenu = ({ locale }) => {
             ? location.pathname.replace(/\/fr\//, "/en/")
             : location.pathname.replace(/\/en\//, "/fr/")
         return (
-          <nav className="language-menu">
+          <div className="language-menu">
             {locale === "fr" ? (
               <>
                 <Link to={MenuLink} title="English version">
@@ -28,7 +28,7 @@ const LanguageMenu = ({ locale }) => {
                 </Link>
               </>
             )}
-          </nav>
+          </div>
         )
       }}
     </Location>

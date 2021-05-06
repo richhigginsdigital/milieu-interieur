@@ -23,10 +23,17 @@
 .menu ul {
   list-style: none;
   padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .menu ul {
+    margin-bottom: 1em;
+  }
 }
 
 @media screen and (max-width: 767px) {
-  .js .menu ul.hidden {
+  .js .menu #menu.hidden {
     display: none;
   }
 }

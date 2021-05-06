@@ -9,8 +9,16 @@ header {
 }
 
 .language-menu {
-  text-align: right;
   margin-bottom: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .language-menu {
+    position: absolute;
+    top: -5rem;
+    right: 1rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -44,13 +52,13 @@ header {
 
 @media screen and (min-width: 768px) {
   .language-menu span,
-  .language-menu :any-link {
+  .language-menu a {
     font-size: 1rem;
   }
 }
 
 .logos a {
-  display: block;
+  display: inline-block;
 }
 
 .logos a svg:first-child {
@@ -67,10 +75,4 @@ header {
 
 .logos svg:last-child {
   padding-left: 24px;
-}
-
-@media screen and (min-width: 768px) {
-  .logos {
-    margin-top: -2.25rem;
-  }
 }

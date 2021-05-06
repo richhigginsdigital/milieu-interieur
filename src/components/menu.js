@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import { Location } from "@reach/router"
 import "./menu.css"
+import LanguageMenu from "./languageMenu"
 //import Search from "./search"
 import { pageLink } from "../helpers/pageLink"
 import { ReactComponent as MenuIcon } from "../images/menu-icon.svg"
@@ -30,23 +31,30 @@ const Menu = ({ locale, sectionSlug, data }) => {
             <MenuIcon style={{ marginBottom: "-2px" }} />
           </button>
 
-          <ul id="menu" className={menuOpen ? undefined : `hidden`}>
-            {data.pages.map(page => (
-              <li>
-                <Link
-                  className={
-                    location.pathname.match(`/${page.slug}/`) ? "selected" : ""
-                  }
-                  to={pageLink(page, true)}
-                >
-                  {page.title}
-                </Link>
-              </li>
-            ))}
-            {/*<li>
+          <div id="menu" className={menuOpen ? undefined : `hidden`}>
+            <ul>
+              {data.pages.map(page => (
+                <li>
+                  <Link
+                    className={
+                      location.pathname.match(`/${page.slug}/`)
+                        ? "selected"
+                        : ""
+                    }
+                    to={pageLink(page, true)}
+                  >
+                    {page.title}
+                  </Link>
+                </li>
+              ))}
+
+              {/*<li>
           <Search locale={locale} />
         </li>*/}
-          </ul>
+            </ul>
+
+            <LanguageMenu locale={locale} />
+          </div>
         </nav>
       )}
     </Location>

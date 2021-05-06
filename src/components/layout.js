@@ -93,7 +93,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
       >
         <Header locale={locale} />
 
-        <div className="l-constrained-wide">
+        <div className="l-constrained-wide" style={{ position: "relative" }}>
           <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
         </div>
       </div>
