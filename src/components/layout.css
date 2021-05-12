@@ -65,6 +65,16 @@ h1 {
   }
 }
 
+main {
+  margin: 1.25rem 0 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    margin: 2.5rem 0;
+  }
+}
+
 @supports (display: grid) {
   @media only screen and (min-width: 1024px) {
     .grid {

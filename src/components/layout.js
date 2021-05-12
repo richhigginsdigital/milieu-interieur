@@ -88,7 +88,6 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         style={{
           background: "white",
           borderBottom: "1px solid black",
-          marginBottom: "2.5rem",
         }}
       >
         <Header locale={locale} />
@@ -98,7 +97,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         </div>
       </div>
 
-      <main style={{ marginBottom: "4rem" }}>{children}</main>
+      <main>{children}</main>
 
       <div>
         <CollaborateBanner />

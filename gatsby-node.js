@@ -35,6 +35,39 @@ const createContentfulEventPages = (pages, createPage) => {
   })
 }
 
+const createContentfulEventListPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/eventListing.js")
+
+  const events = pages
+  const eventsPerPage = 2
+  const numEvents = Math.ceil(events.length / eventsPerPage)
+
+  Array.from({ length: numEvents }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/en/events/` : `/en/events/${i + 1}/`,
+      component: pageTemplate,
+      context: {
+        limit: eventsPerPage,
+        skip: i * eventsPerPage,
+        numEvents,
+        currentPage: i + 1,
+        locale: "en-US",
+      },
+    })
+    createPage({
+      path: i === 0 ? `/fr/events/` : `/fr/events/${i + 1}/`,
+      component: pageTemplate,
+      context: {
+        limit: eventsPerPage,
+        skip: i * eventsPerPage,
+        numEvents,
+        currentPage: i + 1,
+        locale: "fr",
+      },
+    })
+  })
+}
+
 const createContentfulPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/page.js")
   pages.forEach(page => {
@@ -60,16 +93,18 @@ const createContentfulPages = (pages, createPage) => {
         : page.parentPage.slug
       : page.slug
 
-    createPage({
-      path: path,
-      component: pageTemplate,
-      context: {
-        slug: page.slug,
-        locale: page.node_locale,
-        parentSlug: parentSlug,
-        sectionSlug: sectionSlug,
-      },
-    })
+    if (!page.slug.match(/events|publications/)) {
+      createPage({
+        path: path,
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+          locale: page.node_locale,
+          parentSlug: parentSlug,
+          sectionSlug: sectionSlug,
+        },
+      })
+    }
   })
 }
 
@@ -135,6 +170,10 @@ const createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
     createContentfulEventPages(result.data.allContentfulEvent.nodes, createPage)
+    createContentfulEventListPages(
+      result.data.allContentfulEvent.nodes,
+      createPage
+    )
 
     if (process.env.CONTENTFUL_HOST === "preview.contentful.com")
       createPreviewPages(result.data.allContentfulPage.nodes, createPage)
