@@ -83,6 +83,8 @@ const Page = ({ data, location, pageContext }) => {
                 return pageLink(node.data.target)
               },
             },
+            renderText: text =>
+              text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
           })}
 
         {data.contentfulPage.slug === "publications" && (
