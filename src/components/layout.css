@@ -149,6 +149,18 @@ main {
   }
 }
 
+.grid-logos-funding {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
+@media only screen and (min-width: 768px) {
+  .grid-logos-funding {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+  }
+}
+
 .grid-logos > li {
   background: white;
   padding: 16px;
