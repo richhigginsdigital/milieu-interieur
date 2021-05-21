@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -43,10 +43,24 @@ const Page = ({ data, location, pageContext }) => {
       <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "39px", textAlign: "center" }}>
-            <p>
-              {locale === "fr" ? "Partie de" : "Part of"}:{" "}
-              {pageLink(data.contentfulPage.parentPage)}
-            </p>
+            {process.env.GATSBY_HIDE_MENU === "true" ? (
+              <p>
+                {locale === "fr" ? (
+                  <>
+                    Retour: <Link to="/fr/">Page d'accueil</Link>
+                  </>
+                ) : (
+                  <>
+                    Back to: <Link to="/en/">Home page</Link>
+                  </>
+                )}
+              </p>
+            ) : (
+              <p>
+                {locale === "fr" ? "Partie de" : "Part of"}:{" "}
+                {pageLink(data.contentfulPage.parentPage)}
+              </p>
+            )}
           </nav>
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>

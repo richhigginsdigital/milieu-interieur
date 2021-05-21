@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-//import { Link } from "gatsby"
+import { Link } from "gatsby"
 
 const Hero = ({ locale, text, video }) => {
   const splitVideoUrl = video.split("v=")
@@ -28,9 +28,6 @@ const Hero = ({ locale, text, video }) => {
         <div className="flex-column">
           <div className="mission">
             <h1 style={{ fontFamily: "georgia, serif" }}>{text}</h1>
-            {/*<Link className="button" to={`/${locale}/about-us/collaborations/`}>
-              Current collaborations
-            </Link>*/}
           </div>
         </div>
       </div>

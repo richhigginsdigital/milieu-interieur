@@ -21,41 +21,7 @@ import Pasteurlogo from "../images/institut-pasteur.svg"
 import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData }) => {
-  return process.env.GATSBY_HOLDING_PAGE === "true" ? (
-    <>
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `1rem`,
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <Link
-            title="Go to Milieu Intérieur home page"
-            to="/en/"
-            style={{ display: "block" }}
-          >
-            <img
-              width="139"
-              height="44"
-              style={{ marginRight: ".5rem" }}
-              src={MilieuInterieurlogo}
-              alt="Milieu Intérieur project logo"
-            />
-            <img
-              width="161"
-              height="44"
-              style={{ marginLeft: ".5rem" }}
-              src={Pasteurlogo}
-              alt="Institut Pasteur logo"
-            />
-          </Link>
-        </div>
-        <main>{children}</main>
-      </div>
-    </>
-  ) : (
+  return (
     <div className="l-outer-wrapper">
       <CookieBanner />
 
@@ -100,7 +66,7 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
       <main>{children}</main>
 
       <div>
-        <CollaborateBanner />
+        <CollaborateBanner locale={locale} />
       </div>
 
       <div style={{ background: "#2C4258", overflow: "hidden" }}>

@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
 import { ReactComponent as CopyIcon } from "../images/copy-icon.svg"
 import "./collaborateBanner.css"
 
-const CollaborateBanner = () => {
+const CollaborateBanner = ({ locale }) => {
   const [copied, setCopied] = useState(false)
 
   const copyToClipboard = event => {
@@ -14,11 +16,30 @@ const CollaborateBanner = () => {
   return (
     <div className="collaborate-banner">
       <div className="l-constrained">
-        <h2>How to collaborate with us</h2>
-        <p>
-          Researchers can obtain access to the Milieu Intérieur data, biological
-          samples and methodology by submitting a research proposal to:{" "}
-        </p>
+        {locale === "fr" ? (
+          <>
+            <h2>
+              Voulez-vous en savoir plus sur l'utilisation des données de la
+              cohorte
+            </h2>
+
+            <p>
+              Les données et les échantillons fournis par la cohorte Milieu
+              Intérieur ont été utilisés dans plusieurs études qui ont permis
+              d'accroître nos connaissances sur les réponses immunitaires.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>How to collaborate with us</h2>
+            <p>
+              Researchers can obtain access to the Milieu Intérieur data,
+              biological samples and methodology by submitting a research
+              proposal to:
+            </p>
+          </>
+        )}
+
         <div className="copy-button">
           <label htmlFor="copylink" title="Copy to clipboard">
             <CopyIcon />
@@ -31,11 +52,29 @@ const CollaborateBanner = () => {
             onBlur={() => setCopied(false)}
             id="copylink"
           ></input>
-          <div>{copied && "Copied to clipboard"}</div>
+          <div>
+            {copied &&
+              (locale === "fr"
+                ? "Copié dans le presse-papier"
+                : "Copied to clipboard")}
+          </div>
         </div>
+
+        <p>
+          <Link to={`/${locale}/about-us/collaborations/`}>
+            {locale === "fr"
+              ? `Collaborations actuelles`
+              : `Current collaborations`}
+          </Link>
+          .
+        </p>
       </div>
     </div>
   )
+}
+
+CollaborateBanner.propTypes = {
+  locale: PropTypes.string.isRequired,
 }
 
 export default CollaborateBanner

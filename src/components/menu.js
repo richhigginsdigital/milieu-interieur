@@ -33,20 +33,21 @@ const Menu = ({ locale, sectionSlug, data }) => {
 
           <div id="menu" className={menuOpen ? undefined : `hidden`}>
             <ul>
-              {data.pages.map(page => (
-                <li>
-                  <Link
-                    className={
-                      location.pathname.match(`/${page.slug}/`)
-                        ? "selected"
-                        : ""
-                    }
-                    to={pageLink(page, true)}
-                  >
-                    {page.title}
-                  </Link>
-                </li>
-              ))}
+              {process.env.GATSBY_HIDE_MENU !== "true" &&
+                data.pages.map(page => (
+                  <li>
+                    <Link
+                      className={
+                        location.pathname.match(`/${page.slug}/`)
+                          ? "selected"
+                          : ""
+                      }
+                      to={pageLink(page, true)}
+                    >
+                      {page.title}
+                    </Link>
+                  </li>
+                ))}
 
               {/*<li>
           <Search locale={locale} />
