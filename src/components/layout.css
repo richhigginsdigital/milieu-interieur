@@ -142,7 +142,7 @@ main {
 
 @media only screen and (min-width: 768px) {
   .grid-logos {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 1.5rem;
     grid-row-gap: 1.5rem;
@@ -156,7 +156,7 @@ main {
 
 @media only screen and (min-width: 768px) {
   .grid-logos-funding {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 1fr);
   }
 }

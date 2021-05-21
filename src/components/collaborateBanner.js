@@ -41,7 +41,14 @@ const CollaborateBanner = ({ locale }) => {
         )}
 
         <div className="copy-button">
-          <label htmlFor="copylink" title="Copy to clipboard">
+          <label
+            htmlFor="copylink"
+            title={
+              locale === "fr"
+                ? "Copié dans le presse-papier"
+                : "Copied to clipboard"
+            }
+          >
             <CopyIcon />
           </label>
           <input
