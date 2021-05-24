@@ -163,12 +163,18 @@ main {
 
 .grid-logos > li {
   background: white;
-  padding: 16px;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px) {
+  .grid-logos > li {
+    padding: 16px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {

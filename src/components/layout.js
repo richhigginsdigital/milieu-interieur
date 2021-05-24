@@ -7,7 +7,6 @@
 
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 
 import CookieBanner from "./cookieBanner"
 import Header from "./header"
@@ -16,8 +15,6 @@ import CollaborateBanner from "./collaborateBanner"
 
 import "./layout.css"
 
-import MilieuInterieurlogo from "../images/milieu-interieur.svg"
-import Pasteurlogo from "../images/institut-pasteur.svg"
 import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData }) => {

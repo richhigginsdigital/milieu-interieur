@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 
 const Hero = ({ locale, text, video }) => {
   const splitVideoUrl = video.split("v=")
