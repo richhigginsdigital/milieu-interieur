@@ -47,11 +47,11 @@ export const query = graphql`
       }
       videoUrl
       consortiumLogos {
-        gatsbyImageData(width: 104, placeholder: BLURRED)
+        gatsbyImageData(height: 74, placeholder: BLURRED)
         description
       }
       fundingAgencyLogos {
-        gatsbyImageData(width: 104, placeholder: BLURRED)
+        gatsbyImageData(height: 74, placeholder: BLURRED)
         description
       }
     }
