@@ -70,7 +70,13 @@ header {
 .logos img {
   width: 50%;
   box-sizing: border-box;
-  max-width: 171px;
+}
+
+@media screen and (min-width: 375px) {
+  .logos svg,
+  .logos img {
+    width: 171px;
+  }
 }
 
 .logos svg:last-child {
