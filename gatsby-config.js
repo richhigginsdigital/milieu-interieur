@@ -112,7 +112,20 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
     {
+      resolve: `gatsby-plugin-svgr`,
+      options: {
+        svgoConfig: {
+          plugins: [
+            { removeViewBox: false }, // always keep the viewBox please, ta
+            { prefixClassNames: false },
+            { prefixIds: false },
+          ],
+        },
+      },
+    },
+    /*{
       // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
       resolve: `gatsby-plugin-algolia`,
       options: {
@@ -133,20 +146,7 @@ module.exports = {
         concurrentQueries: false, // default: true
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development
       },
-    },
-    `gatsby-plugin-netlify`,
-    {
-      resolve: `gatsby-plugin-svgr`,
-      options: {
-        svgoConfig: {
-          plugins: [
-            { removeViewBox: false }, // always keep the viewBox please, ta
-            { prefixClassNames: false },
-            { prefixIds: false },
-          ],
-        },
-      },
-    },
+    },*/
   ],
   // your existing config
   flags: {
