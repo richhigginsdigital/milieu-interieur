@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import "./header.css"
 
 import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
-import MilieuInterieurlogo from "../images/milieu-interieur.png"
 
 const Header = ({ locale }) => (
   <header>
