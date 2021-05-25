@@ -61,18 +61,18 @@ header {
   display: inline-block;
 }
 
-.logos a svg:first-child {
+.logos a img {
+  padding-right: 6.9971%;
   border-right: 1px solid black;
 }
 
-.logos svg {
-  width: 147px;
-}
-
-.logos svg:first-child {
-  padding-right: 24px;
+.logos svg,
+.logos img {
+  width: 50%;
+  box-sizing: border-box;
+  max-width: 171px;
 }
 
 .logos svg:last-child {
-  padding-left: 24px;
+  padding-left: 6.9971%;
 }
