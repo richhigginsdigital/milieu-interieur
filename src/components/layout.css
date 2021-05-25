@@ -41,7 +41,7 @@ h3,
 h4,
 .h4 {
   font-family: "IBM Plex Serif", Georgia, "Times New Roman", Times, serif;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 p,
@@ -185,7 +185,7 @@ main {
 @media only screen and (min-width: 1024px) {
   .grid-hero {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 45.5% 54.5%;
     padding: 0;
   }
   .grid-hero > div:first-child {

@@ -24,7 +24,7 @@
 
 .copy-button {
   position: relative;
-  padding-bottom: 2em;
+  padding-bottom: 1.4em;
 }
 
 .copy-button input {
@@ -42,7 +42,7 @@
   position: absolute;
   left: 226px;
   top: 50%;
-  margin-top: -1.4375rem;
+  margin-top: -1.125rem;
   cursor: pointer;
 }
 
