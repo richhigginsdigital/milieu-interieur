@@ -68,13 +68,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Milieu Intérieur project`,
+        short_name: `Milieu Intérieur`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ffffff`,
+        theme_color: `#ffffff`,
         display: `minimal-ui`,
-        icons: [],
+        icon: "src/images/milieu-interieur-icon.png",
       },
     },
     `gatsby-plugin-gatsby-cloud`,
