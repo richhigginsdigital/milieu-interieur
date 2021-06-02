@@ -94,7 +94,6 @@ const createContentfulPages = (pages, createPage) => {
       : page.slug
 
     if (process.env.GATSBY_HIDE_MENU === "true") {
-      //if (!page.slug.match(/events|publications/)) {
       if (page.slug === "collaborations") {
         createPage({
           path: path,
@@ -107,6 +106,17 @@ const createContentfulPages = (pages, createPage) => {
           },
         })
       }
+    } else if (!page.slug.match(/events|publications/)) {
+      createPage({
+        path: path,
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+          locale: page.node_locale,
+          parentSlug: parentSlug,
+          sectionSlug: sectionSlug,
+        },
+      })
     }
   })
 }

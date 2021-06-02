@@ -76,3 +76,36 @@
   text-decoration: underline;
   text-underline-position: under;
 }
+
+.menu ul li ul {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .menu ul li:hover ul,
+  .menu ul li:active ul {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    margin: 0;
+    padding-top: 1.5rem;
+    text-align: left;
+    display: block;
+  }
+
+  .menu ul li ul li {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-right: initial;
+  }
+
+  .menu ul li ul li a {
+    display: block;
+    padding: 0 0.5rem;
+  }
+
+  .menu ul li ul li a:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
+}

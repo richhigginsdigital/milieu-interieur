@@ -46,6 +46,30 @@ const Menu = ({ locale, sectionSlug, data }) => {
                     >
                       {page.title}
                     </Link>
+
+                    <ul>
+                      <li>
+                        <a href="#">The Milieu Intérieur</a>
+                      </li>
+                      <li>
+                        <a href="#">The Consortium</a>
+                      </li>
+                      <li>
+                        <a href="#">The MI-Core Team</a>
+                      </li>
+                      <li>
+                        <a href="#">Collaborations</a>
+                      </li>
+                      <li>
+                        <a href="#">Governance</a>
+                      </li>
+                      <li>
+                        <a href="#">LabEx</a>
+                      </li>
+                      <li>
+                        <a href="#">FAQ</a>
+                      </li>
+                    </ul>
                   </li>
                 ))}
 
