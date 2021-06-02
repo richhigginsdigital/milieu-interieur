@@ -81,7 +81,7 @@
   display: none;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1025px) {
   .menu ul li:hover ul,
   .menu ul li:active ul {
     position: absolute;
