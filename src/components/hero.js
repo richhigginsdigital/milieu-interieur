@@ -13,9 +13,7 @@ const Hero = ({ locale, text, video }) => {
             <iframe
               src={`https://www.youtube.com/embed/${
                 splitVideoUrl[1]
-              }?cc_load_policy=1&controls=0&modestbranding=1${
-                locale === "fr" && `&hl=fr`
-              }`}
+              }?controls=0&modestbranding=1${locale === "fr" && `&hl=fr`}`}
               title="Video, The Milieu Intérieur: understanding healthy human diversity"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               frameBorder="0"
