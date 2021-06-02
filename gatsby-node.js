@@ -93,17 +93,20 @@ const createContentfulPages = (pages, createPage) => {
         : page.parentPage.slug
       : page.slug
 
-    if (!page.slug.match(/events|publications/)) {
-      createPage({
-        path: path,
-        component: pageTemplate,
-        context: {
-          slug: page.slug,
-          locale: page.node_locale,
-          parentSlug: parentSlug,
-          sectionSlug: sectionSlug,
-        },
-      })
+    if (process.env.GATSBY_HIDE_MENU === "true") {
+      //if (!page.slug.match(/events|publications/)) {
+      if (page.slug === "collaborations") {
+        createPage({
+          path: path,
+          component: pageTemplate,
+          context: {
+            slug: page.slug,
+            locale: page.node_locale,
+            parentSlug: parentSlug,
+            sectionSlug: sectionSlug,
+          },
+        })
+      }
     }
   })
 }
@@ -169,11 +172,17 @@ const createPages = async ({ graphql, actions }) => {
   } else {
     const { createPage } = actions
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
-    createContentfulEventPages(result.data.allContentfulEvent.nodes, createPage)
-    createContentfulEventListPages(
-      result.data.allContentfulEvent.nodes,
-      createPage
-    )
+
+    if (process.env.GATSBY_HIDE_MENU !== "true") {
+      createContentfulEventPages(
+        result.data.allContentfulEvent.nodes,
+        createPage
+      )
+      createContentfulEventListPages(
+        result.data.allContentfulEvent.nodes,
+        createPage
+      )
+    }
 
     if (process.env.CONTENTFUL_HOST === "preview.contentful.com")
       createPreviewPages(result.data.allContentfulPage.nodes, createPage)
