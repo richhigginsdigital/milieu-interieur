@@ -1,37 +1,56 @@
 .menu > button {
   width: 100%;
   text-align: left;
+  margin: 1em 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white;
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
 }
 
 .menu > button {
   display: none;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 767px) {
   .js .menu > button {
     display: block;
   }
 }
 
 .menu ul {
-  margin-left: 0;
-  margin-bottom: 0;
   list-style: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
 }
 
-@media screen and (max-width: 1023px) {
-  .js .menu ul.hidden {
+@media screen and (min-width: 768px) {
+  .menu ul {
+    margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .js .menu #menu.hidden {
     display: none;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   .menu ul {
     text-align: center;
   }
 }
 
 @media only screen and (min-width: 1024px) {
+  .menu ul {
+    margin-top: 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
   .menu ul li {
     display: inline-block;
     margin-right: 1em;
@@ -43,8 +62,17 @@
 
 .menu ul a {
   padding: 0.5rem;
-  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
 }
+
+@media screen and (max-width: 767px) {
+  .menu ul a {
+    display: block;
+  }
+}
+
 .menu ul a.selected {
-  border-color: rgba(0, 0, 0, 0.8);
+  text-decoration: underline;
+  text-underline-position: under;
 }

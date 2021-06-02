@@ -1,10 +1,10 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../../components/layout"
+import Seo from "../../components/seo"
 
-const NotFoundPage = ({ data }) => {
+const EnNotFoundPage = ({ data }) => {
   return (
     <Layout locale="en" menuData={data.contentfulMenu}>
       <Seo title="404: Not found" />
@@ -37,4 +37,4 @@ export const query = graphql`
   }
 `
 
-export default NotFoundPage
+export default EnNotFoundPage

@@ -1,14 +1,71 @@
 import * as React from "react"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
+import Hero from "../components/hero"
+import ConsortiumLogos from "../components/consortiumLogos"
+import FundingAgencyLogos from "../components/fundingAgencyLogos"
 
-const EnIndexPage = () => (
-  <Layout locale="fr">
-    <SEO title="Home" lang="fr" />
-    <h1 style={{fontFamily: 'georgia, serif'}}>Le projet Milieu Intérieur pose un regard inédit sur le système immunitaire humain en examinant les facteurs génétiques et environnementaux contribuant à la variabilité des réponses immunitaires.</h1>
-    <p>[+ homepage content modules]</p>
-  </Layout>
-)
+const FrIndexPage = ({ data }) => {
+  return (
+    <Layout locale="fr" menuData={data.contentfulMenu}>
+      <Seo title="Home" lang="fr" />
+      <Hero
+        locale="fr"
+        text={data.contentfulHomepage.missionStatement.missionStatement}
+        video={data.contentfulHomepage.videoUrl}
+      />
 
-export default EnIndexPage
+      <div className="l-constrained" style={{ marginBottom: "2rem" }}>
+        <h2>Membres du consortium</h2>
+
+        <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />
+
+        {
+          //<h2>Publications</h2>
+          //<h2>Events</h2>
+        }
+      </div>
+
+      <div className="l-constrained">
+        <h2>Organismes de financement</h2>
+
+        <FundingAgencyLogos
+          logos={data.contentfulHomepage.fundingAgencyLogos}
+        />
+      </div>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query {
+    contentfulHomepage(title: { eq: "Homepage" }, node_locale: { eq: "fr" }) {
+      missionStatement {
+        missionStatement
+      }
+      videoUrl
+      consortiumLogos {
+        gatsbyImageData(height: 74, placeholder: BLURRED)
+        description
+      }
+      fundingAgencyLogos {
+        gatsbyImageData(height: 74, placeholder: BLURRED)
+        description
+      }
+    }
+    contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "fr" }) {
+      pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+  }
+`
+
+export default FrIndexPage

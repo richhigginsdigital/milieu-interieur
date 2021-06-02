@@ -68,13 +68,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Milieu Intérieur project`,
+        short_name: `Milieu Intérieur`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ffffff`,
+        theme_color: `#ffffff`,
         display: `minimal-ui`,
-        icons: [],
+        icon: "src/images/milieu-interieur-icon.png",
       },
     },
     `gatsby-plugin-gatsby-cloud`,
@@ -84,6 +84,7 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         // Learn about environment variables: https://gatsby.dev/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        host: process.env.CONTENTFUL_HOST,
       },
     },
     {
@@ -111,7 +112,20 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
     {
+      resolve: `gatsby-plugin-svgr`,
+      options: {
+        svgoConfig: {
+          plugins: [
+            { removeViewBox: false }, // always keep the viewBox please, ta
+            { prefixClassNames: false },
+            { prefixIds: false },
+          ],
+        },
+      },
+    },
+    /*{
       // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
       resolve: `gatsby-plugin-algolia`,
       options: {
@@ -132,6 +146,10 @@ module.exports = {
         concurrentQueries: false, // default: true
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development
       },
-    },
+    },*/
   ],
+  // your existing config
+  flags: {
+    FAST_REFRESH: true,
+  },
 }

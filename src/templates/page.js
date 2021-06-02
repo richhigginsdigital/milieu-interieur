@@ -6,10 +6,10 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import SectionMenu from "../components/sectionMenu"
 
-const Page = ({ data, pageContext }) => {
+const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   data.menuPages.edges.forEach((item, index) => {
@@ -25,13 +25,42 @@ const Page = ({ data, pageContext }) => {
       : false
 
   return (
-    <Layout locale={locale} sectionSlug={pageContext.sectionSlug}>
-      <SEO title={data.contentfulPage.title} lang={locale} />
+    <Layout
+      locale={locale}
+      sectionSlug={pageContext.sectionSlug}
+      menuData={data.contentfulMenu}
+      location={location}
+    >
+      <Seo
+        description={
+          data.contentfulPage.metaDescription &&
+          data.contentfulPage.metaDescription.metaDescription
+        }
+        title={data.contentfulPage.title}
+        lang={locale}
+      />
 
-      <div style={{ maxWidth: "827px", margin: "auto" }}>
+      <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
           <nav style={{ marginBottom: "39px", textAlign: "center" }}>
-            Part of: {pageLink(data.contentfulPage.parentPage)}
+            {process.env.GATSBY_HIDE_MENU === "true" ? (
+              <p>
+                {locale === "fr" ? (
+                  <>
+                    Retour: <Link to="/fr/">Page d'accueil</Link>
+                  </>
+                ) : (
+                  <>
+                    Back to: <Link to="/en/">Home page</Link>
+                  </>
+                )}
+              </p>
+            ) : (
+              <p>
+                {locale === "fr" ? "Partie de" : "Part of"}:{" "}
+                {pageLink(data.contentfulPage.parentPage)}
+              </p>
+            )}
           </nav>
         )}
         <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
@@ -46,20 +75,16 @@ const Page = ({ data, pageContext }) => {
                   <GatsbyImage
                     alt={node.data.target.description}
                     image={node.data.target.gatsbyImageData}
+                    style={{ marginBottom: `1em` }}
                   />
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                const localePrefix =
-                  node.data.target.node_locale === "fr" ? `fr` : `en`
-
-                return (
-                  <Link to={`/${localePrefix}/${node.data.target.slug}/`}>
-                    {children[0]}
-                  </Link>
-                )
+                return pageLink(node.data.target)
               },
             },
+            renderText: text =>
+              text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
           })}
 
         {data.contentfulPage.slug === "publications" && (
@@ -100,7 +125,14 @@ export const query = graphql`
             __typename
             contentful_id
             slug
+            title
             node_locale
+            parentPage {
+              slug
+              parentPage {
+                slug
+              }
+            }
           }
         }
       }
@@ -111,6 +143,9 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+      metaDescription {
+        metaDescription
       }
     }
     menuPages: allContentfulPage(
@@ -169,6 +204,16 @@ export const query = graphql`
             }
           }
           node_locale
+        }
+      }
+    }
+    contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
+      pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
         }
       }
     }
