@@ -6,12 +6,15 @@
  */
 
 import * as React from "react"
+import { Link } from "gatsby"
 import PropTypes from "prop-types"
+import { Location } from "@reach/router"
 
 import CookieBanner from "./cookieBanner"
 import Header from "./header"
 import Menu from "./menu"
 import CollaborateBanner from "./collaborateBanner"
+import { pageLink } from "../helpers/pageLink"
 
 import "./layout.css"
 
@@ -19,66 +22,111 @@ import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
 const Layout = ({ children, locale, sectionSlug, menuData, menuSubPages }) => {
   return (
-    <div className="l-outer-wrapper">
-      <CookieBanner />
+    <Location>
+      {({ location }) => (
+        <div className="l-outer-wrapper">
+          <CookieBanner />
 
-      <span
-        style={{
-          color: "#C1D7EE",
-          position: "absolute",
-          top: "-150px",
-          left: "50%",
-          zIndex: "-1",
-          marginLeft: "-236px", // 1184 - 404
-        }}
-      >
-        <Ellipse />
-      </span>
-      <span
-        style={{
-          color: "#D8E6F4",
-          position: "absolute",
-          top: "102px",
-          zIndex: "-2",
-          left: "50%",
-          marginLeft: "-914px", // 1184 - 270
-        }}
-      >
-        <Ellipse />
-      </span>
-
-      <div
-        style={{
-          background: "white",
-          borderBottom: "1px solid black",
-        }}
-      >
-        <Header locale={locale} />
-
-        <div className="l-constrained-wide" style={{ position: "relative" }}>
-          <Menu
-            locale={locale}
-            sectionSlug={sectionSlug}
-            data={menuData}
-            subPages={menuSubPages}
-          />
-        </div>
-      </div>
-
-      <main>{children}</main>
-
-      <div>
-        <CollaborateBanner locale={locale} />
-      </div>
-
-      <div style={{ background: "#2C4258", overflow: "hidden" }}>
-        <div className="l-constrained">
-          <footer
+          <span
             style={{
-              paddingTop: `1rem`,
+              color: "#C1D7EE",
+              position: "absolute",
+              top: "-150px",
+              left: "50%",
+              zIndex: "-1",
+              marginLeft: "-236px", // 1184 - 404
             }}
           >
-            {/*<nav>
+            <Ellipse />
+          </span>
+          <span
+            style={{
+              color: "#D8E6F4",
+              position: "absolute",
+              top: "102px",
+              zIndex: "-2",
+              left: "50%",
+              marginLeft: "-914px", // 1184 - 270
+            }}
+          >
+            <Ellipse />
+          </span>
+
+          <div
+            style={{
+              background: "white",
+              borderBottom: "1px solid black",
+            }}
+          >
+            <Header locale={locale} />
+
+            <div
+              className="l-constrained-wide"
+              style={{ position: "relative" }}
+            >
+              <Menu
+                locale={locale}
+                sectionSlug={sectionSlug}
+                data={menuData}
+                subPages={menuSubPages}
+              />
+            </div>
+          </div>
+
+          <main>{children}</main>
+
+          <div>
+            <CollaborateBanner locale={locale} />
+          </div>
+
+          <div style={{ background: "#2C4258", overflow: "hidden" }}>
+            <div className="l-constrained">
+              <footer
+                style={{
+                  paddingTop: `1rem`,
+                }}
+              >
+                <nav>
+                  <ul className="footer-nav">
+                    {process.env.GATSBY_HIDE_MENU !== "true" &&
+                      menuData.pages.map(page => (
+                        <li>
+                          <Link
+                            className={
+                              location.pathname.match(`/${page.slug}/`)
+                                ? "selected"
+                                : ""
+                            }
+                            to={pageLink(page, true)}
+                          >
+                            {page.title}
+                          </Link>
+
+                          {menuSubPages && (
+                            <ul>
+                              {menuSubPages.nodes
+                                .filter(subPage => subPage.parentPage)
+                                .filter(
+                                  subPage =>
+                                    subPage.parentPage.slug === page.slug
+                                )
+                                .map(page => (
+                                  <li>
+                                    <Link
+                                      to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
+                                    >
+                                      {page.title}
+                                    </Link>
+                                  </li>
+                                ))}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                  </ul>
+                </nav>
+
+                {/*<nav>
               <ul style={{ listStyle: "none", margin: "1em 0" }}>
                 <li style={{ display: "inline" }}>
                   <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
@@ -86,14 +134,16 @@ const Layout = ({ children, locale, sectionSlug, menuData, menuSubPages }) => {
               </ul>
             </nav>*/}
 
-            <p style={{ color: "white", fontSize: "1rem" }}>
-              Copyright {new Date().getFullYear()} Millieuinterieur.fr |
-              Pasteur.fr
-            </p>
-          </footer>
+                <p style={{ color: "white", fontSize: "1rem" }}>
+                  Copyright {new Date().getFullYear()} Millieuinterieur.fr |
+                  Pasteur.fr
+                </p>
+              </footer>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Location>
   )
 }
 

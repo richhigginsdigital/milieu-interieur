@@ -205,3 +205,37 @@ main {
   text-align: center;
   text-decoration: none;
 }
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .footer-nav {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+.footer-nav > li > a {
+  font-family: "IBM Plex Serif";
+}
+
+.footer-nav > li > ul {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+}
+
+.footer-nav > li > ul > li {
+  margin-bottom: 0.5rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
