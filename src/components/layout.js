@@ -17,7 +17,7 @@ import "./layout.css"
 
 import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
-const Layout = ({ children, locale, sectionSlug, menuData }) => {
+const Layout = ({ children, locale, sectionSlug, menuData, menuSubPages }) => {
   return (
     <div className="l-outer-wrapper">
       <CookieBanner />
@@ -56,7 +56,12 @@ const Layout = ({ children, locale, sectionSlug, menuData }) => {
         <Header locale={locale} />
 
         <div className="l-constrained-wide" style={{ position: "relative" }}>
-          <Menu locale={locale} sectionSlug={sectionSlug} data={menuData} />
+          <Menu
+            locale={locale}
+            sectionSlug={sectionSlug}
+            data={menuData}
+            subPages={menuSubPages}
+          />
         </div>
       </div>
 

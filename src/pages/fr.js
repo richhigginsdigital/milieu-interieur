@@ -9,7 +9,11 @@ import FundingAgencyLogos from "../components/fundingAgencyLogos"
 
 const FrIndexPage = ({ data }) => {
   return (
-    <Layout locale="fr" menuData={data.contentfulMenu}>
+    <Layout
+      locale="fr"
+      menuData={data.contentfulMenu}
+      menuSubPages={data.contentfulMenuSubPages}
+    >
       <Seo title="Home" lang="fr" />
       <Hero
         locale="fr"
@@ -57,6 +61,19 @@ export const query = graphql`
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "fr" }) {
       pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: "fr" } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
         title
         slug
         node_locale

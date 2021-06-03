@@ -8,12 +8,15 @@ import LanguageMenu from "./languageMenu"
 import { pageLink } from "../helpers/pageLink"
 import { ReactComponent as MenuIcon } from "../images/menu-icon.svg"
 
-const Menu = ({ locale, sectionSlug, data }) => {
+const Menu = ({ locale, sectionSlug, data, subPages }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => {
     menuOpen ? setMenuOpen(false) : setMenuOpen(true)
   }
+
+  // TODO loop subpages, and group by parentPage for hover nav
+  // (make a reusable function receiving a parentPage slug...)
 
   return (
     <Location>
@@ -47,29 +50,24 @@ const Menu = ({ locale, sectionSlug, data }) => {
                       {page.title}
                     </Link>
 
-                    <ul>
-                      <li>
-                        <a href="#">The Milieu Intérieur</a>
-                      </li>
-                      <li>
-                        <a href="#">The Consortium</a>
-                      </li>
-                      <li>
-                        <a href="#">The MI-Core Team</a>
-                      </li>
-                      <li>
-                        <a href="#">Collaborations</a>
-                      </li>
-                      <li>
-                        <a href="#">Governance</a>
-                      </li>
-                      <li>
-                        <a href="#">LabEx</a>
-                      </li>
-                      <li>
-                        <a href="#">FAQ</a>
-                      </li>
-                    </ul>
+                    {subPages && (
+                      <ul>
+                        {subPages.nodes
+                          .filter(subPage => subPage.parentPage)
+                          .filter(
+                            subPage => subPage.parentPage.slug === page.slug
+                          )
+                          .map(page => (
+                            <li>
+                              <Link
+                                to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
+                              >
+                                {page.title}
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
 
