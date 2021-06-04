@@ -77,7 +77,6 @@ module.exports = {
         icon: "src/images/milieu-interieur-icon.png",
       },
     },
-    `gatsby-plugin-gatsby-cloud`,
     {
       resolve: `gatsby-source-contentful`,
       options: {
