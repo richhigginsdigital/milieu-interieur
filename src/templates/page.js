@@ -31,6 +31,7 @@ const Page = ({ data, location, pageContext }) => {
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
+      type={!showSectionMenu && "article"}
     >
       <Seo
         description={
@@ -43,7 +44,7 @@ const Page = ({ data, location, pageContext }) => {
 
       <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
-          <nav style={{ marginBottom: "39px", textAlign: "center" }}>
+          <nav style={{ marginBottom: "39px" }}>
             {process.env.GATSBY_HIDE_MENU === "true" ? (
               <p>
                 {locale === "fr" ? (
@@ -64,20 +65,33 @@ const Page = ({ data, location, pageContext }) => {
             )}
           </nav>
         )}
-        <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
+        <h1 className={!showSectionMenu && "article-heading"}>
+          {data.contentfulPage.title}
+        </h1>
 
-        {showSectionMenu && <SectionMenu pages={data.menuPages.edges} />}
+        {showSectionMenu ? (
+          <SectionMenu pages={data.menuPages.edges} />
+        ) : (
+          <p style={{ marginBottom: "2rem" }}>
+            Updated: {data.contentfulPage.updatedAt}
+          </p>
+        )}
 
         {data.contentfulPage.mainContent &&
           renderRichText(data.contentfulPage.mainContent, {
             renderNode: {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
-                  <GatsbyImage
-                    alt={node.data.target.description}
-                    image={node.data.target.gatsbyImageData}
-                    style={{ marginBottom: `1em` }}
-                  />
+                  <>
+                    <GatsbyImage
+                      alt={node.data.target.description}
+                      image={node.data.target.gatsbyImageData}
+                      style={{ marginBottom: `1em` }}
+                    />
+                    <p style={{ fontSize: "1rem" }}>
+                      {node.data.target.description}
+                    </p>
+                  </>
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
@@ -148,6 +162,7 @@ export const query = graphql`
       metaDescription {
         metaDescription
       }
+      updatedAt(formatString: "D MMMM, YYYY")
     }
     menuPages: allContentfulPage(
       filter: {

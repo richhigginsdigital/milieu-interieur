@@ -13,6 +13,7 @@ const EnIndexPage = ({ data }) => {
       locale="en"
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
+      type="home"
     >
       <Seo title="Home" />
 
