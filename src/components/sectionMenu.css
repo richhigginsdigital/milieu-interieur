@@ -1,0 +1,23 @@
+.section-menu ul {
+  list-style: none;
+  padding: 1rem;
+  background: white;
+}
+
+.section-menu ul li {
+  margin-bottom: 0.725rem;
+  border-bottom: 1px solid black;
+}
+
+.section-menu ul li:last-child {
+  border: none;
+}
+
+.section-menu ul li a {
+  text-decoration: none;
+  padding: 1rem 0;
+  display: block;
+  font-size: 1.555555555555556rem;
+  font-family: "IBM Plex Serif";
+  font-weight: 500;
+}
