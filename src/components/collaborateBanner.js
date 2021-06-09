@@ -73,7 +73,6 @@ const CollaborateBanner = ({ locale }) => {
               ? `Collaborations actuelles`
               : `Current collaborations`}
           </Link>
-          .
         </p>
       </div>
     </div>

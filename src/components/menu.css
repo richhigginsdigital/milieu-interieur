@@ -55,7 +55,7 @@
     display: inline-block;
     margin-right: 1em;
   }
-  .menu ul li:last-child {
+  .menu #menu > ul > li:last-child {
     margin-right: 0;
   }
 }
@@ -96,7 +96,6 @@
   .menu ul li ul li {
     display: block;
     margin: 0.5rem;
-    margin-right: initial;
   }
 
   .menu ul li ul li a {

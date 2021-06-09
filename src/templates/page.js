@@ -65,7 +65,7 @@ const Page = ({ data, location, pageContext }) => {
             )}
           </nav>
         )}
-        <h1 className={!showSectionMenu && "article-heading"}>
+        <h1 className={showSectionMenu ? "h2" : "article-heading"}>
           {data.contentfulPage.title}
         </h1>
 
@@ -82,18 +82,15 @@ const Page = ({ data, location, pageContext }) => {
             renderNode: {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
-                  <>
+                  <figure>
                     <GatsbyImage
                       alt={node.data.target.description}
                       image={node.data.target.gatsbyImageData}
-                      style={{ marginBottom: `1em` }}
                     />
                     {node.data.target.description && (
-                      <p style={{ fontSize: "1rem", marginTop: `-.5em` }}>
-                        {node.data.target.description}
-                      </p>
+                      <figcaption>{node.data.target.description}</figcaption>
                     )}
-                  </>
+                  </figure>
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {

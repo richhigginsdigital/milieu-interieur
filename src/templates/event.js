@@ -12,7 +12,13 @@ const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   return (
-    <Layout locale={locale} menuData={data.contentfulMenu} location={location}>
+    <Layout
+      locale={locale}
+      menuData={data.contentfulMenu}
+      menuSubPages={data.contentfulMenuSubPages}
+      location={location}
+      type="article"
+    >
       <Seo
         description={
           data.contentfulEvent.metaDescription &&
@@ -23,7 +29,7 @@ const Page = ({ data, location, pageContext }) => {
       />
 
       <div className="l-constrained-narrow">
-        <nav style={{ marginBottom: "39px", textAlign: "center" }}>
+        <nav style={{ marginBottom: "39px" }}>
           <p>
             {locale === "fr" ? "Partie de" : "Part of"}:{" "}
             <Link to={`/${locale}/events/`}>
@@ -32,10 +38,10 @@ const Page = ({ data, location, pageContext }) => {
           </p>
         </nav>
 
-        <h1 style={{ textAlign: "center" }}>{data.contentfulEvent.title}</h1>
+        <h1 className="article-heading">{data.contentfulEvent.title}</h1>
 
-        <p style={{ textAlign: "center", marginBottom: "2em" }}>
-          {data.contentfulEvent.date}
+        <p style={{ marginBottom: "2rem" }}>
+          Updated: {data.contentfulEvent.updatedAt}
         </p>
 
         {data.contentfulEvent.mainContent &&
@@ -94,9 +100,23 @@ export const query = graphql`
       metaDescription {
         metaDescription
       }
+      updatedAt(formatString: "D MMMM, YYYY")
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
       pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: $locale } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
         title
         slug
         node_locale
