@@ -1,6 +1,6 @@
 .section-menu ul {
   list-style: none;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: white;
 }
 
@@ -20,4 +20,17 @@
   font-size: 1.555555555555556rem;
   font-family: "IBM Plex Serif";
   font-weight: 500;
+  position: relative;
+}
+
+.section-menu ul li a:hover {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.section-menu ul li a svg {
+  position: absolute;
+  top: 50%;
+  right: 3.875rem;
+  margin-top: -7px;
 }
