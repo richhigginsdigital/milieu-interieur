@@ -71,7 +71,7 @@ const Layout = ({
           <div
             style={{
               background: "white",
-              borderBottom: "1px solid black",
+              borderBottom: "1px solid rgba(0,0,0,1)",
             }}
           >
             <Header locale={locale} />

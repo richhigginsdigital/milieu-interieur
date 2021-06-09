@@ -88,9 +88,11 @@ const Page = ({ data, location, pageContext }) => {
                       image={node.data.target.gatsbyImageData}
                       style={{ marginBottom: `1em` }}
                     />
-                    <p style={{ fontSize: "1rem" }}>
-                      {node.data.target.description}
-                    </p>
+                    {node.data.target.description && (
+                      <p style={{ fontSize: "1rem", marginTop: `-.5em` }}>
+                        {node.data.target.description}
+                      </p>
+                    )}
                   </>
                 )
               },
