@@ -132,7 +132,7 @@ export const query = graphql`
           ... on ContentfulAsset {
             __typename
             contentful_id
-            gatsbyImageData(width: 663, placeholder: BLURRED)
+            gatsbyImageData(placeholder: BLURRED)
             description
           }
           ... on ContentfulPage {
