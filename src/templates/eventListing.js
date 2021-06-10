@@ -23,7 +23,7 @@ const Page = ({ data, location, pageContext }) => {
         <h1 style={{ textAlign: "center" }}>
           {locale === "en" ? "Events" : "Événements"}
         </h1>
-        <div class="section-menu">
+        <div className="section-menu">
           <nav>
             <ul>
               {data.allContentfulEvent.nodes.map(event => (

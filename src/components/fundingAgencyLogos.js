@@ -3,8 +3,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 const FundingAgencyLogos = ({ logos }) => (
   <ul className="grid-logos grid-logos-funding">
-    {logos.map(logo => (
-      <li>
+    {logos.map((logo, index) => (
+      <li key={index}>
         <GatsbyImage alt={logo.description} image={logo.gatsbyImageData} />
       </li>
     ))}

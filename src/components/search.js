@@ -106,7 +106,7 @@ const Search = ({ locale }) => {
           title="Submit your search query."
         >
           <svg
-            class="ais-SearchBox-submitIcon"
+            className="ais-SearchBox-submitIcon"
             xmlns="http://www.w3.org/2000/svg"
             width="10"
             height="10"

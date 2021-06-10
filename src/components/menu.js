@@ -37,8 +37,8 @@ const Menu = ({ locale, sectionSlug, data, subPages }) => {
           <div id="menu" className={menuOpen ? undefined : `hidden`}>
             <ul>
               {process.env.GATSBY_HIDE_MENU !== "true" &&
-                data.pages.map(page => (
-                  <li>
+                data.pages.map((page, index) => (
+                  <li key={index}>
                     <Link
                       className={
                         location.pathname.match(`/${page.slug}/`)
@@ -57,8 +57,8 @@ const Menu = ({ locale, sectionSlug, data, subPages }) => {
                           .filter(
                             subPage => subPage.parentPage.slug === page.slug
                           )
-                          .map(page => (
-                            <li>
+                          .map((page, index) => (
+                            <li key={index}>
                               <Link
                                 to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
                               >

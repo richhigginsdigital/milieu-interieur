@@ -17,10 +17,15 @@
   text-decoration: none;
   padding: 1rem 0;
   display: block;
-  font-size: 1.555555555555556rem;
   font-family: "IBM Plex Serif";
   font-weight: 500;
   position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .section-menu ul li a {
+    font-size: 1.555555555555556rem;
+  }
 }
 
 .section-menu ul li a:hover {
@@ -31,6 +36,12 @@
 .section-menu ul li a svg {
   position: absolute;
   top: 50%;
-  right: 3.875rem;
+  right: 0;
   margin-top: -7px;
+}
+
+@media only screen and (min-width: 768px) {
+  .section-menu ul li a svg {
+    right: 3.875rem;
+  }
 }

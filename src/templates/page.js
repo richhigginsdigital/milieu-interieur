@@ -31,7 +31,7 @@ const Page = ({ data, location, pageContext }) => {
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
-      type={!showSectionMenu && "article"}
+      type={showSectionMenu ? "" : "article"}
     >
       <Seo
         description={

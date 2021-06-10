@@ -105,8 +105,8 @@ const Layout = ({
                 <nav>
                   <ul className="footer-nav">
                     {process.env.GATSBY_HIDE_MENU !== "true" &&
-                      menuData.pages.map(page => (
-                        <li>
+                      menuData.pages.map((page, index) => (
+                        <li key={index}>
                           <Link
                             className={
                               location.pathname.match(`/${page.slug}/`)
@@ -126,8 +126,8 @@ const Layout = ({
                                   subPage =>
                                     subPage.parentPage.slug === page.slug
                                 )
-                                .map(page => (
-                                  <li>
+                                .map((page, index) => (
+                                  <li key={index}>
                                     <Link
                                       to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
                                     >

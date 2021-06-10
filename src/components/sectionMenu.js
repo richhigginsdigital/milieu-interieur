@@ -37,7 +37,7 @@ const SectionMenu = ({ pages }) => (
 )
 
 SectionMenu.propTypes = {
-  page: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
 }
 
 export default SectionMenu
