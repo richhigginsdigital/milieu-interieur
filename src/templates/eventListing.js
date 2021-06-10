@@ -14,8 +14,8 @@ const Page = ({ data, location, pageContext }) => {
         description={
           data.contentfulEvent.metaDescription &&
           data.contentfulEvent.metaDescription.metaDescription
-        }
-        title={data.contentfulEvent.title}*/
+        }*/
+        title={locale === "fr" ? "Événements" : "Events"}
         lang={locale}
       />
 
@@ -26,8 +26,8 @@ const Page = ({ data, location, pageContext }) => {
         <div className="section-menu">
           <nav>
             <ul>
-              {data.allContentfulEvent.nodes.map(event => (
-                <li>
+              {data.allContentfulEvent.nodes.map((event, index) => (
+                <li key={index}>
                   <Link to={`/${locale}/events/${event.slug}/`}>
                     {event.title}
                   </Link>

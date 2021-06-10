@@ -9,11 +9,11 @@ import "./sectionMenu.css"
 
 const SectionMenu = ({ pages }) => (
   <>
-    <div class="section-menu">
+    <div className="section-menu">
       <nav>
         <ul>
-          {pages.map(page => (
-            <li>
+          {pages.map((page, index) => (
+            <li key={index}>
               <Link to={pageLink(page.node, true)}>
                 <span>{page.node.title}</span>
                 <ArrowIcon />
