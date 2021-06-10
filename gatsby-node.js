@@ -35,6 +35,28 @@ const createContentfulEventPages = (pages, createPage) => {
   })
 }
 
+const createContentfulPublicationPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/publication.js")
+
+  pages.forEach(page => {
+    const path = `/${page.node_locale.replace(
+      /-[A-Z]*/,
+      ""
+    )}/research/publications/${page.slug}/`
+
+    if (!page.link) {
+      createPage({
+        path: path,
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+          locale: page.node_locale,
+        },
+      })
+    }
+  })
+}
+
 const createContentfulEventListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/eventListing.js")
 
@@ -61,6 +83,45 @@ const createContentfulEventListPages = (pages, createPage) => {
         limit: eventsPerPage,
         skip: i * eventsPerPage,
         numEvents,
+        currentPage: i + 1,
+        locale: "fr",
+      },
+    })
+  })
+}
+
+const createContentfulPublicationListPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/publicationListing.js")
+
+  const publications = pages
+  const publicationsPerPage = 2
+  const numPublications = Math.ceil(publications.length / publicationsPerPage)
+
+  Array.from({ length: numPublications }).forEach((_, i) => {
+    createPage({
+      path:
+        i === 0
+          ? `/en/research/publications/`
+          : `/en/research/publications/${i + 1}/`,
+      component: pageTemplate,
+      context: {
+        limit: publicationsPerPage,
+        skip: i * publicationsPerPage,
+        numPublications,
+        currentPage: i + 1,
+        locale: "en-US",
+      },
+    })
+    createPage({
+      path:
+        i === 0
+          ? `/fr/research/publications/`
+          : `/fr/research/publications/${i + 1}/`,
+      component: pageTemplate,
+      context: {
+        limit: publicationsPerPage,
+        skip: i * publicationsPerPage,
+        numPublications,
         currentPage: i + 1,
         locale: "fr",
       },
@@ -174,6 +235,13 @@ const createPages = async ({ graphql, actions }) => {
           node_locale
         }
       }
+      allContentfulPublication {
+        nodes {
+          slug
+          node_locale
+          link
+        }
+      }
     }
   `)
 
@@ -190,6 +258,15 @@ const createPages = async ({ graphql, actions }) => {
       )
       createContentfulEventListPages(
         result.data.allContentfulEvent.nodes,
+        createPage
+      )
+      createContentfulPublicationListPages(
+        result.data.allContentfulPublication.nodes,
+        createPage
+      )
+
+      createContentfulPublicationPages(
+        result.data.allContentfulPublication.nodes,
         createPage
       )
     }
