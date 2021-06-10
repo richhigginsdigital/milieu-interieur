@@ -125,6 +125,19 @@ export const query = graphql`
         }
       }
     }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: $locale } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
   }
 `
 

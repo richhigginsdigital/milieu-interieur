@@ -8,7 +8,12 @@ const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   return (
-    <Layout locale={locale} menuData={data.contentfulMenu} location={location}>
+    <Layout
+      locale={locale}
+      menuData={data.contentfulMenu}
+      menuSubPages={data.contentfulMenuSubPages}
+      location={location}
+    >
       <Seo
         /*
         description={
@@ -88,6 +93,19 @@ export const query = graphql`
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
       pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: $locale } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
         title
         slug
         node_locale
