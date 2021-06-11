@@ -83,10 +83,12 @@ const Page = ({ data, location, pageContext }) => {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
                   <figure>
-                    <GatsbyImage
-                      alt={node.data.target.description}
-                      image={node.data.target.gatsbyImageData}
-                    />
+                    {node.data.target.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={node.data.target.description}
+                        image={node.data.target.gatsbyImageData}
+                      />
+                    )}
                     {node.data.target.description && (
                       <figcaption>{node.data.target.description}</figcaption>
                     )}

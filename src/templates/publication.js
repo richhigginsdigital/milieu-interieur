@@ -47,11 +47,17 @@ const Page = ({ data, location, pageContext }) => {
             renderNode: {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
-                  <GatsbyImage
-                    alt={node.data.target.description}
-                    image={node.data.target.gatsbyImageData}
-                    style={{ marginBottom: `1em` }}
-                  />
+                  <figure>
+                    {node.data.target.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={node.data.target.description}
+                        image={node.data.target.gatsbyImageData}
+                      />
+                    )}
+                    {node.data.target.description && (
+                      <figcaption>{node.data.target.description}</figcaption>
+                    )}
+                  </figure>
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
