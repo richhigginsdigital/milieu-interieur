@@ -8,7 +8,7 @@ const CookieBanner = () => (
     declineButtonText="No thanks"
     cookieName="gatsby-gdpr-google-analytics"
     enableDeclineButton
-    style={{ background: "#30293e" }}
+    style={{ background: "#2C4258" }}
     buttonStyle={{
       color: "#30293e",
       background: "white",
