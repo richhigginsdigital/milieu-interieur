@@ -15,7 +15,13 @@ const EnIndexPage = ({ data }) => {
       menuSubPages={data.contentfulMenuSubPages}
       type="home"
     >
-      <Seo title="Home" />
+      <Seo
+        title="Milieu Intérieur"
+        description={
+          data.contentfulHomepage.missionStatement &&
+          data.contentfulHomepage.missionStatement.missionStatement
+        }
+      />
 
       {process.env.GATSBY_HOLDING_PAGE === "true" ? (
         <div

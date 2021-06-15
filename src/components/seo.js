@@ -34,7 +34,9 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={
+        title === "Milieu Intérieur" ? `%s` : `%s | ${defaultTitle}`
+      }
       meta={[
         {
           name: `description`,

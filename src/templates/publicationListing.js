@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const Page = ({ data, location, pageContext }) => {
+const PublicationListing = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   return (
@@ -14,18 +14,16 @@ const Page = ({ data, location, pageContext }) => {
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
     >
-      <Seo
-        /*
-        description={
-          data.contentfulEvent.metaDescription &&
-          data.contentfulEvent.metaDescription.metaDescription
-        }*/
-        title="Publications"
-        lang={locale}
-      />
+      <Seo title="Publications" lang={locale} />
 
       <div className="l-constrained-narrow">
-        <h1 style={{ textAlign: "center" }}>Publications</h1>
+        <nav style={{ marginBottom: "39px" }}>
+          <p>
+            {locale === "fr" ? "Partie de" : "Part of"}:{" "}
+            <Link to={`/${locale}/research/`}>Research</Link>
+          </p>
+        </nav>
+        <h1 className="article-heading">Publications</h1>
         <div className="section-menu">
           <nav>
             <ul>
@@ -117,4 +115,4 @@ export const query = graphql`
   }
 `
 
-export default Page
+export default PublicationListing

@@ -15,7 +15,14 @@ const FrIndexPage = ({ data }) => {
       menuSubPages={data.contentfulMenuSubPages}
       type="home"
     >
-      <Seo title="Home" lang="fr" />
+      <Seo
+        title="Milieu Intérieur"
+        lang="fr"
+        description={
+          data.contentfulHomepage.missionStatement &&
+          data.contentfulHomepage.missionStatement.missionStatement
+        }
+      />
       <Hero
         locale="fr"
         text={data.contentfulHomepage.missionStatement.missionStatement}
