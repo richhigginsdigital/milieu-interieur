@@ -150,6 +150,11 @@ main {
   margin: auto;
 }
 
+.l-header-wrapper {
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
 .grid-logos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

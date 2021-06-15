@@ -2,20 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
 const createContentfulEventPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/event.js")
 
@@ -59,72 +45,56 @@ const createContentfulPublicationPages = (pages, createPage) => {
 
 const createContentfulEventListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/eventListing.js")
-
   const events = pages
   const eventsPerPage = 2
   const numEvents = Math.ceil(events.length / eventsPerPage)
 
   Array.from({ length: numEvents }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/en/events/` : `/en/events/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: eventsPerPage,
-        skip: i * eventsPerPage,
-        numEvents,
-        currentPage: i + 1,
-        locale: "en-US",
-      },
-    })
-    createPage({
-      path: i === 0 ? `/fr/events/` : `/fr/events/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: eventsPerPage,
-        skip: i * eventsPerPage,
-        numEvents,
-        currentPage: i + 1,
-        locale: "fr",
-      },
+    const locales = ["en-US", "fr"]
+
+    locales.forEach(locale => {
+      createPage({
+        path:
+          i === 0
+            ? `/${locale.replace(/-US/, "")}/events/`
+            : `/${locale.replace(/-US/, "")}/events/${i + 1}/`,
+        component: pageTemplate,
+        context: {
+          limit: eventsPerPage,
+          skip: i * eventsPerPage,
+          numEvents,
+          currentPage: i + 1,
+          locale,
+        },
+      })
     })
   })
 }
 
 const createContentfulPublicationListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/publicationListing.js")
-
   const publications = pages
   const publicationsPerPage = 2
   const numPublications = Math.ceil(publications.length / publicationsPerPage)
 
   Array.from({ length: numPublications }).forEach((_, i) => {
-    createPage({
-      path:
-        i === 0
-          ? `/en/research/publications/`
-          : `/en/research/publications/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: publicationsPerPage,
-        skip: i * publicationsPerPage,
-        numPublications,
-        currentPage: i + 1,
-        locale: "en-US",
-      },
-    })
-    createPage({
-      path:
-        i === 0
-          ? `/fr/research/publications/`
-          : `/fr/research/publications/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: publicationsPerPage,
-        skip: i * publicationsPerPage,
-        numPublications,
-        currentPage: i + 1,
-        locale: "fr",
-      },
+    const locales = ["en-US", "fr"]
+
+    locales.forEach(locale => {
+      createPage({
+        path:
+          i === 0
+            ? `/${locale.replace(/-US/, "")}/research/publications/`
+            : `/${locale.replace(/-US/, "")}/research/publications/${i + 1}/`,
+        component: pageTemplate,
+        context: {
+          limit: publicationsPerPage,
+          skip: i * publicationsPerPage,
+          numPublications,
+          currentPage: i + 1,
+          locale,
+        },
+      })
     })
   })
 }

@@ -7,11 +7,10 @@ import CookieBanner from "./cookieBanner"
 import Header from "./header"
 import Menu from "./menu"
 import CollaborateBanner from "./collaborateBanner"
+import Shapes from "./shapes"
 import { pageLink } from "../helpers/pageLink"
 
 import "./layout.css"
-
-import { ReactComponent as Ellipse } from "../images/ellipse.svg"
 
 const Layout = ({
   children,
@@ -25,48 +24,15 @@ const Layout = ({
     <Location>
       {({ location }) => (
         <div
-          className={
-            type === "article"
-              ? "l-outer-wrapper"
-              : "l-outer-wrapper l-outer-wrapper-blue"
-          }
+          className={`l-outer-wrapper ${
+            type !== "article" && `l-outer-wrapper-blue`
+          }`}
         >
           <CookieBanner />
 
-          {type === "home" && (
-            <>
-              <span
-                style={{
-                  color: "#C1D7EE",
-                  position: "absolute",
-                  top: "-150px",
-                  left: "50%",
-                  zIndex: "-1",
-                  marginLeft: "-236px", // 1184 - 404
-                }}
-              >
-                <Ellipse />
-              </span>
-              <span
-                style={{
-                  color: "#D8E6F4",
-                  position: "absolute",
-                  top: "102px",
-                  zIndex: "-2",
-                  left: "50%",
-                  marginLeft: "-914px", // 1184 - 270
-                }}
-              >
-                <Ellipse />
-              </span>
-            </>
-          )}
-          <div
-            style={{
-              background: "white",
-              borderBottom: "1px solid rgba(0,0,0,1)",
-            }}
-          >
+          {type === "home" && <Shapes />}
+
+          <div className="l-header-wrapper">
             <Header locale={locale} />
 
             <div
@@ -134,14 +100,6 @@ const Layout = ({
                       ))}
                   </ul>
                 </nav>
-
-                {/*<nav>
-              <ul style={{ listStyle: "none", margin: "1em 0" }}>
-                <li style={{ display: "inline" }}>
-                  <Link to={`/${locale}/privacy-policy/`}>Privacy policy</Link>
-                </li>
-              </ul>
-            </nav>*/}
 
                 <p style={{ color: "white", fontSize: "1rem" }}>
                   Copyright {new Date().getFullYear()} Millieuinterieur.fr |
