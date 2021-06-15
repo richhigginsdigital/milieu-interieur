@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -90,6 +90,46 @@ const EnIndexPage = ({ data }) => {
               //<h2>Events</h2>
             }
           </div>
+
+          <div className="l-constrained">
+            <h2>Publications</h2>
+            <ul>
+              {data.allContentfulPublication.nodes.map((publication, index) =>
+                publication.link ? (
+                  <li key={index}>
+                    <a href={publication.link}>{publication.title}</a> (card
+                    style)
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={`/en/research/publications/${publication.slug}/`}>
+                      {publication.title}
+                    </Link>{" "}
+                    (card style)
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          <div className="l-constrained">
+            <h2>Events</h2>
+            <ul>
+              {data.allContentfulEvent.nodes.map((event, index) => (
+                <li key={index}>
+                  <Link to={`/en/events/${event.slug}/`}>{event.title}</Link>{" "}
+                  (banner style)
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="l-constrained">
+            <h2>News</h2>
+            <ul>
+              <li>[TO DO] (postcard style)</li>
+            </ul>
+          </div>
         </>
       )}
     </Layout>
@@ -136,6 +176,30 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulPublication(
+      filter: { node_locale: { eq: "en-US" } }
+      sort: { order: DESC, fields: createdAt }
+      limit: 2
+    ) {
+      nodes {
+        slug
+        title
+        node_locale
+        link
+      }
+    }
+    allContentfulEvent(
+      filter: { node_locale: { eq: "en-US" } }
+      sort: { order: DESC, fields: date }
+      limit: 3
+    ) {
+      nodes {
+        slug
+        title
+        node_locale
+        date(formatString: "DD MMMM YYYY")
       }
     }
   }
