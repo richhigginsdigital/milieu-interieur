@@ -92,6 +92,20 @@ const Page = ({ data, location, pageContext }) => {
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
                 return pageLink(node.data.target)
               },
+              [INLINES.EMBEDDED_ENTRY]: node => {
+                //return <pre>{JSON.stringify(node, null, 2)}</pre>
+                return (
+                  <div
+                    style={{
+                      padding: "0 1rem",
+                      border: "1px solid black",
+                      background: "#f0f6fd",
+                    }}
+                  >
+                    {renderRichText(node.data.target.text)}
+                  </div>
+                )
+              },
             },
             renderText: text =>
               text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
@@ -142,6 +156,13 @@ export const query = graphql`
               parentPage {
                 slug
               }
+            }
+          }
+          ... on ContentfulHighlightText {
+            __typename
+            contentful_id
+            text {
+              raw
             }
           }
         }
