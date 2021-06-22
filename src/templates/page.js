@@ -90,6 +90,7 @@ const Page = ({ data, location, pageContext }) => {
                 return pageLink(node.data.target)
               },
               [BLOCKS.EMBEDDED_ENTRY]: node => {
+                // todo add some type checking here & returns for multiple types
                 return (
                   <div
                     style={{
@@ -107,16 +108,6 @@ const Page = ({ data, location, pageContext }) => {
             renderText: text =>
               text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
           })}
-
-        {data.contentfulPage.slug === "publications" && (
-          // Algolia instantsearch component
-          <pre>&lt;Publications listing component /&gt;</pre>
-        )}
-
-        {data.contentfulPage.slug === "events" && (
-          // Algolia instantsearch component
-          <pre>&lt;Events listing component /&gt;</pre>
-        )}
       </div>
     </Layout>
   )
