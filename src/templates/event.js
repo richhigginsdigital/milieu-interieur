@@ -41,7 +41,7 @@ const Page = ({ data, location, pageContext }) => {
         <h1 className="article-heading">{data.contentfulEvent.title}</h1>
 
         <p style={{ marginBottom: "2rem" }}>
-          Updated: {data.contentfulEvent.updatedAt}
+          Date: {data.contentfulEvent.date}
         </p>
 
         {data.contentfulEvent.mainContent &&
@@ -55,9 +55,6 @@ const Page = ({ data, location, pageContext }) => {
                         alt={node.data.target.description}
                         image={node.data.target.gatsbyImageData}
                       />
-                    )}
-                    {node.data.target.description && (
-                      <figcaption>{node.data.target.description}</figcaption>
                     )}
                   </figure>
                 )
@@ -106,7 +103,6 @@ export const query = graphql`
       metaDescription {
         metaDescription
       }
-      updatedAt(formatString: "D MMMM, YYYY")
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
       pages {
