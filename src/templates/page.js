@@ -83,23 +83,20 @@ const Page = ({ data, location, pageContext }) => {
                         image={node.data.target.gatsbyImageData}
                       />
                     )}
-                    {node.data.target.description && (
-                      <figcaption>{node.data.target.description}</figcaption>
-                    )}
                   </figure>
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
                 return pageLink(node.data.target)
               },
-              [INLINES.EMBEDDED_ENTRY]: node => {
-                //return <pre>{JSON.stringify(node, null, 2)}</pre>
+              [BLOCKS.EMBEDDED_ENTRY]: node => {
                 return (
                   <div
                     style={{
                       padding: "0 1rem",
                       border: "1px solid black",
                       background: "#f0f6fd",
+                      margin: "0 0 1.25rem",
                     }}
                   >
                     {renderRichText(node.data.target.text)}
