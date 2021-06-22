@@ -69,13 +69,7 @@ const Page = ({ data, location, pageContext }) => {
           {data.contentfulPage.title}
         </h1>
 
-        {showSectionMenu ? (
-          <SectionMenu pages={data.menuPages.edges} />
-        ) : (
-          <p style={{ marginBottom: "2rem" }}>
-            Updated: {data.contentfulPage.updatedAt}
-          </p>
-        )}
+        {showSectionMenu && <SectionMenu pages={data.menuPages.edges} />}
 
         {data.contentfulPage.mainContent &&
           renderRichText(data.contentfulPage.mainContent, {
@@ -163,7 +157,6 @@ export const query = graphql`
       metaDescription {
         metaDescription
       }
-      updatedAt(formatString: "D MMMM, YYYY")
     }
     menuPages: allContentfulPage(
       filter: {
