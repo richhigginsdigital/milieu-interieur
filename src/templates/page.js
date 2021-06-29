@@ -100,7 +100,8 @@ const Page = ({ data, location, pageContext }) => {
                       margin: "0 0 1.25rem",
                     }}
                   >
-                    {renderRichText(node.data.target.text)}
+                    {node.data.target.text &&
+                      renderRichText(node.data.target.text)}
                   </div>
                 )
               },
