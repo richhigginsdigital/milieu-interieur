@@ -95,7 +95,7 @@ const Page = ({ data, location, pageContext }) => {
                   <div
                     style={{
                       padding: "0 1rem",
-                      border: "1px solid black",
+                      border: "1px solid transparent",
                       background: "#f0f6fd",
                       margin: "0 0 1.25rem",
                     }}
