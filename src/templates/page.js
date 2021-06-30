@@ -65,7 +65,7 @@ const Page = ({ data, location, pageContext }) => {
             )}
           </nav>
         )}
-        <h1 className={showSectionMenu ? "h2" : "article-heading"}>
+        <h1 className={showSectionMenu ? "h4" : "article-heading"}>
           {data.contentfulPage.title}
         </h1>
 

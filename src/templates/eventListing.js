@@ -17,7 +17,7 @@ const EventListing = ({ data, location, pageContext }) => {
       <Seo title={locale === "fr" ? "Événements" : "Events"} lang={locale} />
 
       <div className="l-constrained-narrow">
-        <h1 className="h2">{locale === "en" ? "Events" : "Événements"}</h1>
+        <h1 className="h4">{locale === "en" ? "Events" : "Événements"}</h1>
         <div className="section-menu">
           <nav>
             <ul>
