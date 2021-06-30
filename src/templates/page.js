@@ -126,7 +126,9 @@ const Page = ({ data, location, pageContext }) => {
               },
             },
             renderText: text =>
-              text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
+              text
+                .split("\n")
+                .flatMap((text, i) => [i > 0 && <br key={i} />, text]),
           })}
       </div>
     </Layout>
