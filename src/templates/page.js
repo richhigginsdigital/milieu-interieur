@@ -162,6 +162,10 @@ export const query = graphql`
             __typename
             contentful_id
           }
+          ... on ContentfulGridImage {
+            __typename
+            contentful_id
+          }
         }
       }
       parentPage {
