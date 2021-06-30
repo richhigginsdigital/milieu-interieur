@@ -90,8 +90,12 @@ const Page = ({ data, location, pageContext }) => {
                 return pageLink(node.data.target)
               },
               [BLOCKS.EMBEDDED_ENTRY]: node => {
-                // todo add some type checking here & returns for multiple types
-                return (
+                // todo add some type checking here & returns for multiple entry types
+                return node.data.target.__typename === "ContentfulHeroImage" ? (
+                  "Hero image" // TODO
+                ) : node.data.target.__typename === "ContentfulGridImage" ? (
+                  "Grid image" // TODO
+                ) : (
                   <div
                     style={{
                       padding: "0 1rem",
@@ -153,6 +157,10 @@ export const query = graphql`
             text {
               raw
             }
+          }
+          ... on ContentfulHeroImage {
+            __typename
+            contentful_id
           }
         }
       }
