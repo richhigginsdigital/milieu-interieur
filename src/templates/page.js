@@ -104,7 +104,8 @@ const Page = ({ data, location, pageContext }) => {
                       </figcaption>
                     </figure>
                   </div>
-                ) : node.data.target.__typename === "ContentfulGridImage" ? (
+                ) : node.data.target.__typename ===
+                  "ContentfulGridImageAndText" ? (
                   <div className="grid-image">
                     <figure>
                       {node.data.target.image.gatsbyImageData && (
@@ -183,7 +184,7 @@ export const query = graphql`
               description
             }
           }
-          ... on ContentfulGridImage {
+          ... on ContentfulGridImageAndText {
             __typename
             contentful_id
             image {
