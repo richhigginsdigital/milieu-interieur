@@ -90,20 +90,35 @@ const Page = ({ data, location, pageContext }) => {
                 return pageLink(node.data.target)
               },
               [BLOCKS.EMBEDDED_ENTRY]: node => {
-                // todo add some type checking here & returns for multiple entry types
                 return node.data.target.__typename === "ContentfulHeroImage" ? (
-                  <p>Hero image (To do)</p> // TODO
+                  <div className="hero-image">
+                    <figure>
+                      {node.data.target.image.gatsbyImageData && (
+                        <GatsbyImage
+                          alt={node.data.target.image.description}
+                          image={node.data.target.image.gatsbyImageData}
+                        />
+                      )}
+                      <figcaption>
+                        {node.data.target.image.description}
+                      </figcaption>
+                    </figure>
+                  </div>
                 ) : node.data.target.__typename === "ContentfulGridImage" ? (
-                  <p>Grid image (To do)</p> // TODO
+                  <div className="grid-image">
+                    <figure>
+                      {node.data.target.image.gatsbyImageData && (
+                        <GatsbyImage
+                          alt={node.data.target.image.description}
+                          image={node.data.target.image.gatsbyImageData}
+                        />
+                      )}
+                    </figure>
+                    {node.data.target.text &&
+                      renderRichText(node.data.target.text)}
+                  </div>
                 ) : (
-                  <div
-                    style={{
-                      padding: "0 1rem",
-                      border: "1px solid transparent",
-                      background: "#f0f6fd",
-                      margin: "0 0 1.25rem",
-                    }}
-                  >
+                  <div className="highlight">
                     {node.data.target.text &&
                       renderRichText(node.data.target.text)}
                   </div>
@@ -161,10 +176,21 @@ export const query = graphql`
           ... on ContentfulHeroImage {
             __typename
             contentful_id
+            image {
+              gatsbyImageData(width: 962)
+              description
+            }
           }
           ... on ContentfulGridImage {
             __typename
             contentful_id
+            image {
+              gatsbyImageData
+              description
+            }
+            text {
+              raw
+            }
           }
         }
       }
