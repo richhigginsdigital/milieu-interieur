@@ -92,9 +92,9 @@ const Page = ({ data, location, pageContext }) => {
               [BLOCKS.EMBEDDED_ENTRY]: node => {
                 // todo add some type checking here & returns for multiple entry types
                 return node.data.target.__typename === "ContentfulHeroImage" ? (
-                  "Hero image" // TODO
+                  <p>Hero image (To do)</p> // TODO
                 ) : node.data.target.__typename === "ContentfulGridImage" ? (
-                  "Grid image" // TODO
+                  <p>Grid image (To do)</p> // TODO
                 ) : (
                   <div
                     style={{
