@@ -4,8 +4,8 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
-import ConsortiumLogos from "../components/consortiumLogos"
 import FundingAgencyLogos from "../components/fundingAgencyLogos"
+import ConsortiumLinks from "../components/consortiumLinks"
 
 const EnIndexPage = ({ data }) => {
   return (
@@ -69,26 +69,14 @@ const EnIndexPage = ({ data }) => {
           />
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
             <h2>Consortium members</h2>
-
-            <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />
-
-            {
-              //<h2>Publications</h2>
-              //<h2>Events</h2>
-            }
+            <ConsortiumLinks links={data.contentfulHomepage.consortiumLinks} />
           </div>
 
           <div className="l-constrained">
             <h2>Funding agencies</h2>
-
             <FundingAgencyLogos
               logos={data.contentfulHomepage.fundingAgencyLogos}
             />
-
-            {
-              //<h2>Publications</h2>
-              //<h2>Events</h2>
-            }
           </div>
 
           <div className="l-constrained">
@@ -146,13 +134,17 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-      consortiumLogos {
-        gatsbyImageData(height: 74, placeholder: BLURRED)
-        description
-      }
       fundingAgencyLogos {
         gatsbyImageData(height: 74, placeholder: BLURRED)
         description
+      }
+      consortiumLinks {
+        title
+        url
+        image {
+          gatsbyImageData(height: 74, placeholder: BLURRED)
+          description
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "en-US" }) {
