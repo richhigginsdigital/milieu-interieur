@@ -4,7 +4,6 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
-import FundingAgencyLogos from "../components/fundingAgencyLogos"
 import ConsortiumLinks from "../components/consortiumLinks"
 
 const EnIndexPage = ({ data }) => {
@@ -73,13 +72,6 @@ const EnIndexPage = ({ data }) => {
           </div>
 
           <div className="l-constrained">
-            <h2>Funding agencies</h2>
-            <FundingAgencyLogos
-              logos={data.contentfulHomepage.fundingAgencyLogos}
-            />
-          </div>
-
-          <div className="l-constrained">
             <h2>Publications</h2>
             <ul>
               {data.allContentfulPublication.nodes.map((publication, index) =>
@@ -134,10 +126,6 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-      fundingAgencyLogos {
-        gatsbyImageData(height: 74, placeholder: BLURRED)
-        description
-      }
       consortiumLinks {
         title
         url
