@@ -115,8 +115,10 @@ const Page = ({ data, location, pageContext }) => {
                         />
                       )}
                     </figure>
-                    {node.data.target.text &&
-                      renderRichText(node.data.target.text)}
+                    <div>
+                      {node.data.target.text &&
+                        renderRichText(node.data.target.text)}
+                    </div>
                   </div>
                 ) : (
                   <div className="highlight">
