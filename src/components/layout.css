@@ -260,6 +260,7 @@ main {
   max-width: 568px;
   font-weight: 500;
   margin-top: 1rem;
+  line-height: 1.6;
 }
 
 .button {
