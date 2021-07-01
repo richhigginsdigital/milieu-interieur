@@ -29,7 +29,7 @@ const Page = ({ data, location, pageContext }) => {
       />
 
       <div className="l-constrained-narrow">
-        <nav style={{ marginBottom: "39px" }}>
+        <nav className="breadcrumb">
           <p>
             {locale === "fr" ? "Partie de" : "Part of"}:{" "}
             <Link to={`/${locale}/events/`}>

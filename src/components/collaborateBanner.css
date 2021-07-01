@@ -22,6 +22,10 @@
   max-width: 680px;
 }
 
+.collaborate-banner p a {
+  color: inherit;
+}
+
 .copy-button {
   position: relative;
   padding-bottom: 1.4em;

@@ -51,10 +51,6 @@ ol {
   line-height: 1.6;
 }
 
-a {
-  color: inherit;
-}
-
 h1 {
   font-size: 1.4rem;
 }
@@ -317,4 +313,20 @@ figure {
   border: 1px solid transparent;
   background: #f0f6fd;
   margin: 0 0 1.25rem;
+}
+
+.breadcrumb {
+  margin-bottom: 39px;
+}
+
+.breadcrumb a {
+  color: inherit;
+}
+
+.paging {
+  text-align: center;
+}
+
+.paging a {
+  color: inherit;
 }

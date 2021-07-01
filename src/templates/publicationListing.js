@@ -17,7 +17,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
       <Seo title="Publications" lang={locale} />
 
       <div className="l-constrained-narrow">
-        <nav style={{ marginBottom: "39px" }}>
+        <nav className="breadcrumb">
           <p>
             {locale === "fr" ? "Partie de" : "Part of"}:{" "}
             <Link to={`/${locale}/research/`}>Research</Link>
@@ -46,7 +46,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
           </nav>
         </div>
 
-        <nav style={{ textAlign: "center" }}>
+        <nav className="paging">
           <p>
             {pageContext.numPublications >
             pageContext.currentPage * pageContext.limit ? (

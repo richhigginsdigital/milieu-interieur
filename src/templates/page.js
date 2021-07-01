@@ -44,7 +44,7 @@ const Page = ({ data, location, pageContext }) => {
 
       <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
-          <nav style={{ marginBottom: "39px" }}>
+          <nav className="breadcrumb">
             {process.env.GATSBY_HIDE_MENU === "true" ? (
               <p>
                 {locale === "fr" ? (

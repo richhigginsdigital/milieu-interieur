@@ -20,6 +20,7 @@
   font-family: "IBM Plex Serif";
   font-weight: 500;
   position: relative;
+  color: inherit;
 }
 
 @media screen and (min-width: 768px) {

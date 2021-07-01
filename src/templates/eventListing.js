@@ -32,7 +32,7 @@ const EventListing = ({ data, location, pageContext }) => {
           </nav>
         </div>
 
-        <nav style={{ textAlign: "center" }}>
+        <nav className="paging">
           <p>
             {pageContext.numEvents >
             pageContext.currentPage * pageContext.limit ? (
