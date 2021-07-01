@@ -51,6 +51,11 @@ ol {
   line-height: 1.6;
 }
 
+/* handle contentful Rich text extra <p> */
+li > p {
+  margin: 0;
+}
+
 h1 {
   font-size: 1.4rem;
 }
