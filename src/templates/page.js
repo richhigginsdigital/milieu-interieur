@@ -89,6 +89,9 @@ const Page = ({ data, location, pageContext }) => {
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
                 return pageLink(node.data.target)
               },
+              [INLINES.ASSET_HYPERLINK]: (node, children) => {
+                return <a href={node.data.target.file.url}>{children}</a>
+              },
               [BLOCKS.EMBEDDED_ENTRY]: node => {
                 return node.data.target.__typename === "ContentfulHeroImage" ? (
                   <div className="hero-image">
@@ -157,6 +160,9 @@ export const query = graphql`
             contentful_id
             gatsbyImageData(placeholder: BLURRED)
             description
+            file {
+              url
+            }
           }
           ... on ContentfulPage {
             __typename
