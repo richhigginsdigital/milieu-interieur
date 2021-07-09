@@ -245,8 +245,8 @@ main {
 @media only screen and (min-width: 768px) {
   .grid-publications {
     display: grid;
-    grid-template-columns: 50% 50%;
-    /*grid-column-gap: 1.5rem;*/
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.5rem;
     padding: 0;
     margin: 1.5rem 0;
   }
