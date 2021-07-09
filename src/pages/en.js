@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
 import ConsortiumLinks from "../components/consortiumLinks"
+import CollaborateBanner from "../components/collaborateBanner"
 
 const EnIndexPage = ({ data }) => {
   return (
@@ -67,48 +68,114 @@ const EnIndexPage = ({ data }) => {
             video={data.contentfulHomepage.videoUrl}
           />
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-            <h2>Consortium members</h2>
+            <h2 className="h4">Consortium members</h2>
             <ConsortiumLinks links={data.contentfulHomepage.consortiumLinks} />
           </div>
 
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
+            <CollaborateBanner locale="en" />
+          </div>
+
           <div className="l-constrained">
-            <h2>Publications</h2>
-            <ul>
+            <h2 className="h4">Publications</h2>
+            <ul className="unformatted grid-publications">
               {data.allContentfulPublication.nodes.map((publication, index) =>
                 publication.link ? (
                   <li key={index}>
-                    <a href={publication.link}>{publication.title}</a> (card
-                    style)
+                    <article>
+                      <a className="card" href={publication.link}>
+                        <h3>{publication.title}</h3>
+                        <hr />
+                        <p>
+                          <strong>
+                            Science - 07.13.2020 Hadjadj J, Yatim N, Barnabei L,
+                            Corneau A, Boussier J, Smith N, Péré H, Charbit B,
+                            Bondet V, Chenevier-Gobeaux C, Breillat P, Carlier
+                            N, Gauzit R, Morbieu C, Pène F, Marin N, Roche N,
+                            Szwebel TA, Merkling SH, Treluyer JM, Veyer D,
+                            Mouthon L
+                          </strong>
+                        </p>
+                        <p>
+                          Coronavirus disease 2019 (COVID-19) is characterized
+                          by distinct patterns of disease progression suggesting
+                          diverse host immune responses. We performed an
+                          integrated immune analysis on a cohort of 50 COVID-19
+                          patients with various disease severity.
+                        </p>
+                        Read more >
+                      </a>
+                    </article>
                   </li>
                 ) : (
                   <li key={index}>
-                    <Link to={`/en/research/publications/${publication.slug}/`}>
-                      {publication.title}
+                    <Link
+                      className="card"
+                      to={`/en/research/publications/${publication.slug}/`}
+                    >
+                      <h3>{publication.title}</h3>
+                      <hr />
+                      <p>
+                        <strong>
+                          Science - 07.13.2020 Hadjadj J, Yatim N, Barnabei L,
+                          Corneau A, Boussier J, Smith N, Péré H, Charbit B,
+                          Bondet V, Chenevier-Gobeaux C, Breillat P, Carlier N,
+                          Gauzit R, Morbieu C, Pène F, Marin N, Roche N, Szwebel
+                          TA, Merkling SH, Treluyer JM, Veyer D, Mouthon L
+                        </strong>
+                      </p>
+                      <p>
+                        Coronavirus disease 2019 (COVID-19) is characterized by
+                        distinct patterns of disease progression suggesting
+                        diverse host immune responses. We performed an
+                        integrated immune analysis on a cohort of 50 COVID-19
+                        patients with various disease severity.
+                      </p>
+                      Read more >
                     </Link>{" "}
-                    (card style)
                   </li>
                 )
               )}
             </ul>
+            <div className="centered">
+              <Link className="button" to="/en/research/publications/">
+                View all publications
+              </Link>
+            </div>
           </div>
 
           <div className="l-constrained">
-            <h2>Events</h2>
-            <ul>
+            <h2 className="h4">Events</h2>
+            <ul className="unformatted">
               {data.allContentfulEvent.nodes.map((event, index) => (
                 <li key={index}>
-                  <Link to={`/en/events/${event.slug}/`}>{event.title}</Link>{" "}
-                  (banner style)
+                  <Link className="banner" to={`/en/events/${event.slug}/`}>
+                    {event.title}
+                  </Link>{" "}
                 </li>
               ))}
             </ul>
+            <div className="centered">
+              <Link className="button" to="/en/events/">
+                View all events
+              </Link>
+            </div>
           </div>
 
           <div className="l-constrained">
-            <h2>News</h2>
-            <ul>
-              <li>[TO DO] (postcard style)</li>
+            <h2 className="h4">News</h2>
+            <ul className="unformatted">
+              <li>
+                <a className="postcard" href="#">
+                  [TO DO]
+                </a>
+              </li>
             </ul>
+            <div className="centered">
+              <Link className="button" to="/en/news/">
+                View all news
+              </Link>
+            </div>
           </div>
         </>
       )}

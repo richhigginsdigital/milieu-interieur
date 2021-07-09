@@ -242,6 +242,16 @@ main {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .grid-publications {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /*grid-column-gap: 1.5rem;*/
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+}
+
 .hero-image {
   left: 50%;
   margin: 1em -50vw;
@@ -273,6 +283,8 @@ main {
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
+  color: black;
+  display: inline-block;
 }
 
 footer ul {
@@ -328,10 +340,40 @@ figure {
   color: inherit;
 }
 
-.paging {
+.paging,
+.centered {
   text-align: center;
 }
 
 .paging a {
   color: inherit;
+}
+
+ul.unformatted {
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  display: block;
+  padding: 1rem 2rem;
+  background: white;
+  color: black;
+  text-decoration: none;
+}
+
+.banner {
+  display: block;
+  padding: 1rem 2rem;
+  background: white;
+  color: black;
+  margin-bottom: 1em;
+}
+
+.postcard {
+  display: block;
+  padding: 1rem 2rem;
+  background: white;
+  color: black;
+  margin-bottom: 1em;
 }

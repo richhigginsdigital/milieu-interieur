@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { ReactComponent as CopyIcon } from "../images/copy-icon.svg"
 import "./collaborateBanner.css"
 
-const CollaborateBanner = ({ locale }) => {
+const CollaborateBanner = ({ locale, layout }) => {
   const [copied, setCopied] = useState(false)
 
   const copyToClipboard = event => {
