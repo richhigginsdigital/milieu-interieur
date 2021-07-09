@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -87,21 +88,10 @@ const EnIndexPage = ({ data }) => {
                       <hr />
                       <p>
                         <strong>
-                          Science - 07.13.2020
-                          <br /> Hadjadj J, Yatim N, Barnabei L, Corneau A,
-                          Boussier J, Smith N, Péré H, Charbit B, Bondet V,
-                          Chenevier-Gobeaux C, Breillat P, Carlier N, Gauzit R,
-                          Morbieu C, Pène F, Marin N, Roche N, Szwebel TA,
-                          Merkling SH, Treluyer JM, Veyer D, Mouthon L
+                          {publication.journal} - {publication.date}
                         </strong>
                       </p>
-                      <p>
-                        Coronavirus disease 2019 (COVID-19) is characterized by
-                        distinct patterns of disease progression suggesting
-                        diverse host immune responses. We performed an
-                        integrated immune analysis on a cohort of 50 COVID-19
-                        patients with various disease severity.
-                      </p>
+                      {renderRichText(publication.mainContent)}
                       <a href={publication.link}>Read more &gt;</a>
                     </article>
                   </li>
@@ -172,7 +162,7 @@ const EnIndexPage = ({ data }) => {
             <h2 className="h4">News</h2>
             <ul className="unformatted">
               <li>
-                <a className="postcard" href="#">
+                <a className="postcard" href="/">
                   [TO DO]
                 </a>
               </li>
@@ -241,6 +231,11 @@ export const query = graphql`
         title
         node_locale
         link
+        journal
+        date(formatString: "DD MMMM")
+        mainContent {
+          raw
+        }
       }
     }
     allContentfulEvent(
