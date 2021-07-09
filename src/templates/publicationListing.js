@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -24,13 +25,23 @@ const PublicationListing = ({ data, location, pageContext }) => {
           </p>
         </nav>
         <h1 className="article-heading">Publications</h1>
-        <div className="section-menu">
+        <div>
           <nav>
-            <ul>
+            <ul className="unformatted">
               {data.allContentfulPublication.nodes.map((publication, index) =>
                 publication.link ? (
-                  <li key={index}>
-                    <a href={publication.link}>{publication.title}</a>
+                  <li className="card" key={index}>
+                    <article>
+                      <h3>{publication.title}</h3>
+                      <hr />
+                      <p>
+                        <strong>
+                          {publication.journal} - {publication.date}
+                        </strong>
+                      </p>
+                      {renderRichText(publication.mainContent)}
+                      <a href={publication.link}>Read more &gt;</a>
+                    </article>
                   </li>
                 ) : (
                   <li key={index}>
@@ -90,6 +101,12 @@ export const query = graphql`
         title
         slug
         link
+        journal
+        category
+        mainContent {
+          raw
+        }
+        date(formatString: "DD MMMM")
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
