@@ -39,12 +39,15 @@ const EventListing = ({ data, location, pageContext }) => {
               <Link to={`/${locale}/events/${pageContext.currentPage + 1}/`}>
                 Next
               </Link>
-            ) : pageContext.currentPage === 2 ? (
-              <Link to={`/${locale}/events/`}>Back</Link>
             ) : (
-              <Link to={`/${locale}/events/${pageContext.currentPage - 1}/`}>
-                Back
-              </Link>
+              pageContext.currentPage > 1 &&
+              (pageContext.currentPage === 2 ? (
+                <Link to={`/${locale}/events/`}>Back</Link>
+              ) : (
+                <Link to={`/${locale}/events/${pageContext.currentPage - 1}/`}>
+                  Back
+                </Link>
+              ))
             )}
           </p>
         </nav>

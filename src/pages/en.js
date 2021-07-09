@@ -81,47 +81,18 @@ const EnIndexPage = ({ data }) => {
             <ul className="unformatted grid-publications">
               {data.allContentfulPublication.nodes.map((publication, index) =>
                 publication.link ? (
-                  <li key={index}>
+                  <li className="card" key={index}>
                     <article>
-                      <a className="card" href={publication.link}>
-                        <h3>{publication.title}</h3>
-                        <hr />
-                        <p>
-                          <strong>
-                            Science - 07.13.2020 Hadjadj J, Yatim N, Barnabei L,
-                            Corneau A, Boussier J, Smith N, Péré H, Charbit B,
-                            Bondet V, Chenevier-Gobeaux C, Breillat P, Carlier
-                            N, Gauzit R, Morbieu C, Pène F, Marin N, Roche N,
-                            Szwebel TA, Merkling SH, Treluyer JM, Veyer D,
-                            Mouthon L
-                          </strong>
-                        </p>
-                        <p>
-                          Coronavirus disease 2019 (COVID-19) is characterized
-                          by distinct patterns of disease progression suggesting
-                          diverse host immune responses. We performed an
-                          integrated immune analysis on a cohort of 50 COVID-19
-                          patients with various disease severity.
-                        </p>
-                        Read more >
-                      </a>
-                    </article>
-                  </li>
-                ) : (
-                  <li key={index}>
-                    <Link
-                      className="card"
-                      to={`/en/research/publications/${publication.slug}/`}
-                    >
                       <h3>{publication.title}</h3>
                       <hr />
                       <p>
                         <strong>
-                          Science - 07.13.2020 Hadjadj J, Yatim N, Barnabei L,
-                          Corneau A, Boussier J, Smith N, Péré H, Charbit B,
-                          Bondet V, Chenevier-Gobeaux C, Breillat P, Carlier N,
-                          Gauzit R, Morbieu C, Pène F, Marin N, Roche N, Szwebel
-                          TA, Merkling SH, Treluyer JM, Veyer D, Mouthon L
+                          Science - 07.13.2020
+                          <br /> Hadjadj J, Yatim N, Barnabei L, Corneau A,
+                          Boussier J, Smith N, Péré H, Charbit B, Bondet V,
+                          Chenevier-Gobeaux C, Breillat P, Carlier N, Gauzit R,
+                          Morbieu C, Pène F, Marin N, Roche N, Szwebel TA,
+                          Merkling SH, Treluyer JM, Veyer D, Mouthon L
                         </strong>
                       </p>
                       <p>
@@ -131,8 +102,37 @@ const EnIndexPage = ({ data }) => {
                         integrated immune analysis on a cohort of 50 COVID-19
                         patients with various disease severity.
                       </p>
-                      Read more >
-                    </Link>{" "}
+                      <a href={publication.link}>Read more &gt;</a>
+                    </article>
+                  </li>
+                ) : (
+                  <li className="card" key={index}>
+                    <article>
+                      <h3>{publication.title}</h3>
+                      <hr />
+                      <p>
+                        <strong>
+                          Science - 07.13.2020
+                          <br /> Hadjadj J, Yatim N, Barnabei L, Corneau A,
+                          Boussier J, Smith N, Péré H, Charbit B, Bondet V,
+                          Chenevier-Gobeaux C, Breillat P, Carlier N, Gauzit R,
+                          Morbieu C, Pène F, Marin N, Roche N, Szwebel TA,
+                          Merkling SH, Treluyer JM, Veyer D, Mouthon L
+                        </strong>
+                      </p>
+                      <p>
+                        Coronavirus disease 2019 (COVID-19) is characterized by
+                        distinct patterns of disease progression suggesting
+                        diverse host immune responses. We performed an
+                        integrated immune analysis on a cohort of 50 COVID-19
+                        patients with various disease severity.
+                      </p>
+                      <Link
+                        to={`/en/research/publications/${publication.slug}/`}
+                      >
+                        Read more &gt;
+                      </Link>
+                    </article>
                   </li>
                 )
               )}
@@ -148,10 +148,16 @@ const EnIndexPage = ({ data }) => {
             <h2 className="h4">Events</h2>
             <ul className="unformatted">
               {data.allContentfulEvent.nodes.map((event, index) => (
-                <li key={index}>
-                  <Link className="banner" to={`/en/events/${event.slug}/`}>
-                    {event.title}
-                  </Link>{" "}
+                <li className="banner" key={index}>
+                  <span className="banner-date h2">{event.date}</span>
+                  <span className="banner-main">
+                    <span className="banner-category">{event.category}</span>
+                    <Link className="h3" to={`/en/events/${event.slug}/`}>
+                      {event.title}
+                    </Link>
+                    <span className="banner-location">{event.location}</span>
+                  </span>
+                  <span className="banner-image">{/* TODO image */}</span>
                 </li>
               ))}
             </ul>
@@ -246,7 +252,9 @@ export const query = graphql`
         slug
         title
         node_locale
-        date(formatString: "DD MMMM YYYY")
+        date(formatString: "DD MMMM")
+        category
+        location
       }
     }
   }

@@ -57,16 +57,19 @@ const PublicationListing = ({ data, location, pageContext }) => {
               >
                 Next
               </Link>
-            ) : pageContext.currentPage === 2 ? (
-              <Link to={`/${locale}/research/publications/`}>Back</Link>
             ) : (
-              <Link
-                to={`/${locale}/research/publications/${
-                  pageContext.currentPage - 1
-                }/`}
-              >
-                Back
-              </Link>
+              pageContext.currentPage > 1 &&
+              (pageContext.currentPage === 2 ? (
+                <Link to={`/${locale}/research/publications/`}>Back</Link>
+              ) : (
+                <Link
+                  to={`/${locale}/research/publications/${
+                    pageContext.currentPage - 1
+                  }/`}
+                >
+                  Back
+                </Link>
+              ))
             )}
           </p>
         </nav>

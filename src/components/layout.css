@@ -358,16 +358,52 @@ ul.unformatted {
   display: block;
   padding: 1rem 2rem;
   background: white;
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+.card a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card a:hover {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.banner {
+  display: grid;
+  grid-template-columns: 0.25fr 0.45fr 0.15fr;
+  grid-column-gap: 24px;
+  padding: 1rem 2rem;
+  background: white;
+  margin-bottom: 1em;
+}
+
+.banner a {
   color: black;
   text-decoration: none;
 }
 
-.banner {
+.banner a:hover {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.banner-date {
+  border-right: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.banner-category,
+.banner-location {
+  font-size: 1rem;
   display: block;
-  padding: 1rem 2rem;
-  background: white;
-  color: black;
-  margin-bottom: 1em;
 }
 
 .postcard {

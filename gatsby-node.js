@@ -46,7 +46,7 @@ const createContentfulPublicationPages = (pages, createPage) => {
 const createContentfulEventListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/eventListing.js")
   const events = pages
-  const eventsPerPage = 2
+  const eventsPerPage = 20
   const numEvents = Math.ceil(events.length / eventsPerPage)
 
   Array.from({ length: numEvents }).forEach((_, i) => {
@@ -74,7 +74,7 @@ const createContentfulEventListPages = (pages, createPage) => {
 const createContentfulPublicationListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/publicationListing.js")
   const publications = pages
-  const publicationsPerPage = 2
+  const publicationsPerPage = 20
   const numPublications = Math.ceil(publications.length / publicationsPerPage)
 
   Array.from({ length: numPublications }).forEach((_, i) => {
