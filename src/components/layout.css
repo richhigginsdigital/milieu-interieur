@@ -423,6 +423,7 @@ ul.unformatted {
   background: white;
   color: black;
   margin-bottom: 1em;
+  position: relative;
 }
 
 .postcard a {
@@ -431,7 +432,32 @@ ul.unformatted {
   font-weight: 500;
 }
 
+@media only screen and (min-width: 768px) {
+  .postcard a {
+    position: absolute;
+    left: calc(50% + 1.5rem);
+    bottom: 1.85em;
+    font-size: 1.125rem;
+  }
+}
+
 .postcard a:hover {
   text-decoration: underline;
   text-underline-position: under;
+}
+
+@media only screen and (min-width: 768px) {
+  .postcard-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  .postcard-grid > p:first-child {
+    border-right: 1px solid black;
+    padding-right: 1.5rem;
+  }
+  .postcard-grid > p:last-child {
+    padding-left: 1.5rem;
+    padding: 0 0 2em 1.5rem;
+    font-size: 1.125rem;
+  }
 }

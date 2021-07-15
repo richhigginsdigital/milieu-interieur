@@ -78,7 +78,7 @@ const EnIndexPage = ({ data }) => {
             <CollaborateBanner locale="en" />
           </div>
 
-          <div className="l-constrained">
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">Publications</h2>
             <ul className="unformatted grid-publications">
               {data.allContentfulPublication.nodes.map((publication, index) =>
@@ -124,7 +124,7 @@ const EnIndexPage = ({ data }) => {
             </div>
           </div>
 
-          <div className="l-constrained">
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">Events</h2>
             <ul className="unformatted">
               {data.allContentfulEvent.nodes.map((event, index) => (
@@ -148,7 +148,7 @@ const EnIndexPage = ({ data }) => {
             </div>
           </div>
 
-          <div className="l-constrained">
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">News</h2>
             <ul className="unformatted">
               {data.allContentfulNews.nodes.map((news, index) => (
@@ -161,7 +161,10 @@ const EnIndexPage = ({ data }) => {
                         image={news.image.gatsbyImageData}
                       />
                     )}
-                    {renderRichText(news.mainContent)}
+                    <div className="postcard-grid">
+                      {renderRichText(news.mainContent)}
+                    </div>
+
                     <a href={news.link}>Read more &gt;</a>
                   </article>
                 </li>
