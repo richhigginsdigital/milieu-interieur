@@ -32,7 +32,11 @@ const PublicationListing = ({ data, location, pageContext }) => {
                 publication.link ? (
                   <li className="card" key={index}>
                     <article>
-                      <h3>{publication.title}</h3>
+                      {/*
+                        TODO - use a `tag` style(?)
+                        <div style={{ fontSize: "1rem" }}>{publication.category}</div>
+                      */}
+                      <h2>{publication.title}</h2>
                       <hr />
                       <p>
                         <strong>
@@ -40,6 +44,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
                         </strong>
                       </p>
                       {renderRichText(publication.mainContent)}
+
                       <a href={publication.link}>Read more &gt;</a>
                     </article>
                   </li>
@@ -107,6 +112,7 @@ export const query = graphql`
           raw
         }
         date(formatString: "DD MMMM")
+        category
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {

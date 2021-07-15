@@ -84,7 +84,7 @@ const EnIndexPage = ({ data }) => {
                 publication.link ? (
                   <li className="card" key={index}>
                     <article>
-                      <h3>{publication.title}</h3>
+                      <h3 className="h2">{publication.title}</h3>
                       <hr />
                       <p>
                         <strong>
@@ -98,7 +98,7 @@ const EnIndexPage = ({ data }) => {
                 ) : (
                   <li className="card" key={index}>
                     <article>
-                      <h3>{publication.title}</h3>
+                      <h3 className="h2">{publication.title}</h3>
                       <hr />
                       <p>
                         <strong>

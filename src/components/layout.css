@@ -362,8 +362,12 @@ ul.unformatted {
   margin-bottom: 1.5rem;
 }
 
+.card h3.h2,
+.card hr {
+  margin-bottom: 1rem;
+}
+
 .card p {
-  font-size: 1rem;
   margin-top: 0;
 }
 
