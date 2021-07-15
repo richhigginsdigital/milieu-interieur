@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -102,21 +103,10 @@ const EnIndexPage = ({ data }) => {
                       <hr />
                       <p>
                         <strong>
-                          Science - 07.13.2020
-                          <br /> Hadjadj J, Yatim N, Barnabei L, Corneau A,
-                          Boussier J, Smith N, Péré H, Charbit B, Bondet V,
-                          Chenevier-Gobeaux C, Breillat P, Carlier N, Gauzit R,
-                          Morbieu C, Pène F, Marin N, Roche N, Szwebel TA,
-                          Merkling SH, Treluyer JM, Veyer D, Mouthon L
+                          {publication.journal} - {publication.date}
                         </strong>
                       </p>
-                      <p>
-                        Coronavirus disease 2019 (COVID-19) is characterized by
-                        distinct patterns of disease progression suggesting
-                        diverse host immune responses. We performed an
-                        integrated immune analysis on a cohort of 50 COVID-19
-                        patients with various disease severity.
-                      </p>
+                      {renderRichText(publication.mainContent)}
                       <Link
                         to={`/en/research/publications/${publication.slug}/`}
                       >
@@ -161,11 +151,21 @@ const EnIndexPage = ({ data }) => {
           <div className="l-constrained">
             <h2 className="h4">News</h2>
             <ul className="unformatted">
-              <li>
-                <a className="postcard" href="/">
-                  [TO DO]
-                </a>
-              </li>
+              {data.allContentfulNews.nodes.map((news, index) => (
+                <li className="postcard">
+                  <article>
+                    <h3 className="h2">{news.title}</h3>
+                    {news.image.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={news.image.description}
+                        image={news.image.gatsbyImageData}
+                      />
+                    )}
+                    {renderRichText(news.mainContent)}
+                    <a href={news.link}>Read more &gt;</a>
+                  </article>
+                </li>
+              ))}
             </ul>
             <div className="centered">
               <Link className="button" to="/en/news/">
@@ -250,6 +250,23 @@ export const query = graphql`
         date(formatString: "DD MMMM")
         category
         location
+      }
+    }
+    allContentfulNews(
+      filter: { node_locale: { eq: "en-US" } }
+      sort: { order: DESC, fields: date }
+      limit: 3
+    ) {
+      nodes {
+        id
+        title
+        link
+        mainContent {
+          raw
+        }
+        image {
+          gatsbyImageData(height: 898, placeholder: BLURRED)
+        }
       }
     }
   }

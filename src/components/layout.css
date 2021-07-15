@@ -424,3 +424,14 @@ ul.unformatted {
   color: black;
   margin-bottom: 1em;
 }
+
+.postcard a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.postcard a:hover {
+  text-decoration: underline;
+  text-underline-position: under;
+}
