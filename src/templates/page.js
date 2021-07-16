@@ -87,7 +87,9 @@ const Page = ({ data, location, pageContext }) => {
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                return pageLink(node.data.target)
+                return (
+                  <Link to={pageLink(node.data.target, true)}>{children}</Link>
+                )
               },
               [INLINES.ASSET_HYPERLINK]: (node, children) => {
                 return <a href={node.data.target.file.url}>{children}</a>
