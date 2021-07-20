@@ -92,7 +92,8 @@ const EnIndexPage = ({ data }) => {
                           {publication.journal} - {publication.date}
                         </strong>
                       </p>
-                      {renderRichText(publication.mainContent)}
+                      {publication.mainContent &&
+                        renderRichText(publication.mainContent)}
                       <a href={publication.link}>Read more &gt;</a>
                     </article>
                   </li>
@@ -106,7 +107,8 @@ const EnIndexPage = ({ data }) => {
                           {publication.journal} - {publication.date}
                         </strong>
                       </p>
-                      {renderRichText(publication.mainContent)}
+                      {publication.mainContent &&
+                        renderRichText(publication.mainContent)}
                       <Link
                         to={`/en/research/publications/${publication.slug}/`}
                       >
@@ -162,10 +164,12 @@ const EnIndexPage = ({ data }) => {
                       />
                     )}
                     <div className="postcard-grid">
-                      {renderRichText(news.mainContent)}
+                      {news.cardText && renderRichText(news.cardText)}
                     </div>
 
-                    <a href={news.link}>Read more &gt;</a>
+                    <a className="postcard-link" href={news.link}>
+                      Read more &gt;
+                    </a>
                   </article>
                 </li>
               ))}
@@ -264,7 +268,7 @@ export const query = graphql`
         id
         title
         link
-        mainContent {
+        cardText {
           raw
         }
         image {
