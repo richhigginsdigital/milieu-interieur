@@ -167,13 +167,23 @@ const EnIndexPage = ({ data }) => {
                       {news.cardText && renderRichText(news.cardText)}
                     </div>
 
-                    <a className="postcard-link" href={news.link}>
-                      Read more &gt;
-                    </a>
+                    {news.link ? (
+                      <a className="postcard-link" href={news.link}>
+                        Read more &gt;
+                      </a>
+                    ) : (
+                      <Link
+                        className="postcard-link"
+                        to={`/en/news/${news.slug}/`}
+                      >
+                        Read more &gt;
+                      </Link>
+                    )}
                   </article>
                 </li>
               ))}
             </ul>
+
             <div className="centered">
               <Link className="button" to="/en/news/">
                 View all news
@@ -267,6 +277,7 @@ export const query = graphql`
       nodes {
         id
         title
+        slug
         #        link
         cardText {
           raw

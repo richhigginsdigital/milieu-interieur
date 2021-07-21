@@ -43,6 +43,25 @@ const createContentfulPublicationPages = (pages, createPage) => {
   })
 }
 
+const createContentfulNewsPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/news.js")
+
+  pages.forEach(page => {
+    const path = `/${page.node_locale.replace(/-[A-Z]*/, "")}/news/${
+      page.slug
+    }/`
+
+    createPage({
+      path: path,
+      component: pageTemplate,
+      context: {
+        slug: page.slug,
+        locale: page.node_locale,
+      },
+    })
+  })
+}
+
 const createContentfulEventListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/eventListing.js")
   const events = pages
@@ -63,6 +82,34 @@ const createContentfulEventListPages = (pages, createPage) => {
           limit: eventsPerPage,
           skip: i * eventsPerPage,
           numEvents,
+          currentPage: i + 1,
+          locale,
+        },
+      })
+    })
+  })
+}
+
+const createContentfulNewsListPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/newsListing.js")
+  const news = pages
+  const newsPerPage = 20
+  const numNews = Math.ceil(news.length / newsPerPage)
+
+  Array.from({ length: numNews }).forEach((_, i) => {
+    const locales = ["en-US", "fr"]
+
+    locales.forEach(locale => {
+      createPage({
+        path:
+          i === 0
+            ? `/${locale.replace(/-US/, "")}/news/`
+            : `/${locale.replace(/-US/, "")}/news/${i + 1}/`,
+        component: pageTemplate,
+        context: {
+          limit: newsPerPage,
+          skip: i * newsPerPage,
+          numNews,
           currentPage: i + 1,
           locale,
         },
@@ -212,6 +259,12 @@ const createPages = async ({ graphql, actions }) => {
           link
         }
       }
+      allContentfulNews {
+        nodes {
+          slug
+          node_locale
+        }
+      }
     }
   `)
 
@@ -239,6 +292,13 @@ const createPages = async ({ graphql, actions }) => {
         result.data.allContentfulPublication.nodes,
         createPage
       )
+
+      createContentfulNewsListPages(
+        result.data.allContentfulNews.nodes,
+        createPage
+      )
+
+      createContentfulNewsPages(result.data.allContentfulNews.nodes, createPage)
     }
 
     if (process.env.CONTENTFUL_HOST === "preview.contentful.com")
