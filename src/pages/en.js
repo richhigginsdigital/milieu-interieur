@@ -267,7 +267,7 @@ export const query = graphql`
       nodes {
         id
         title
-        link
+        #        link
         cardText {
           raw
         }
