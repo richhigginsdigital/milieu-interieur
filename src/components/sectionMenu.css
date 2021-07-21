@@ -1,7 +1,13 @@
 .section-menu ul {
   list-style: none;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: white;
+}
+
+@media screen and (min-width: 768px) {
+  .section-menu ul {
+    padding: 1rem 2rem;
+  }
 }
 
 .section-menu ul li {

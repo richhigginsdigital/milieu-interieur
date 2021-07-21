@@ -18,14 +18,23 @@ const EventListing = ({ data, location, pageContext }) => {
 
       <div className="l-constrained-narrow">
         <h1 className="h4">{locale === "en" ? "Events" : "Événements"}</h1>
-        <div className="section-menu">
+        <div>
           <nav>
-            <ul>
+            <ul className="unformatted">
               {data.allContentfulEvent.nodes.map((event, index) => (
-                <li key={index}>
-                  <Link to={`/${locale}/events/${event.slug}/`}>
-                    {event.title}
-                  </Link>
+                <li className="banner" key={index}>
+                  <span className="banner-date h2">{event.date}</span>
+                  <span className="banner-main">
+                    <span className="banner-category">{event.category}</span>
+                    <Link
+                      className="h3"
+                      to={`/${locale}/events/${event.slug}/`}
+                    >
+                      {event.title}
+                    </Link>
+                    <span className="banner-location">{event.location}</span>
+                  </span>
+                  <span className="banner-image">{/* TODO image */}</span>
                 </li>
               ))}
             </ul>
@@ -67,6 +76,9 @@ export const query = graphql`
       nodes {
         title
         slug
+        date(formatString: "DD MMMM")
+        category
+        location
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {

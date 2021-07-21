@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { ReactComponent as ArrowIcon } from "../images/arrow-icon.svg"
 
 const NewsListing = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
@@ -21,11 +22,23 @@ const NewsListing = ({ data, location, pageContext }) => {
         <div className="section-menu">
           <nav>
             <ul>
-              {data.allContentfulNews.nodes.map((news, index) => (
-                <li key={index}>
-                  <Link to={`/${locale}/news/${news.slug}/`}>{news.title}</Link>
-                </li>
-              ))}
+              {data.allContentfulNews.nodes.map((news, index) =>
+                news.link ? (
+                  <li key={index}>
+                    <Link to={`/${locale}/news/${news.slug}/`}>
+                      <span>{news.title}</span>
+                      <ArrowIcon />
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <a href={news.link}>
+                      <span>{news.title}</span>
+                      <ArrowIcon />
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
         </div>
