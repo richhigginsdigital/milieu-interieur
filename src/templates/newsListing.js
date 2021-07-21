@@ -25,17 +25,17 @@ const NewsListing = ({ data, location, pageContext }) => {
               {data.allContentfulNews.nodes.map((news, index) =>
                 news.link ? (
                   <li key={index}>
-                    <Link to={`/${locale}/news/${news.slug}/`}>
-                      <span>{news.title}</span>
-                      <ArrowIcon />
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={index}>
                     <a href={news.link}>
                       <span>{news.title}</span>
                       <ArrowIcon />
                     </a>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={`/${locale}/news/${news.slug}/`}>
+                      <span>{news.title}</span>
+                      <ArrowIcon />
+                    </Link>
                   </li>
                 )
               )}
