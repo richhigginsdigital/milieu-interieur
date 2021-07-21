@@ -31,7 +31,7 @@ const CollaborateBanner = ({ locale, layout }) => {
           </>
         ) : (
           <>
-            <h2>How to collaborate with us</h2>
+            <h2>How to collaborate with&nbsp;us</h2>
             <p>
               Researchers can obtain access to the Milieu Intérieur data,
               biological samples and methodology by submitting a research

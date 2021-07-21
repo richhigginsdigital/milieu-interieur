@@ -357,9 +357,28 @@ ul.unformatted {
 
 .card {
   display: block;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: white;
   margin-bottom: 1.5rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .card {
+    padding: 2rem;
+  }
+}
+
+.card h3.h2,
+.card h2 {
+  font-size: 1.25rem;
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .card h3.h2,
+  .card h2 {
+    font-size: 1.75rem;
+  }
 }
 
 .card h3.h2,
@@ -389,12 +408,18 @@ ul.unformatted {
 }
 
 .banner {
-  display: grid;
-  grid-template-columns: 0.25fr 0.45fr 0.15fr;
-  grid-column-gap: 24px;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: white;
   margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 768px) {
+  .banner {
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 0.25fr 0.45fr 0.15fr;
+    grid-column-gap: 24px;
+  }
 }
 
 .banner a {
@@ -408,9 +433,39 @@ ul.unformatted {
 }
 
 .banner-date {
-  border-right: 1px solid black;
-  display: flex;
-  align-items: center;
+  border: 1px solid black;
+  border-width: 0 0 1px;
+  display: block;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .banner-date {
+    border-width: 0 1px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.banner .h2 {
+  font-size: 1.5rem;
+}
+
+.banner .h3 {
+  font-size: 1.25rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .banner .h2 {
+    font-size: 1.75rem;
+  }
+
+  .banner .h3 {
+    font-size: 1.5rem;
+  }
 }
 
 .banner-category,
@@ -421,17 +476,46 @@ ul.unformatted {
 
 .postcard {
   display: block;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: white;
   color: black;
   margin-bottom: 1em;
   position: relative;
 }
 
+@media only screen and (min-width: 1024px) {
+  .postcard {
+    padding: 1rem 2rem;
+  }
+}
+
+.postcard .h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .postcard .h2 {
+    font-size: 1.75rem;
+    margin-top: 1em;
+  }
+}
+
+.postcard p {
+  font-size: 1.125rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .postcard p {
+    font-size: inherit;
+  }
+}
+
 .postcard-link {
   color: black;
   text-decoration: none;
   font-weight: 500;
+  font-size: 1.125rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -439,7 +523,6 @@ ul.unformatted {
     position: absolute;
     left: calc(50% + 1.5rem);
     bottom: 1.85em;
-    font-size: 1.125rem;
   }
 }
 
@@ -457,7 +540,7 @@ ul.unformatted {
     border-right: 1px solid black;
     padding-right: 1.5rem;
   }
-  .postcard-grid > p:last-child {
+  .postcard-grid > p:nth-of-type(2) {
     padding-left: 1.5rem;
     padding: 0 0 2em 1.5rem;
     font-size: 1.125rem;
