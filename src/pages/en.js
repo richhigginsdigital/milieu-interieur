@@ -87,13 +87,19 @@ const EnIndexPage = ({ data }) => {
                     <article>
                       <h3 className="h2">{publication.title}</h3>
                       <hr />
+                      {publication.authors &&
+                        renderRichText(publication.authors)}
                       <p>
-                        <strong>
-                          {publication.journal} - {publication.date}
-                        </strong>
+                        <strong>{publication.journal}</strong>
+
+                        {publication.dateAndPage && (
+                          <>
+                            <br />
+                            {publication.dateAndPage.dateAndPage}
+                          </>
+                        )}
                       </p>
-                      {publication.mainContent &&
-                        renderRichText(publication.mainContent)}
+
                       <a href={publication.link}>Read more &gt;</a>
                     </article>
                   </li>
@@ -102,13 +108,19 @@ const EnIndexPage = ({ data }) => {
                     <article>
                       <h3 className="h2">{publication.title}</h3>
                       <hr />
+                      {publication.authors &&
+                        renderRichText(publication.authors)}
                       <p>
-                        <strong>
-                          {publication.journal} - {publication.date}
-                        </strong>
+                        <strong>{publication.journal}</strong>
+
+                        {publication.dateAndPage && (
+                          <>
+                            <br />
+                            {publication.dateAndPage.dateAndPage}
+                          </>
+                        )}
                       </p>
-                      {publication.mainContent &&
-                        renderRichText(publication.mainContent)}
+
                       <Link
                         to={`/en/research/publications/${publication.slug}/`}
                       >
@@ -248,10 +260,12 @@ export const query = graphql`
         title
         node_locale
         link
-        journal
-        date(formatString: "DD MMMM")
-        mainContent {
+        authors {
           raw
+        }
+        journal
+        dateAndPage {
+          dateAndPage
         }
       }
     }

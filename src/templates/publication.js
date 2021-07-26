@@ -38,12 +38,8 @@ const Page = ({ data, location, pageContext }) => {
 
         <h1 className="article-heading">{data.contentfulPublication.title}</h1>
 
-        <p style={{ marginBottom: "2rem" }}>
-          Date: {data.contentfulPublication.date}
-        </p>
-
-        {data.contentfulPublication.mainContent &&
-          renderRichText(data.contentfulPublication.mainContent, {
+        {data.contentfulPublication.authors &&
+          renderRichText(data.contentfulPublication.authors, {
             renderNode: {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
@@ -62,6 +58,8 @@ const Page = ({ data, location, pageContext }) => {
               },
             },
           })}
+
+        <p>{data.contentfulPublication.dateAndPage.dateAndPage}</p>
       </div>
     </Layout>
   )
@@ -73,13 +71,16 @@ export const query = graphql`
       id
       title
       slug
-      date(formatString: "DD MMMM YYYY")
-      mainContent {
+      authors {
         raw
       }
       metaDescription {
         metaDescription
       }
+      dateAndPage {
+        dateAndPage
+      }
+      journal
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
       pages {

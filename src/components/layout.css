@@ -387,12 +387,7 @@ ul.unformatted {
 }
 
 .card p {
-  margin-top: 0;
   font-size: 1.125rem;
-}
-
-.card p:first-of-type {
-  margin-bottom: 0;
 }
 
 .card a {

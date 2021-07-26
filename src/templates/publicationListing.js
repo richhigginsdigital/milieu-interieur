@@ -38,23 +38,46 @@ const PublicationListing = ({ data, location, pageContext }) => {
                       */}
                       <h2>{publication.title}</h2>
                       <hr />
+                      {publication.authors &&
+                        renderRichText(publication.authors)}
                       <p>
-                        <strong>
-                          {publication.journal} - {publication.date}
-                        </strong>
+                        <strong>{publication.journal}</strong>
+
+                        {publication.dateAndPage && (
+                          <>
+                            <br />
+                            {publication.dateAndPage.dateAndPage}
+                          </>
+                        )}
                       </p>
-                      {renderRichText(publication.mainContent)}
 
                       <a href={publication.link}>Read more &gt;</a>
                     </article>
                   </li>
                 ) : (
                   <li key={index}>
-                    <Link
-                      to={`/${locale}/research/publications/${publication.slug}/`}
-                    >
-                      {publication.title}
-                    </Link>
+                    <article>
+                      <h2>{publication.title}</h2>
+                      <hr />
+                      {publication.authors &&
+                        renderRichText(publication.authors)}
+                      <p>
+                        <strong>{publication.journal}</strong>
+
+                        {publication.dateAndPage && (
+                          <>
+                            <br />
+                            {publication.dateAndPage.dateAndPage}
+                          </>
+                        )}
+                      </p>
+
+                      <Link
+                        to={`/${locale}/research/publications/${publication.slug}/`}
+                      >
+                        Read more &gt;
+                      </Link>
+                    </article>
                   </li>
                 )
               )}
@@ -108,11 +131,13 @@ export const query = graphql`
         link
         journal
         category
-        mainContent {
+        authors {
           raw
         }
-        date(formatString: "DD MMMM")
         category
+        dateAndPage {
+          dateAndPage
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
