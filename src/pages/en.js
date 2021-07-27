@@ -78,6 +78,10 @@ const EnIndexPage = ({ data }) => {
             <CollaborateBanner locale="en" />
           </div>
 
+          {
+            // start homepage listings
+          }
+
           <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">Publications</h2>
             <ul className="unformatted grid-publications">
@@ -202,6 +206,10 @@ const EnIndexPage = ({ data }) => {
               </Link>
             </div>
           </div>
+
+          {
+            // end homepage listings
+          }
         </>
       )}
     </Layout>
