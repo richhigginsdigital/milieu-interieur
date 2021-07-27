@@ -59,7 +59,9 @@ const Page = ({ data, location, pageContext }) => {
             },
           })}
 
-        <p>{data.contentfulPublication.dateAndPage.dateAndPage}</p>
+        {data.contentfulPublication.dateAndPage && (
+          <p>{data.contentfulPublication.dateAndPage.dateAndPage}</p>
+        )}
       </div>
     </Layout>
   )
