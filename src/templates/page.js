@@ -98,12 +98,13 @@ const Page = ({ data, location, pageContext }) => {
                 return node.data.target.__typename === "ContentfulHeroImage" ? (
                   <div className="hero-image">
                     <figure>
-                      {node.data.target.image.gatsbyImageData && (
-                        <GatsbyImage
-                          alt={node.data.target.image.description}
-                          image={node.data.target.image.gatsbyImageData}
-                        />
-                      )}
+                      {node.data.target.image &&
+                        node.data.target.image.gatsbyImageData && (
+                          <GatsbyImage
+                            alt={node.data.target.image.description}
+                            image={node.data.target.image.gatsbyImageData}
+                          />
+                        )}
                       <figcaption>
                         {node.data.target.image.description}
                       </figcaption>
@@ -113,12 +114,13 @@ const Page = ({ data, location, pageContext }) => {
                   "ContentfulGridImageAndText" ? (
                   <div className="grid-image">
                     <figure>
-                      {node.data.target.image.gatsbyImageData && (
-                        <GatsbyImage
-                          alt={node.data.target.image.description}
-                          image={node.data.target.image.gatsbyImageData}
-                        />
-                      )}
+                      {node.data.target.image &&
+                        node.data.target.image.gatsbyImageData && (
+                          <GatsbyImage
+                            alt={node.data.target.image.description}
+                            image={node.data.target.image.gatsbyImageData}
+                          />
+                        )}
                     </figure>
                     <div>
                       {node.data.target.text &&
