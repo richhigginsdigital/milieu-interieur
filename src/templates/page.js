@@ -196,6 +196,21 @@ export const query = graphql`
             contentful_id
             text {
               raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+              }
             }
           }
           ... on ContentfulHeroImage {
