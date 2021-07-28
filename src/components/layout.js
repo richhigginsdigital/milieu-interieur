@@ -9,6 +9,9 @@ import Menu from "./menu"
 import CollaborateBanner from "./collaborateBanner"
 import Shapes from "./shapes"
 import { pageLink } from "../helpers/pageLink"
+import anrLogo from "../images/anr-40h.png"
+import iALogo from "../images/investir-lavenir-40h.png"
+import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
 
 import "./layout.css"
 
@@ -55,7 +58,7 @@ const Layout = ({
           </div>
 
           <div style={{ background: "#2C4258", overflow: "hidden" }}>
-            <div className="l-constrained">
+            <div className="l-constrained-wide">
               <footer
                 style={{
                   paddingTop: `1rem`,
@@ -101,7 +104,12 @@ const Layout = ({
                   </ul>
                 </nav>
 
-                <p style={{ color: "white", fontSize: "1rem" }}>
+                <p className="footer-copyright">
+                  <span className="footer-copyright-logos">
+                    <img src={anrLogo} height="40" alt="" />
+                    <img src={iALogo} height="40" alt="" />
+                    <Pasteurlogo />
+                  </span>
                   Copyright {new Date().getFullYear()} Millieuinterieur.fr |
                   Pasteur.fr
                 </p>

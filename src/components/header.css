@@ -71,6 +71,7 @@ header {
 .logos img {
   width: 50%;
   box-sizing: border-box;
+  color: black;
 }
 
 @media screen and (min-width: 375px) {
