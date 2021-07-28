@@ -124,7 +124,17 @@ const Page = ({ data, location, pageContext }) => {
                     </figure>
                     <div>
                       {node.data.target.text &&
-                        renderRichText(node.data.target.text)}
+                        renderRichText(node.data.target.text, {
+                          renderNode: {
+                            [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+                              return (
+                                <Link to={pageLink(node.data.target, true)}>
+                                  {children}
+                                </Link>
+                              )
+                            },
+                          },
+                        })}
                     </div>
                   </div>
                 ) : (
@@ -205,6 +215,21 @@ export const query = graphql`
             }
             text {
               raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+              }
             }
           }
         }
