@@ -106,8 +106,18 @@ const Layout = ({
 
                 <p className="footer-copyright">
                   <span className="footer-copyright-logos">
-                    <img src={anrLogo} height="40" alt="" />
-                    <img src={iALogo} height="40" alt="" />
+                    <img
+                      src={anrLogo}
+                      height="40"
+                      width="110"
+                      alt="l’Agence nationale de la recherche"
+                    />
+                    <img
+                      src={iALogo}
+                      height="40"
+                      width="40"
+                      alt="Le Programme d'investissements d'avenir"
+                    />
                     <Pasteurlogo />
                   </span>
                   Copyright {new Date().getFullYear()} Millieuinterieur.fr |
