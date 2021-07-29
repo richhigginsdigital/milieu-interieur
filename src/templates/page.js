@@ -87,8 +87,10 @@ const Page = ({ data, location, pageContext }) => {
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                return (
+                return node.data.target ? (
                   <Link to={pageLink(node.data.target, true)}>{children}</Link>
+                ) : (
+                  children
                 )
               },
               [INLINES.ASSET_HYPERLINK]: (node, children) => {
@@ -127,10 +129,12 @@ const Page = ({ data, location, pageContext }) => {
                         renderRichText(node.data.target.text, {
                           renderNode: {
                             [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                              return (
+                              return node.data.target ? (
                                 <Link to={pageLink(node.data.target, true)}>
                                   {children}
                                 </Link>
+                              ) : (
+                                children
                               )
                             },
                           },
