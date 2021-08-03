@@ -15,7 +15,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
     >
-      <Seo title="Publications" lang={locale} />
+      <Seo title={pageContext.category} lang={locale} />
 
       <div className="l-constrained-narrow">
         <nav className="breadcrumb">
@@ -25,6 +25,48 @@ const PublicationListing = ({ data, location, pageContext }) => {
           </p>
         </nav>
         <h1 className="article-heading">Publications</h1>
+
+        <ul className="unformatted">
+          <li>
+            <Link
+              className="button"
+              to={`/${locale}/research/publications/lead/`}
+            >
+              {pageContext.category === "Milieu Intérieur lead publications" ? (
+                <strong>Milieu Intérieur lead publications</strong>
+              ) : (
+                <>Milieu Intérieur lead publications</>
+              )}
+            </Link>
+          </li>
+          <li style={{ marginTop: ".5rem" }}>
+            <Link
+              className="button"
+              to={`/${locale}/research/publications/supported/`}
+            >
+              {pageContext.category ===
+              "Milieu Intérieur supported publications" ? (
+                <strong>Milieu Intérieur supported publications</strong>
+              ) : (
+                <>Milieu Intérieur supported publications</>
+              )}
+            </Link>
+          </li>
+          <li style={{ marginTop: ".5rem" }}>
+            <Link
+              className="button"
+              to={`/${locale}/research/publications/data/`}
+            >
+              {pageContext.category ===
+              "Publications using Milieu Intérieur data" ? (
+                <strong>Publications using Milieu Intérieur data</strong>
+              ) : (
+                <>Publications using Milieu Intérieur data</>
+              )}
+            </Link>
+          </li>
+        </ul>
+
         <div>
           <nav>
             <ul className="unformatted">
@@ -118,11 +160,11 @@ const PublicationListing = ({ data, location, pageContext }) => {
 }
 
 export const query = graphql`
-  query($locale: String!, $skip: Int!, $limit: Int!) {
+  query($locale: String!, $skip: Int!, $limit: Int!, $category: String!) {
     allContentfulPublication(
       limit: $limit
       skip: $skip
-      filter: { node_locale: { eq: $locale } }
+      filter: { node_locale: { eq: $locale }, category: { eq: $category } }
       sort: { order: DESC, fields: date }
     ) {
       nodes {

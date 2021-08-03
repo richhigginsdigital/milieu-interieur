@@ -119,28 +119,43 @@ const createContentfulNewsListPages = (pages, createPage) => {
 }
 
 const createContentfulPublicationListPages = (pages, createPage) => {
+  const categories = [
+    { title: "Milieu Intérieur lead publications", slug: "lead" },
+    { title: "Milieu Intérieur supported publications", slug: "supported" },
+    { title: "Publications using Milieu Intérieur data", slug: "data" },
+  ]
+
   const pageTemplate = require.resolve("./src/templates/publicationListing.js")
-  const publications = pages
-  const publicationsPerPage = 20
-  const numPublications = Math.ceil(publications.length / publicationsPerPage)
 
-  Array.from({ length: numPublications }).forEach((_, i) => {
-    const locales = ["en-US", "fr"]
+  categories.forEach(category => {
+    //const publications = pages
+    const publications = pages.filter(page => page.category === category.title)
+    const publicationsPerPage = 20
+    const numPublications = Math.ceil(publications.length / publicationsPerPage)
 
-    locales.forEach(locale => {
-      createPage({
-        path:
-          i === 0
-            ? `/${locale.replace(/-US/, "")}/research/publications/`
-            : `/${locale.replace(/-US/, "")}/research/publications/${i + 1}/`,
-        component: pageTemplate,
-        context: {
-          limit: publicationsPerPage,
-          skip: i * publicationsPerPage,
-          numPublications,
-          currentPage: i + 1,
-          locale,
-        },
+    Array.from({ length: numPublications }).forEach((_, i) => {
+      const locales = ["en-US", "fr"]
+
+      locales.forEach(locale => {
+        createPage({
+          path:
+            i === 0
+              ? `/${locale.replace(/-US/, "")}/research/publications/${
+                  category.slug
+                }/`
+              : `/${locale.replace(/-US/, "")}/research/publications/${
+                  category.slug
+                }/${i + 1}/`,
+          component: pageTemplate,
+          context: {
+            limit: publicationsPerPage,
+            skip: i * publicationsPerPage,
+            numPublications,
+            currentPage: i + 1,
+            locale,
+            category: category.title,
+          },
+        })
       })
     })
   })
@@ -257,6 +272,7 @@ const createPages = async ({ graphql, actions }) => {
           slug
           node_locale
           link
+          category
         }
       }
       allContentfulNews {
