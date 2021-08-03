@@ -136,7 +136,7 @@ const EnIndexPage = ({ data }) => {
               )}
             </ul>
             <div className="centered">
-              <Link className="button" to="/en/research/publications/">
+              <Link className="button" to="/en/research/publications/lead/">
                 View all publications
               </Link>
             </div>

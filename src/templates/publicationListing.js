@@ -24,45 +24,33 @@ const PublicationListing = ({ data, location, pageContext }) => {
             <Link to={`/${locale}/research/`}>Research</Link>
           </p>
         </nav>
-        <h1 className="article-heading">Publications</h1>
+        <h1 className="article-heading">{pageContext.category}</h1>
 
         <ul className="unformatted">
-          <li>
+          <li style={{ display: "inline" }}>
             <Link
-              className="button"
+              style={{ color: "black" }}
               to={`/${locale}/research/publications/lead/`}
             >
-              {pageContext.category === "Milieu Intérieur lead publications" ? (
-                <strong>Milieu Intérieur lead publications</strong>
-              ) : (
-                <>Milieu Intérieur lead publications</>
-              )}
-            </Link>
+              Milieu Intérieur lead publications
+            </Link>{" "}
+            |{" "}
           </li>
-          <li style={{ marginTop: ".5rem" }}>
+          <li style={{ display: "inline" }}>
             <Link
-              className="button"
+              style={{ color: "black" }}
               to={`/${locale}/research/publications/supported/`}
             >
-              {pageContext.category ===
-              "Milieu Intérieur supported publications" ? (
-                <strong>Milieu Intérieur supported publications</strong>
-              ) : (
-                <>Milieu Intérieur supported publications</>
-              )}
-            </Link>
+              Milieu Intérieur supported publications
+            </Link>{" "}
+            |{" "}
           </li>
-          <li style={{ marginTop: ".5rem" }}>
+          <li>
             <Link
-              className="button"
+              style={{ color: "black" }}
               to={`/${locale}/research/publications/data/`}
             >
-              {pageContext.category ===
-              "Publications using Milieu Intérieur data" ? (
-                <strong>Publications using Milieu Intérieur data</strong>
-              ) : (
-                <>Publications using Milieu Intérieur data</>
-              )}
+              Publications using Milieu Intérieur data
             </Link>
           </li>
         </ul>
