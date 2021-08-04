@@ -137,6 +137,13 @@ const Page = ({ data, location, pageContext }) => {
                                 children
                               )
                             },
+                            [INLINES.ASSET_HYPERLINK]: (node, children) => {
+                              return (
+                                <a href={node.data.target.file.url}>
+                                  {children}
+                                </a>
+                              )
+                            },
                           },
                         })}
                     </div>
@@ -246,6 +253,13 @@ export const query = graphql`
                     parentPage {
                       slug
                     }
+                  }
+                }
+                ... on ContentfulAsset {
+                  __typename
+                  contentful_id
+                  file {
+                    url
                   }
                 }
               }

@@ -291,10 +291,6 @@ const createPages = async ({ graphql, actions }) => {
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
 
     if (process.env.GATSBY_HIDE_MENU !== "true") {
-      createContentfulEventPages(
-        result.data.allContentfulEvent.nodes,
-        createPage
-      )
       createContentfulEventListPages(
         result.data.allContentfulEvent.nodes,
         createPage
@@ -303,17 +299,10 @@ const createPages = async ({ graphql, actions }) => {
         result.data.allContentfulPublication.nodes,
         createPage
       )
-
-      createContentfulPublicationPages(
-        result.data.allContentfulPublication.nodes,
-        createPage
-      )
-
       createContentfulNewsListPages(
         result.data.allContentfulNews.nodes,
         createPage
       )
-
       createContentfulNewsPages(result.data.allContentfulNews.nodes, createPage)
     }
 
