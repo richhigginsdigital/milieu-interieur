@@ -85,55 +85,27 @@ const EnIndexPage = ({ data }) => {
           <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">Publications</h2>
             <ul className="unformatted grid-publications">
-              {data.allContentfulPublication.nodes.map((publication, index) =>
-                publication.link ? (
-                  <li className="card" key={index}>
-                    <article>
-                      <h3 className="h2">{publication.title}</h3>
-                      <hr />
-                      {publication.authors &&
-                        renderRichText(publication.authors)}
-                      <p>
-                        <strong>{publication.journal}</strong>
+              {data.allContentfulPublication.nodes.map((publication, index) => (
+                <li className="card" key={index}>
+                  <article>
+                    <h3 className="h2">{publication.title}</h3>
+                    <hr />
+                    {publication.authors && renderRichText(publication.authors)}
+                    <p>
+                      <strong>{publication.journal}</strong>
 
-                        {publication.dateAndPage && (
-                          <>
-                            <br />
-                            {publication.dateAndPage.dateAndPage}
-                          </>
-                        )}
-                      </p>
+                      {publication.dateAndPage && (
+                        <>
+                          <br />
+                          {publication.dateAndPage.dateAndPage}
+                        </>
+                      )}
+                    </p>
 
-                      <a href={publication.link}>Read more &gt;</a>
-                    </article>
-                  </li>
-                ) : (
-                  <li className="card" key={index}>
-                    <article>
-                      <h3 className="h2">{publication.title}</h3>
-                      <hr />
-                      {publication.authors &&
-                        renderRichText(publication.authors)}
-                      <p>
-                        <strong>{publication.journal}</strong>
-
-                        {publication.dateAndPage && (
-                          <>
-                            <br />
-                            {publication.dateAndPage.dateAndPage}
-                          </>
-                        )}
-                      </p>
-
-                      <Link
-                        to={`/en/research/publications/${publication.slug}/`}
-                      >
-                        Read more &gt;
-                      </Link>
-                    </article>
-                  </li>
-                )
-              )}
+                    <a href={publication.link}>Read more &gt;</a>
+                  </article>
+                </li>
+              ))}
             </ul>
             <div className="centered">
               <Link className="button" to="/en/research/publications/lead/">
@@ -150,9 +122,7 @@ const EnIndexPage = ({ data }) => {
                   <span className="banner-date h2">{event.date}</span>
                   <span className="banner-main">
                     <span className="banner-category">{event.category}</span>
-                    <Link className="h3" to={`/en/events/${event.slug}/`}>
-                      {event.title}
-                    </Link>
+                    <a href={event.link}>{event.title}</a>
                     <span className="banner-location">{event.location}</span>
                   </span>
                   <span className="banner-image">{/* TODO image */}</span>
@@ -289,6 +259,7 @@ export const query = graphql`
         date(formatString: "DD MMMM")
         category
         location
+        link
       }
     }
     allContentfulNews(

@@ -26,12 +26,10 @@ const EventListing = ({ data, location, pageContext }) => {
                   <span className="banner-date h2">{event.date}</span>
                   <span className="banner-main">
                     <span className="banner-category">{event.category}</span>
-                    <Link
-                      className="h3"
-                      to={`/${locale}/events/${event.slug}/`}
-                    >
+                    <a className="h3" href={event.link}>
                       {event.title}
-                    </Link>
+                    </a>
+
                     <span className="banner-location">{event.location}</span>
                   </span>
                   <span className="banner-image">{/* TODO image */}</span>
@@ -79,6 +77,7 @@ export const query = graphql`
         date(formatString: "DD MMMM")
         category
         location
+        link
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {

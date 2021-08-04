@@ -27,7 +27,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
         <h1 className="article-heading">{pageContext.category}</h1>
 
         <ul className="unformatted">
-          <li style={{ display: "inline" }}>
+          <li key="lead" style={{ display: "inline" }}>
             <Link
               style={{ color: "black" }}
               to={`/${locale}/research/publications/lead/`}
@@ -36,7 +36,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
             </Link>{" "}
             |{" "}
           </li>
-          <li style={{ display: "inline" }}>
+          <li key="supported" style={{ display: "inline" }}>
             <Link
               style={{ color: "black" }}
               to={`/${locale}/research/publications/supported/`}
@@ -45,7 +45,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
             </Link>{" "}
             |{" "}
           </li>
-          <li>
+          <li key="data">
             <Link
               style={{ color: "black" }}
               to={`/${locale}/research/publications/data/`}

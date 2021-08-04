@@ -229,7 +229,7 @@ export const query = graphql`
             __typename
             contentful_id
             image {
-              gatsbyImageData
+              gatsbyImageData(width: 377)
               description
             }
             text {
