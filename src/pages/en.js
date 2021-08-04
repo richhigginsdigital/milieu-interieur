@@ -142,29 +142,35 @@ const EnIndexPage = ({ data }) => {
               {data.allContentfulNews.nodes.map((news, index) => (
                 <li className="postcard">
                   <article>
-                    <h3 className="h2">{news.title}</h3>
-                    {news.image.gatsbyImageData && (
-                      <GatsbyImage
-                        alt={news.image.description}
-                        image={news.image.gatsbyImageData}
-                      />
-                    )}
                     <div className="postcard-grid">
-                      {news.cardText && renderRichText(news.cardText)}
-                    </div>
+                      <div>
+                        {news.image.gatsbyImageData && (
+                          <GatsbyImage
+                            alt={news.image.description}
+                            image={news.image.gatsbyImageData}
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="h2" style={{ marginTop: 0 }}>
+                          {news.title}
+                        </h3>
+                        {news.cardText && renderRichText(news.cardText)}
 
-                    {news.link ? (
-                      <a className="postcard-link" href={news.link}>
-                        Read more &gt;
-                      </a>
-                    ) : (
-                      <Link
-                        className="postcard-link"
-                        to={`/en/news/${news.slug}/`}
-                      >
-                        Read more &gt;
-                      </Link>
-                    )}
+                        {news.link ? (
+                          <a className="postcard-link" href={news.link}>
+                            Read more &gt;
+                          </a>
+                        ) : (
+                          <Link
+                            className="postcard-link"
+                            to={`/en/news/${news.slug}/`}
+                          >
+                            Read more &gt;
+                          </Link>
+                        )}
+                      </div>
+                    </div>
                   </article>
                 </li>
               ))}
@@ -276,7 +282,7 @@ export const query = graphql`
           raw
         }
         image {
-          gatsbyImageData(width: 898, placeholder: BLURRED)
+          gatsbyImageData(width: 431, placeholder: BLURRED)
         }
       }
     }

@@ -108,9 +108,7 @@ const FrIndexPage = ({ data }) => {
               <span className="banner-date h2">{event.date}</span>
               <span className="banner-main">
                 <span className="banner-category">{event.category}</span>
-                <Link className="h3" to={`/fr/events/${event.slug}/`}>
-                  {event.title}
-                </Link>
+                <a href={event.link}>{event.title}</a>
                 <span className="banner-location">{event.location}</span>
               </span>
               <span className="banner-image">{/* TODO image */}</span>
@@ -130,26 +128,35 @@ const FrIndexPage = ({ data }) => {
           {data.allContentfulNews.nodes.map((news, index) => (
             <li className="postcard">
               <article>
-                <h3 className="h2">{news.title}</h3>
-                {news.image.gatsbyImageData && (
-                  <GatsbyImage
-                    alt={news.image.description}
-                    image={news.image.gatsbyImageData}
-                  />
-                )}
                 <div className="postcard-grid">
-                  {news.cardText && renderRichText(news.cardText)}
-                </div>
+                  <div>
+                    {news.image.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={news.image.description}
+                        image={news.image.gatsbyImageData}
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="h2" style={{ marginTop: 0 }}>
+                      {news.title}
+                    </h3>
+                    {news.cardText && renderRichText(news.cardText)}
 
-                {news.link ? (
-                  <a className="postcard-link" href={news.link}>
-                    Lire la suite &gt;
-                  </a>
-                ) : (
-                  <Link className="postcard-link" to={`/fr/news/${news.slug}/`}>
-                    Lire la suite &gt;
-                  </Link>
-                )}
+                    {news.link ? (
+                      <a className="postcard-link" href={news.link}>
+                        Lire la suite &gt;
+                      </a>
+                    ) : (
+                      <Link
+                        className="postcard-link"
+                        to={`/fr/news/${news.slug}/`}
+                      >
+                        Lire la suite &gt;
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </article>
             </li>
           ))}
@@ -239,6 +246,7 @@ export const query = graphql`
         date(formatString: "DD MMMM")
         category
         location
+        link
       }
     }
     allContentfulNews(

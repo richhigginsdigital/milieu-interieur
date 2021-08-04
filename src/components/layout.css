@@ -507,7 +507,7 @@ ul.unformatted {
 
 @media only screen and (min-width: 1024px) {
   .postcard {
-    padding: 1rem 2rem;
+    padding: 2rem;
   }
 }
 
@@ -540,14 +540,6 @@ ul.unformatted {
   font-size: 1.125rem;
 }
 
-@media only screen and (min-width: 768px) {
-  .postcard-link {
-    position: absolute;
-    left: calc(50% + 1.5rem);
-    bottom: 1.85em;
-  }
-}
-
 .postcard-link:hover {
   text-decoration: underline;
   text-underline-position: under;
@@ -556,15 +548,12 @@ ul.unformatted {
 @media only screen and (min-width: 768px) {
   .postcard-grid {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.5rem;
+    direction: rtl;
   }
-  .postcard-grid > p:first-child {
-    border-right: 1px solid black;
-    padding-right: 1.5rem;
-  }
-  .postcard-grid > p:nth-of-type(2) {
-    padding-left: 1.5rem;
-    padding: 0 0 2em 1.5rem;
-    font-size: 1.125rem;
+
+  .postcard-grid div {
+    direction: ltr;
   }
 }
