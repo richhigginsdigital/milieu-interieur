@@ -95,7 +95,7 @@ const FrIndexPage = ({ data }) => {
         </ul>
         <div className="centered">
           <Link className="button" to="/fr/research/publications/lead/">
-            Voir tous les voir tous les publications
+            Voir tous les publications
           </Link>
         </div>
       </div>
