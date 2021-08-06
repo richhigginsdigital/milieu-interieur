@@ -77,7 +77,6 @@ module.exports = {
         icon: "src/images/milieu-interieur-icon.png",
       },
     },
-    `gatsby-plugin-gatsby-cloud`,
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -147,6 +146,16 @@ module.exports = {
         skipIndexing: false, // default: false, useful for e.g. preview deploys or local development
       },
     },*/
+    {
+      resolve: `gatsby-plugin-schema-snapshot`,
+      options: {
+        path: `schema.gql`,
+        exclude: {
+          plugins: [`gatsby-source-npm-package-search`],
+        },
+        update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
+      },
+    },
   ],
   // your existing config
   flags: {

@@ -55,7 +55,7 @@
     display: inline-block;
     margin-right: 1em;
   }
-  .menu ul li:last-child {
+  .menu #menu > ul > li:last-child {
     margin-right: 0;
   }
 }
@@ -75,4 +75,36 @@
 .menu ul a.selected {
   text-decoration: underline;
   text-underline-position: under;
+}
+
+.menu ul li ul {
+  display: none;
+}
+
+@media screen and (min-width: 1025px) {
+  .menu ul li:hover ul,
+  .menu ul li:active ul {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    margin: 0;
+    text-align: left;
+    display: block;
+    border: 1px solid rgb(0, 0, 0);
+  }
+
+  .menu ul li ul li {
+    display: block;
+    margin: 0.5rem;
+  }
+
+  .menu ul li ul li a {
+    display: block;
+    padding: 0 0.5rem;
+  }
+
+  .menu ul li ul li a:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
 }

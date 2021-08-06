@@ -2,20 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
 const createContentfulEventPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/event.js")
 
@@ -35,35 +21,142 @@ const createContentfulEventPages = (pages, createPage) => {
   })
 }
 
+const createContentfulPublicationPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/publication.js")
+
+  pages.forEach(page => {
+    const path = `/${page.node_locale.replace(
+      /-[A-Z]*/,
+      ""
+    )}/research/publications/${page.slug}/`
+
+    if (!page.link) {
+      createPage({
+        path: path,
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+          locale: page.node_locale,
+        },
+      })
+    }
+  })
+}
+
+const createContentfulNewsPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/news.js")
+
+  pages.forEach(page => {
+    const path = `/${page.node_locale.replace(/-[A-Z]*/, "")}/news/${
+      page.slug
+    }/`
+
+    createPage({
+      path: path,
+      component: pageTemplate,
+      context: {
+        slug: page.slug,
+        locale: page.node_locale,
+      },
+    })
+  })
+}
+
 const createContentfulEventListPages = (pages, createPage) => {
   const pageTemplate = require.resolve("./src/templates/eventListing.js")
-
   const events = pages
-  const eventsPerPage = 2
+  const eventsPerPage = 20
   const numEvents = Math.ceil(events.length / eventsPerPage)
 
   Array.from({ length: numEvents }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/en/events/` : `/en/events/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: eventsPerPage,
-        skip: i * eventsPerPage,
-        numEvents,
-        currentPage: i + 1,
-        locale: "en-US",
-      },
+    const locales = ["en-US", "fr"]
+
+    locales.forEach(locale => {
+      createPage({
+        path:
+          i === 0
+            ? `/${locale.replace(/-US/, "")}/events/`
+            : `/${locale.replace(/-US/, "")}/events/${i + 1}/`,
+        component: pageTemplate,
+        context: {
+          limit: eventsPerPage,
+          skip: i * eventsPerPage,
+          numEvents,
+          currentPage: i + 1,
+          locale,
+        },
+      })
     })
-    createPage({
-      path: i === 0 ? `/fr/events/` : `/fr/events/${i + 1}/`,
-      component: pageTemplate,
-      context: {
-        limit: eventsPerPage,
-        skip: i * eventsPerPage,
-        numEvents,
-        currentPage: i + 1,
-        locale: "fr",
-      },
+  })
+}
+
+const createContentfulNewsListPages = (pages, createPage) => {
+  const pageTemplate = require.resolve("./src/templates/newsListing.js")
+  const news = pages
+  const newsPerPage = 20
+  const numNews = Math.ceil(news.length / newsPerPage)
+
+  Array.from({ length: numNews }).forEach((_, i) => {
+    const locales = ["en-US", "fr"]
+
+    locales.forEach(locale => {
+      createPage({
+        path:
+          i === 0
+            ? `/${locale.replace(/-US/, "")}/news/`
+            : `/${locale.replace(/-US/, "")}/news/${i + 1}/`,
+        component: pageTemplate,
+        context: {
+          limit: newsPerPage,
+          skip: i * newsPerPage,
+          numNews,
+          currentPage: i + 1,
+          locale,
+        },
+      })
+    })
+  })
+}
+
+const createContentfulPublicationListPages = (pages, createPage) => {
+  const categories = [
+    { title: "Milieu Intérieur lead publications", slug: "lead" },
+    { title: "Milieu Intérieur supported publications", slug: "supported" },
+    { title: "Publications using Milieu Intérieur data", slug: "data" },
+  ]
+
+  const pageTemplate = require.resolve("./src/templates/publicationListing.js")
+
+  categories.forEach(category => {
+    //const publications = pages
+    const publications = pages.filter(page => page.category === category.title)
+    const publicationsPerPage = 20
+    const numPublications = Math.ceil(publications.length / publicationsPerPage)
+
+    Array.from({ length: numPublications }).forEach((_, i) => {
+      const locales = ["en-US", "fr"]
+
+      locales.forEach(locale => {
+        createPage({
+          path:
+            i === 0
+              ? `/${locale.replace(/-US/, "")}/research/publications/${
+                  category.slug
+                }/`
+              : `/${locale.replace(/-US/, "")}/research/publications/${
+                  category.slug
+                }/${i + 1}/`,
+          component: pageTemplate,
+          context: {
+            limit: publicationsPerPage,
+            skip: i * publicationsPerPage,
+            numPublications,
+            currentPage: i + 1,
+            locale,
+            category: category.title,
+          },
+        })
+      })
     })
   })
 }
@@ -94,7 +187,6 @@ const createContentfulPages = (pages, createPage) => {
       : page.slug
 
     if (process.env.GATSBY_HIDE_MENU === "true") {
-      //if (!page.slug.match(/events|publications/)) {
       if (page.slug === "collaborations") {
         createPage({
           path: path,
@@ -107,6 +199,17 @@ const createContentfulPages = (pages, createPage) => {
           },
         })
       }
+    } else if (!page.slug.match(/events|publications/)) {
+      createPage({
+        path: path,
+        component: pageTemplate,
+        context: {
+          slug: page.slug,
+          locale: page.node_locale,
+          parentSlug: parentSlug,
+          sectionSlug: sectionSlug,
+        },
+      })
     }
   })
 }
@@ -164,6 +267,20 @@ const createPages = async ({ graphql, actions }) => {
           node_locale
         }
       }
+      allContentfulPublication {
+        nodes {
+          slug
+          node_locale
+          link
+          category
+        }
+      }
+      allContentfulNews {
+        nodes {
+          slug
+          node_locale
+        }
+      }
     }
   `)
 
@@ -174,14 +291,19 @@ const createPages = async ({ graphql, actions }) => {
     createContentfulPages(result.data.allContentfulPage.nodes, createPage)
 
     if (process.env.GATSBY_HIDE_MENU !== "true") {
-      createContentfulEventPages(
-        result.data.allContentfulEvent.nodes,
-        createPage
-      )
       createContentfulEventListPages(
         result.data.allContentfulEvent.nodes,
         createPage
       )
+      createContentfulPublicationListPages(
+        result.data.allContentfulPublication.nodes,
+        createPage
+      )
+      createContentfulNewsListPages(
+        result.data.allContentfulNews.nodes,
+        createPage
+      )
+      createContentfulNewsPages(result.data.allContentfulNews.nodes, createPage)
     }
 
     if (process.env.CONTENTFUL_HOST === "preview.contentful.com")

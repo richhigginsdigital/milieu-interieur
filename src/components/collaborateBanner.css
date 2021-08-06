@@ -2,7 +2,18 @@
   background: #eb924a;
   overflow: hidden;
   border-top: 1px solid black;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
+}
+
+.l-constrained > .collaborate-banner {
+  padding: 0;
+  border: 1px solid black;
+}
+
+@media only screen and (min-width: 1024px) {
+  .l-constrained > .collaborate-banner {
+    padding: 1rem 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -20,6 +31,19 @@
 .collaborate-banner p,
 .collaborate-banner h2 {
   max-width: 680px;
+}
+
+.l-constrained > .collaborate-banner p,
+.l-constrained > .collaborate-banner h2 {
+  max-width: 568px;
+}
+
+.l-constrained > .collaborate-banner p {
+  font-size: 1rem;
+}
+
+.collaborate-banner p a {
+  color: inherit;
 }
 
 .copy-button {

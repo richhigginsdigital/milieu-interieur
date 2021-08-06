@@ -8,12 +8,15 @@ import LanguageMenu from "./languageMenu"
 import { pageLink } from "../helpers/pageLink"
 import { ReactComponent as MenuIcon } from "../images/menu-icon.svg"
 
-const Menu = ({ locale, sectionSlug, data }) => {
+const Menu = ({ locale, sectionSlug, data, subPages }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => {
     menuOpen ? setMenuOpen(false) : setMenuOpen(true)
   }
+
+  // TODO loop subpages, and group by parentPage for hover nav
+  // (make a reusable function receiving a parentPage slug...)
 
   return (
     <Location>
@@ -34,8 +37,8 @@ const Menu = ({ locale, sectionSlug, data }) => {
           <div id="menu" className={menuOpen ? undefined : `hidden`}>
             <ul>
               {process.env.GATSBY_HIDE_MENU !== "true" &&
-                data.pages.map(page => (
-                  <li>
+                data.pages.map((page, index) => (
+                  <li key={index}>
                     <Link
                       className={
                         location.pathname.match(`/${page.slug}/`)
@@ -46,6 +49,25 @@ const Menu = ({ locale, sectionSlug, data }) => {
                     >
                       {page.title}
                     </Link>
+
+                    {subPages && (
+                      <ul>
+                        {subPages.nodes
+                          .filter(subPage => subPage.parentPage)
+                          .filter(
+                            subPage => subPage.parentPage.slug === page.slug
+                          )
+                          .map((page, index) => (
+                            <li key={index}>
+                              <Link
+                                to={`/${locale}/${page.parentPage.slug}/${page.slug}/`}
+                              >
+                                {page.title}
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
 

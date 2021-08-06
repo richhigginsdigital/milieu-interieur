@@ -34,6 +34,7 @@ header {
   border-width: 1px 1px 1px 0;
   margin-right: -4px;
   padding: 0.4375rem 1rem;
+  color: inherit;
 }
 
 .language-menu :first-child {
@@ -70,6 +71,7 @@ header {
 .logos img {
   width: 50%;
   box-sizing: border-box;
+  color: black;
 }
 
 @media screen and (min-width: 375px) {

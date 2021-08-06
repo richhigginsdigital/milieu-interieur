@@ -29,7 +29,9 @@ const Page = ({ data, location, pageContext }) => {
       locale={locale}
       sectionSlug={pageContext.sectionSlug}
       menuData={data.contentfulMenu}
+      menuSubPages={data.contentfulMenuSubPages}
       location={location}
+      type={showSectionMenu ? "" : "article"}
     >
       <Seo
         description={
@@ -42,7 +44,7 @@ const Page = ({ data, location, pageContext }) => {
 
       <div className="l-constrained-narrow">
         {data.contentfulPage.parentPage && (
-          <nav style={{ marginBottom: "39px", textAlign: "center" }}>
+          <nav className="breadcrumb">
             {process.env.GATSBY_HIDE_MENU === "true" ? (
               <p>
                 {locale === "fr" ? (
@@ -63,7 +65,9 @@ const Page = ({ data, location, pageContext }) => {
             )}
           </nav>
         )}
-        <h1 style={{ textAlign: "center" }}>{data.contentfulPage.title}</h1>
+        <h1 className={showSectionMenu ? "h4" : "article-heading"}>
+          {data.contentfulPage.title}
+        </h1>
 
         {showSectionMenu && <SectionMenu pages={data.menuPages.edges} />}
 
@@ -72,30 +76,91 @@ const Page = ({ data, location, pageContext }) => {
             renderNode: {
               [BLOCKS.EMBEDDED_ASSET]: node => {
                 return (
-                  <GatsbyImage
-                    alt={node.data.target.description}
-                    image={node.data.target.gatsbyImageData}
-                    style={{ marginBottom: `1em` }}
-                  />
+                  <figure>
+                    {node.data.target.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={node.data.target.description}
+                        image={node.data.target.gatsbyImageData}
+                      />
+                    )}
+                  </figure>
                 )
               },
               [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                return pageLink(node.data.target)
+                return node.data.target ? (
+                  <Link to={pageLink(node.data.target, true)}>{children}</Link>
+                ) : (
+                  children
+                )
+              },
+              [INLINES.ASSET_HYPERLINK]: (node, children) => {
+                return <a href={node.data.target.file.url}>{children}</a>
+              },
+              [BLOCKS.EMBEDDED_ENTRY]: node => {
+                return node.data.target.__typename === "ContentfulHeroImage" ? (
+                  <div className="hero-image">
+                    <figure>
+                      {node.data.target.image &&
+                        node.data.target.image.gatsbyImageData && (
+                          <GatsbyImage
+                            alt={node.data.target.image.description}
+                            image={node.data.target.image.gatsbyImageData}
+                          />
+                        )}
+                      <figcaption>
+                        {node.data.target.image.description}
+                      </figcaption>
+                    </figure>
+                  </div>
+                ) : node.data.target.__typename ===
+                  "ContentfulGridImageAndText" ? (
+                  <div className="grid-image">
+                    <figure>
+                      {node.data.target.image &&
+                        node.data.target.image.gatsbyImageData && (
+                          <GatsbyImage
+                            alt={node.data.target.image.description}
+                            image={node.data.target.image.gatsbyImageData}
+                          />
+                        )}
+                    </figure>
+                    <div>
+                      {node.data.target.text &&
+                        renderRichText(node.data.target.text, {
+                          renderNode: {
+                            [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+                              return node.data.target ? (
+                                <Link to={pageLink(node.data.target, true)}>
+                                  {children}
+                                </Link>
+                              ) : (
+                                children
+                              )
+                            },
+                            [INLINES.ASSET_HYPERLINK]: (node, children) => {
+                              return (
+                                <a href={node.data.target.file.url}>
+                                  {children}
+                                </a>
+                              )
+                            },
+                          },
+                        })}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="highlight">
+                    {node.data.target.text &&
+                      renderRichText(node.data.target.text)}
+                  </div>
+                )
               },
             },
             renderText: text =>
-              text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
+              text
+                .split("\n")
+                .flatMap((text, i) => [i > 0 && <br key={i} />, text]),
           })}
-
-        {data.contentfulPage.slug === "publications" && (
-          // Algolia instantsearch component
-          <pre>&lt;Publications listing component /&gt;</pre>
-        )}
-
-        {data.contentfulPage.slug === "events" && (
-          // Algolia instantsearch component
-          <pre>&lt;Events listing component /&gt;</pre>
-        )}
       </div>
     </Layout>
   )
@@ -118,8 +183,11 @@ export const query = graphql`
           ... on ContentfulAsset {
             __typename
             contentful_id
-            gatsbyImageData(width: 663, placeholder: BLURRED)
+            gatsbyImageData(placeholder: BLURRED)
             description
+            file {
+              url
+            }
           }
           ... on ContentfulPage {
             __typename
@@ -131,6 +199,69 @@ export const query = graphql`
               slug
               parentPage {
                 slug
+              }
+            }
+          }
+          ... on ContentfulHighlightText {
+            __typename
+            contentful_id
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ... on ContentfulHeroImage {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 962)
+              description
+            }
+          }
+          ... on ContentfulGridImageAndText {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 377)
+              description
+            }
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+                ... on ContentfulAsset {
+                  __typename
+                  contentful_id
+                  file {
+                    url
+                  }
+                }
               }
             }
           }
@@ -209,6 +340,19 @@ export const query = graphql`
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
       pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: $locale } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
         title
         slug
         node_locale

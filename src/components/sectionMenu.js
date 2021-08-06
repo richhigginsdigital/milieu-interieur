@@ -1,18 +1,25 @@
 import * as React from "react"
 import PropTypes from "prop-types"
+import { Link } from "gatsby"
 
 import { pageLink } from "../helpers/pageLink"
+import { ReactComponent as ArrowIcon } from "../images/arrow-icon.svg"
+
+import "./sectionMenu.css"
 
 const SectionMenu = ({ pages }) => (
   <>
-    <div class="section-menu">
+    <div className="section-menu">
       <nav>
         <ul>
-          {pages.map(page => (
-            <li style={{ marginBottom: ".725rem" }}>
-              {pageLink(page.node)}
+          {pages.map((page, index) => (
+            <li key={index}>
+              <Link to={pageLink(page.node, true)}>
+                <span>{page.node.title}</span>
+                <ArrowIcon />
+              </Link>
 
-              {page.node.childPages && (
+              {page.node.childPages.length > 0 && (
                 <ul style={{ marginTop: ".725rem" }}>
                   {page.node.childPages.map(subPage => (
                     <li style={{ marginBottom: ".725rem" }}>
@@ -30,7 +37,7 @@ const SectionMenu = ({ pages }) => (
 )
 
 SectionMenu.propTypes = {
-  page: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
 }
 
 export default SectionMenu

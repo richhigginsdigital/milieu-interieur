@@ -3,9 +3,11 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 const ConsortiumLogos = ({ logos }) => (
   <ul className="grid-logos">
-    {logos.map(logo => (
-      <li>
-        <GatsbyImage alt={logo.description} image={logo.gatsbyImageData} />
+    {logos.map((logo, index) => (
+      <li key={index}>
+        {logo.gatsbyImageData && (
+          <GatsbyImage alt={logo.description} image={logo.gatsbyImageData} />
+        )}
       </li>
     ))}
   </ul>

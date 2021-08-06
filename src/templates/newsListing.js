@@ -3,8 +3,9 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import { ReactComponent as ArrowIcon } from "../images/arrow-icon.svg"
 
-const EventListing = ({ data, location, pageContext }) => {
+const NewsListing = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
 
   return (
@@ -17,41 +18,44 @@ const EventListing = ({ data, location, pageContext }) => {
       <Seo title={locale === "fr" ? "Événements" : "Events"} lang={locale} />
 
       <div className="l-constrained-narrow">
-        <h1 className="h4">{locale === "en" ? "Events" : "Événements"}</h1>
-        <div>
+        <h1 className="h4">{locale === "fr" ? "Nouvelles" : "News"}</h1>
+        <div className="section-menu">
           <nav>
-            <ul className="unformatted">
-              {data.allContentfulEvent.nodes.map((event, index) => (
-                <li className="banner" key={index}>
-                  <span className="banner-date h2">{event.date}</span>
-                  <span className="banner-main">
-                    <span className="banner-category">{event.category}</span>
-                    <a className="h3" href={event.link}>
-                      {event.title}
+            <ul>
+              {data.allContentfulNews.nodes.map((news, index) =>
+                news.link ? (
+                  <li key={index}>
+                    <a href={news.link}>
+                      <span>{news.title}</span>
+                      <ArrowIcon />
                     </a>
-
-                    <span className="banner-location">{event.location}</span>
-                  </span>
-                  <span className="banner-image">{/* TODO image */}</span>
-                </li>
-              ))}
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={`/${locale}/news/${news.slug}/`}>
+                      <span>{news.title}</span>
+                      <ArrowIcon />
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
         </div>
 
         <nav className="paging">
           <p>
-            {pageContext.numEvents >
+            {pageContext.numNews >
             pageContext.currentPage * pageContext.limit ? (
-              <Link to={`/${locale}/events/${pageContext.currentPage + 1}/`}>
+              <Link to={`/${locale}/news/${pageContext.currentPage + 1}/`}>
                 Next
               </Link>
             ) : (
               pageContext.currentPage > 1 &&
               (pageContext.currentPage === 2 ? (
-                <Link to={`/${locale}/events/`}>Back</Link>
+                <Link to={`/${locale}/news/`}>Back</Link>
               ) : (
-                <Link to={`/${locale}/events/${pageContext.currentPage - 1}/`}>
+                <Link to={`/${locale}/news/${pageContext.currentPage - 1}/`}>
                   Back
                 </Link>
               ))
@@ -65,7 +69,7 @@ const EventListing = ({ data, location, pageContext }) => {
 
 export const query = graphql`
   query($locale: String!, $skip: Int!, $limit: Int!) {
-    allContentfulEvent(
+    allContentfulNews(
       limit: $limit
       skip: $skip
       filter: { node_locale: { eq: $locale } }
@@ -74,10 +78,6 @@ export const query = graphql`
       nodes {
         title
         slug
-        date(formatString: "DD MMMM")
-        category
-        location
-        link
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
@@ -106,4 +106,4 @@ export const query = graphql`
   }
 `
 
-export default EventListing
+export default NewsListing

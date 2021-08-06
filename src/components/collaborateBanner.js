@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { ReactComponent as CopyIcon } from "../images/copy-icon.svg"
 import "./collaborateBanner.css"
 
-const CollaborateBanner = ({ locale }) => {
+const CollaborateBanner = ({ locale, layout }) => {
   const [copied, setCopied] = useState(false)
 
   const copyToClipboard = event => {
@@ -31,7 +31,7 @@ const CollaborateBanner = ({ locale }) => {
           </>
         ) : (
           <>
-            <h2>How to collaborate with us</h2>
+            <h2>How to collaborate with&nbsp;us</h2>
             <p>
               Researchers can obtain access to the Milieu Intérieur data,
               biological samples and methodology by submitting a research
@@ -73,7 +73,6 @@ const CollaborateBanner = ({ locale }) => {
               ? `Collaborations actuelles`
               : `Current collaborations`}
           </Link>
-          .
         </p>
       </div>
     </div>
