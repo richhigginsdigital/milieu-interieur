@@ -6,7 +6,11 @@ import Seo from "../components/seo"
 
 const NotFoundPage = ({ data }) => {
   return (
-    <Layout locale="en" menuData={data.contentfulMenu}>
+    <Layout
+      locale="en"
+      menuData={data.contentfulMenu}
+      menuSubPages={data.contentfulMenuSubPages}
+    >
       <Seo title="404: Not found" />
       <div
         style={{
@@ -26,6 +30,19 @@ export const query = graphql`
   query {
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "en-US" }) {
       pages {
+        title
+        slug
+        node_locale
+        parentPage {
+          slug
+        }
+      }
+    }
+    contentfulMenuSubPages: allContentfulPage(
+      filter: { node_locale: { eq: "en-US" } }
+      sort: { order: ASC, fields: menuOrder }
+    ) {
+      nodes {
         title
         slug
         node_locale
