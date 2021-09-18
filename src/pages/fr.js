@@ -217,7 +217,7 @@ export const query = graphql`
     }
     allContentfulPublication(
       filter: { node_locale: { eq: "fr" } }
-      sort: { order: DESC, fields: createdAt }
+      sort: { order: DESC, fields: date }
       limit: 2
     ) {
       nodes {
