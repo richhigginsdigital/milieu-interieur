@@ -8,6 +8,7 @@ import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import SectionMenu from "../components/sectionMenu"
+import Video from "../components/video"
 
 const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
@@ -159,6 +160,8 @@ const Page = ({ data, location, pageContext }) => {
                         })}
                     </div>
                   </div>
+                ) : node.data.target.__typename === "ContentfulHeroVideo" ? (
+                  <Video video={node.data.target} />
                 ) : (
                   <div className="highlight">
                     {node.data.target.text &&
@@ -251,6 +254,15 @@ export const query = graphql`
             image {
               gatsbyImageData(width: 962)
               description
+            }
+          }
+          ... on ContentfulHeroVideo {
+            __typename
+            contentful_id
+            title
+            url
+            caption {
+              caption
             }
           }
           ... on ContentfulGridImageAndText {

@@ -85,7 +85,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
                     </article>
                   </li>
                 ) : (
-                  <li key={index}>
+                  <li className="card" key={index}>
                     <article>
                       <h2>{publication.title}</h2>
                       <hr />

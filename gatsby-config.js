@@ -84,6 +84,7 @@ module.exports = {
         // Learn about environment variables: https://gatsby.dev/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         host: process.env.CONTENTFUL_HOST,
+        environment: process.env.CONTENTFUL_ENVIRONMENT || "master",
       },
     },
     {

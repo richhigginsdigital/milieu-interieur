@@ -10,7 +10,7 @@ const Video = ({ video, locale }) => {
             src={`https://www.youtube.com/embed/${
               splitVideoUrl[1]
             }?controls=0&modestbranding=1${locale === "fr" && `&hl=fr`}`}
-            title=""
+            title={video.title}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             frameBorder="0"
             webkitallowfullscreen="true"
