@@ -18,7 +18,7 @@ const Video = ({ video, locale }) => {
             allowFullScreen
           />
         </div>
-        <figcaption>{video.caption.caption}</figcaption>
+        <figcaption>{video.caption && video.caption.caption}</figcaption>
       </figure>
     </div>
   )
