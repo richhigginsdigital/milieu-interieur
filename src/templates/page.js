@@ -175,9 +175,9 @@ const Page = ({ data, location, pageContext }) => {
                 </h2>
               ),
               [BLOCKS.HEADING_3]: node => (
-                <h2 id={slugify(node.content[0].value)}>
+                <h3 id={slugify(node.content[0].value)}>
                   {node.content[0].value}{" "}
-                </h2>
+                </h3>
               ),
             },
             renderText: text =>
