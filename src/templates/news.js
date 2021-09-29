@@ -79,6 +79,13 @@ export const query = graphql`
               }
             }
           }
+          ... on ContentfulNews {
+            __typename
+            contentful_id
+            slug
+            title
+            node_locale
+          }
           ... on ContentfulHighlightText {
             __typename
             contentful_id

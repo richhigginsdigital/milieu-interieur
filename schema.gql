@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-09-29T18:42:12.039Z ###
+### Type definitions saved at 2021-09-29T19:30:04.157Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -477,10 +477,10 @@ type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @der
 
 type ContentfulPageMainContent {
   raw: String
-  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulPageUnion] @link(by: "id", from: "references___NODE")
+  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion] @link(by: "id", from: "references___NODE")
 }
 
-union ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulPageUnion = ContentfulAsset | ContentfulGridImageAndText | ContentfulHeroImage | ContentfulHeroVideo | ContentfulHighlightText | ContentfulPage
+union ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion = ContentfulAsset | ContentfulGridImageAndText | ContentfulHeroImage | ContentfulHeroVideo | ContentfulHighlightText | ContentfulNews | ContentfulPage
 
 type ContentfulPageSys @derivedTypes {
   type: String
@@ -822,7 +822,7 @@ type ContentfulNewsCardText {
 
 type ContentfulNewsMainContent {
   raw: String
-  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulPageUnion] @link(by: "id", from: "references___NODE")
+  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion] @link(by: "id", from: "references___NODE")
 }
 
 type ContentfulNewsSys @derivedTypes {
