@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-09-28T19:45:56.204Z ###
+### Type definitions saved at 2021-09-29T18:42:12.039Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -806,14 +806,23 @@ type ContentfulNews implements ContentfulReference & ContentfulEntry & Node @der
   node_locale: String!
   title: String
   slug: String
+  cardText: ContentfulNewsCardText
+  mainContent: ContentfulNewsMainContent
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulNewsSys
   date: Date @dateformat
-  cardText: ContentfulNewsCardText
-  mainContent: ContentfulNewsMainContent
   image: ContentfulAsset @link(by: "id", from: "image___NODE")
+}
+
+type ContentfulNewsCardText {
+  raw: String
+}
+
+type ContentfulNewsMainContent {
+  raw: String
+  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulPageUnion] @link(by: "id", from: "references___NODE")
 }
 
 type ContentfulNewsSys @derivedTypes {
@@ -830,15 +839,6 @@ type ContentfulNewsSysContentTypeSys {
   type: String
   linkType: String
   id: String
-}
-
-type ContentfulNewsCardText {
-  raw: String
-}
-
-type ContentfulNewsMainContent {
-  raw: String
-  references: [ContentfulHeroImage] @link(by: "id", from: "references___NODE")
 }
 
 type ContentfulHeroVideo implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {

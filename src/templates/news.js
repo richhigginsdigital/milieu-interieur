@@ -56,6 +56,102 @@ export const query = graphql`
       date(formatString: "DD MMMM YYYY")
       mainContent {
         raw
+        references {
+          ... on ContentfulAsset {
+            __typename
+            contentful_id
+            gatsbyImageData(placeholder: BLURRED)
+            description
+            file {
+              url
+            }
+          }
+          ... on ContentfulPage {
+            __typename
+            contentful_id
+            slug
+            title
+            node_locale
+            parentPage {
+              slug
+              parentPage {
+                slug
+              }
+            }
+          }
+          ... on ContentfulHighlightText {
+            __typename
+            contentful_id
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ... on ContentfulHeroImage {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 962)
+              description
+            }
+          }
+          ... on ContentfulHeroVideo {
+            __typename
+            contentful_id
+            title
+            url
+            caption {
+              caption
+            }
+          }
+          ... on ContentfulGridImageAndText {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 377)
+              description
+            }
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+                ... on ContentfulAsset {
+                  __typename
+                  contentful_id
+                  file {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
