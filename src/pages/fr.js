@@ -130,7 +130,7 @@ const FrIndexPage = ({ data }) => {
               <article>
                 <div className="postcard-grid">
                   <div>
-                    {news.image.gatsbyImageData && (
+                    {news.image && news.image.gatsbyImageData && (
                       <GatsbyImage
                         alt={news.image.description}
                         image={news.image.gatsbyImageData}

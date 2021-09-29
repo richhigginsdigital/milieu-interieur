@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-08-04T21:33:00.238Z ###
+### Type definitions saved at 2021-09-29T19:30:04.157Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -464,12 +464,12 @@ type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @der
   title: String
   slug: String
   mainContent: ContentfulPageMainContent
-  menuOrder: Int
-  parentPage: ContentfulPage @link(by: "id", from: "parentPage___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulPageSys
+  menuOrder: Int
+  parentPage: ContentfulPage @link(by: "id", from: "parentPage___NODE")
   metaDescription: contentfulPageMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")
   menu: [ContentfulMenu] @link(by: "id", from: "menu___NODE")
@@ -477,10 +477,10 @@ type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @der
 
 type ContentfulPageMainContent {
   raw: String
-  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHighlightTextContentfulPageUnion] @link(by: "id", from: "references___NODE")
+  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion] @link(by: "id", from: "references___NODE")
 }
 
-union ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHighlightTextContentfulPageUnion = ContentfulAsset | ContentfulGridImageAndText | ContentfulHeroImage | ContentfulHighlightText | ContentfulPage
+union ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion = ContentfulAsset | ContentfulGridImageAndText | ContentfulHeroImage | ContentfulHeroVideo | ContentfulHighlightText | ContentfulNews | ContentfulPage
 
 type ContentfulPageSys @derivedTypes {
   type: String
@@ -543,21 +543,14 @@ type ContentfulEvent implements ContentfulReference & ContentfulEntry & Node @de
   location: String
   category: String
   link: String
-  mainContent: ContentfulEventMainContent
   image: ContentfulAsset @link(by: "id", from: "image___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulEventSys
+  mainContent: ContentfulEventMainContent
   metaDescription: contentfulEventMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
 }
-
-type ContentfulEventMainContent {
-  raw: String
-  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
-}
-
-union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
 
 type ContentfulEventSys @derivedTypes {
   type: String
@@ -575,6 +568,13 @@ type ContentfulEventSysContentTypeSys {
   id: String
 }
 
+type ContentfulEventMainContent {
+  raw: String
+  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
+}
+
+union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
+
 type contentfulEventMetaDescriptionTextNode implements Node @derivedTypes @childOf(types: ["ContentfulEvent"]) @dontInfer {
   metaDescription: String
   sys: contentfulEventMetaDescriptionTextNodeSys
@@ -589,30 +589,21 @@ type ContentfulPublication implements ContentfulReference & ContentfulEntry & No
   node_locale: String!
   title: String
   slug: String
+  date: Date @dateformat
   category: String
   link: String
   authors: ContentfulPublicationAuthors
-  journal: String
-  dateAndPage: contentfulPublicationDateAndPageTextNode @link(by: "id", from: "dateAndPage___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulPublicationSys
-  date: Date @dateformat
+  journal: String
+  dateAndPage: contentfulPublicationDateAndPageTextNode @link(by: "id", from: "dateAndPage___NODE")
   metaDescription: contentfulPublicationMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
 }
 
 type ContentfulPublicationAuthors {
   raw: String
-}
-
-type contentfulPublicationDateAndPageTextNode implements Node @derivedTypes @childOf(types: ["ContentfulPublication"]) @dontInfer {
-  dateAndPage: String
-  sys: contentfulPublicationDateAndPageTextNodeSys
-}
-
-type contentfulPublicationDateAndPageTextNodeSys {
-  type: String
 }
 
 type ContentfulPublicationSys @derivedTypes {
@@ -629,6 +620,15 @@ type ContentfulPublicationSysContentTypeSys {
   type: String
   linkType: String
   id: String
+}
+
+type contentfulPublicationDateAndPageTextNode implements Node @derivedTypes @childOf(types: ["ContentfulPublication"]) @dontInfer {
+  dateAndPage: String
+  sys: contentfulPublicationDateAndPageTextNodeSys
+}
+
+type contentfulPublicationDateAndPageTextNodeSys {
+  type: String
 }
 
 type contentfulPublicationMetaDescriptionTextNode implements Node @derivedTypes @childOf(types: ["ContentfulPublication"]) @dontInfer {
@@ -806,14 +806,14 @@ type ContentfulNews implements ContentfulReference & ContentfulEntry & Node @der
   node_locale: String!
   title: String
   slug: String
-  date: Date @dateformat
   cardText: ContentfulNewsCardText
   mainContent: ContentfulNewsMainContent
-  image: ContentfulAsset @link(by: "id", from: "image___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulNewsSys
+  date: Date @dateformat
+  image: ContentfulAsset @link(by: "id", from: "image___NODE")
 }
 
 type ContentfulNewsCardText {
@@ -822,13 +822,13 @@ type ContentfulNewsCardText {
 
 type ContentfulNewsMainContent {
   raw: String
-  references: [ContentfulHeroImage] @link(by: "id", from: "references___NODE")
+  references: [ContentfulAssetContentfulGridImageAndTextContentfulHeroImageContentfulHeroVideoContentfulHighlightTextContentfulNewsContentfulPageUnion] @link(by: "id", from: "references___NODE")
 }
 
 type ContentfulNewsSys @derivedTypes {
   type: String
-  revision: Int
   contentType: ContentfulNewsSysContentType
+  revision: Int
 }
 
 type ContentfulNewsSysContentType @derivedTypes {
@@ -836,6 +836,42 @@ type ContentfulNewsSysContentType @derivedTypes {
 }
 
 type ContentfulNewsSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulHeroVideo implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  title: String
+  url: String
+  caption: contentfulHeroVideoCaptionTextNode @link(by: "id", from: "caption___NODE")
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulHeroVideoSys
+}
+
+type contentfulHeroVideoCaptionTextNode implements Node @derivedTypes @childOf(types: ["ContentfulHeroVideo"]) @dontInfer {
+  caption: String
+  sys: contentfulHeroVideoCaptionTextNodeSys
+}
+
+type contentfulHeroVideoCaptionTextNodeSys {
+  type: String
+}
+
+type ContentfulHeroVideoSys @derivedTypes {
+  type: String
+  contentType: ContentfulHeroVideoSysContentType
+}
+
+type ContentfulHeroVideoSysContentType @derivedTypes {
+  sys: ContentfulHeroVideoSysContentTypeSys
+}
+
+type ContentfulHeroVideoSysContentTypeSys {
   type: String
   linkType: String
   id: String

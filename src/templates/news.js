@@ -1,12 +1,9 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { BLOCKS, INLINES } from "@contentful/rich-text-types"
-import { GatsbyImage } from "gatsby-plugin-image"
 
-import { pageLink } from "../helpers/pageLink"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import RichText from "../components/richText"
 
 const Page = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")
@@ -42,26 +39,9 @@ const Page = ({ data, location, pageContext }) => {
 
         <p style={{ marginBottom: "2rem" }}>Date: {data.contentfulNews.date}</p>
 
-        {data.contentfulNews.mainContent &&
-          renderRichText(data.contentfulNews.mainContent, {
-            renderNode: {
-              [BLOCKS.EMBEDDED_ASSET]: node => {
-                return (
-                  <figure>
-                    {node.data.target.gatsbyImageData && (
-                      <GatsbyImage
-                        alt={node.data.target.description}
-                        image={node.data.target.gatsbyImageData}
-                      />
-                    )}
-                  </figure>
-                )
-              },
-              [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-                return pageLink(node.data.target)
-              },
-            },
-          })}
+        {data.contentfulNews.mainContent && (
+          <RichText data={data.contentfulNews.mainContent} />
+        )}
       </div>
     </Layout>
   )
@@ -76,6 +56,109 @@ export const query = graphql`
       date(formatString: "DD MMMM YYYY")
       mainContent {
         raw
+        references {
+          ... on ContentfulAsset {
+            __typename
+            contentful_id
+            gatsbyImageData(placeholder: BLURRED)
+            description
+            file {
+              url
+            }
+          }
+          ... on ContentfulPage {
+            __typename
+            contentful_id
+            slug
+            title
+            node_locale
+            parentPage {
+              slug
+              parentPage {
+                slug
+              }
+            }
+          }
+          ... on ContentfulNews {
+            __typename
+            contentful_id
+            slug
+            title
+            node_locale
+          }
+          ... on ContentfulHighlightText {
+            __typename
+            contentful_id
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+              }
+            }
+          }
+          ... on ContentfulHeroImage {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 962)
+              description
+            }
+          }
+          ... on ContentfulHeroVideo {
+            __typename
+            contentful_id
+            title
+            url
+            caption {
+              caption
+            }
+          }
+          ... on ContentfulGridImageAndText {
+            __typename
+            contentful_id
+            image {
+              gatsbyImageData(width: 377)
+              description
+            }
+            text {
+              raw
+              references {
+                ... on ContentfulPage {
+                  __typename
+                  contentful_id
+                  slug
+                  title
+                  node_locale
+                  parentPage {
+                    slug
+                    parentPage {
+                      slug
+                    }
+                  }
+                }
+                ... on ContentfulAsset {
+                  __typename
+                  contentful_id
+                  file {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
