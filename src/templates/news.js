@@ -15,6 +15,7 @@ const Page = ({ data, location, pageContext }) => {
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
       type="article"
+      socialImage={data.contentfulNews.image}
     >
       <Seo
         description={
@@ -23,6 +24,11 @@ const Page = ({ data, location, pageContext }) => {
         }
         title={data.contentfulNews.title}
         lang={locale}
+        socialImage={
+          data.contentfulNews.image &&
+          data.contentfulNews.image.gatsbyImageData &&
+          data.contentfulNews.image.gatsbyImageData.images.fallback.src
+        }
       />
 
       <div className="l-constrained-narrow">
@@ -54,6 +60,9 @@ export const query = graphql`
       title
       slug
       date(formatString: "DD MMMM YYYY")
+      image {
+        gatsbyImageData(width: 1200)
+      }
       mainContent {
         raw
         references {

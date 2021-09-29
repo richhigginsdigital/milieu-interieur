@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -19,29 +21,46 @@ const NewsListing = ({ data, location, pageContext }) => {
 
       <div className="l-constrained-narrow">
         <h1 className="h4">{locale === "fr" ? "Nouvelles" : "News"}</h1>
-        <div className="section-menu">
-          <nav>
-            <ul>
-              {data.allContentfulNews.nodes.map((news, index) =>
-                news.link ? (
-                  <li key={index}>
-                    <a href={news.link}>
-                      <span>{news.title}</span>
-                      <ArrowIcon />
-                    </a>
-                  </li>
-                ) : (
-                  <li key={index}>
-                    <Link to={`/${locale}/news/${news.slug}/`}>
-                      <span>{news.title}</span>
-                      <ArrowIcon />
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          </nav>
-        </div>
+
+        <nav>
+          <ul className="unformatted">
+            {data.allContentfulNews.nodes.map((news, index) => (
+              <li className="postcard">
+                <article>
+                  <div className="postcard-grid">
+                    <div>
+                      {news.image && news.image.gatsbyImageData && (
+                        <GatsbyImage
+                          alt={news.image.description}
+                          image={news.image.gatsbyImageData}
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="h2" style={{ marginTop: 0 }}>
+                        {news.title}
+                      </h3>
+                      {news.cardText && renderRichText(news.cardText)}
+
+                      {news.link ? (
+                        <a className="postcard-link" href={news.link}>
+                          Read more &gt;
+                        </a>
+                      ) : (
+                        <Link
+                          className="postcard-link"
+                          to={`/en/news/${news.slug}/`}
+                        >
+                          Read more &gt;
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <nav className="paging">
           <p>
@@ -76,8 +95,15 @@ export const query = graphql`
       sort: { order: DESC, fields: date }
     ) {
       nodes {
+        id
         title
         slug
+        cardText {
+          raw
+        }
+        image {
+          gatsbyImageData(width: 431, placeholder: BLURRED)
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
