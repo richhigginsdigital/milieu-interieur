@@ -55,6 +55,20 @@ function SEO({ description, lang, meta, title, socialImage }) {
           content: `website`,
         },
         {
+          property: "og:image",
+          content: socialImage
+            ? `https:${socialImage}`
+            : `https://www.milieuinterieur.fr/milieu-interieur-social.png`,
+        },
+        {
+          property: `og:image:width`,
+          content: 1200,
+        },
+        {
+          property: `og:image:height`,
+          content: 1200,
+        },
+        {
           name: `twitter:card`,
           content: `summary_large_image`,
         },

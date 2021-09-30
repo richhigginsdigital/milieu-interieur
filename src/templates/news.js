@@ -61,7 +61,7 @@ export const query = graphql`
       slug
       date(formatString: "DD MMMM YYYY")
       image {
-        gatsbyImageData(width: 1200)
+        gatsbyImageData(width: 1200, height: 1200)
       }
       mainContent {
         raw
