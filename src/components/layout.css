@@ -484,6 +484,16 @@ ul.unformatted {
   }
 }
 
+.banner-date br {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .banner-date br {
+    display: block;
+  }
+}
+
 .banner .h2 {
   font-size: 1.5rem;
 }

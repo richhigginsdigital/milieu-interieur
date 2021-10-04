@@ -105,7 +105,16 @@ const FrIndexPage = ({ data }) => {
         <ul className="unformatted">
           {data.allContentfulEvent.nodes.map((event, index) => (
             <li className="banner" key={index}>
-              <span className="banner-date h2">{event.date}</span>
+              <span className="banner-date h2">
+                {event.date}
+                {event.endDate && (
+                  <>
+                    {" "}
+                    - <br />
+                    {event.endDate}
+                  </>
+                )}
+              </span>
               <span className="banner-main">
                 <span className="banner-category">{event.category}</span>
                 <a href={event.link}>{event.title}</a>
@@ -251,6 +260,7 @@ export const query = graphql`
         title
         node_locale
         date(formatString: "DD MMMM")
+        endDate(formatString: "DD MMMM")
         category
         location
         link

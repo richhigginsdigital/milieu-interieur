@@ -24,7 +24,16 @@ const EventListing = ({ data, location, pageContext }) => {
             <ul className="unformatted">
               {data.allContentfulEvent.nodes.map((event, index) => (
                 <li className="banner" key={index}>
-                  <span className="banner-date h2">{event.date}</span>
+                  <span className="banner-date h2">
+                    {event.date}
+                    {event.endDate && (
+                      <>
+                        {" "}
+                        - <br />
+                        {event.endDate}
+                      </>
+                    )}
+                  </span>
                   <span className="banner-main">
                     <span className="banner-category">{event.category}</span>
                     <a href={event.link}>{event.title}</a>
@@ -81,12 +90,13 @@ export const query = graphql`
         title
         slug
         date(formatString: "DD MMMM")
+        endDate(formatString: "DD MMMM")
         category
         location
         link
         image {
           description
-          gatsbyImageData(height: 74, placeholder: BLURRED)
+          gatsbyImageData(height: 73, placeholder: BLURRED)
         }
       }
     }

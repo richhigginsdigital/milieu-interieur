@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-09-29T19:30:04.157Z ###
+### Type definitions saved at 2021-10-04T20:29:57.330Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -540,22 +540,30 @@ type ContentfulEvent implements ContentfulReference & ContentfulEntry & Node @de
   title: String
   slug: String
   date: Date @dateformat
+  endDate: Date @dateformat
   location: String
   category: String
   link: String
+  mainContent: ContentfulEventMainContent
   image: ContentfulAsset @link(by: "id", from: "image___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulEventSys
-  mainContent: ContentfulEventMainContent
   metaDescription: contentfulEventMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
 }
 
+type ContentfulEventMainContent {
+  raw: String
+  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
+}
+
+union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
+
 type ContentfulEventSys @derivedTypes {
   type: String
-  revision: Int
   contentType: ContentfulEventSysContentType
+  revision: Int
 }
 
 type ContentfulEventSysContentType @derivedTypes {
@@ -567,13 +575,6 @@ type ContentfulEventSysContentTypeSys {
   linkType: String
   id: String
 }
-
-type ContentfulEventMainContent {
-  raw: String
-  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
-}
-
-union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
 
 type contentfulEventMetaDescriptionTextNode implements Node @derivedTypes @childOf(types: ["ContentfulEvent"]) @dontInfer {
   metaDescription: String
