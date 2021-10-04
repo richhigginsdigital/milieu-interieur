@@ -27,9 +27,7 @@ const EventListing = ({ data, location, pageContext }) => {
                   <span className="banner-date h2">{event.date}</span>
                   <span className="banner-main">
                     <span className="banner-category">{event.category}</span>
-                    <a className="h3" href={event.link}>
-                      {event.title}
-                    </a>
+                    <a href={event.link}>{event.title}</a>
 
                     <span className="banner-location">{event.location}</span>
                   </span>
