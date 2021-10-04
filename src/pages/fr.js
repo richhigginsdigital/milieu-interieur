@@ -111,7 +111,14 @@ const FrIndexPage = ({ data }) => {
                 <a href={event.link}>{event.title}</a>
                 <span className="banner-location">{event.location}</span>
               </span>
-              <span className="banner-image">{/* TODO image */}</span>
+              <span className="banner-image">
+                {event.image && event.image.gatsbyImageData && (
+                  <GatsbyImage
+                    alt={event.image.description}
+                    image={event.image.gatsbyImageData}
+                  />
+                )}
+              </span>
             </li>
           ))}
         </ul>
@@ -247,6 +254,10 @@ export const query = graphql`
         category
         location
         link
+        image {
+          gatsbyImageData(width: 142, placeholder: BLURRED)
+          description
+        }
       }
     }
     allContentfulNews(

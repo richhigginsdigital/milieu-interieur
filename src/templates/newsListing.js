@@ -5,7 +5,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { ReactComponent as ArrowIcon } from "../images/arrow-icon.svg"
 
 const NewsListing = ({ data, location, pageContext }) => {
   const locale = pageContext.locale.replace(/-[A-Z]*/, "")

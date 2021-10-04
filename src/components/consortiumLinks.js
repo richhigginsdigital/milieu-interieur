@@ -2,7 +2,7 @@ import * as React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 const ConsortiumLinks = ({ links }) => (
-  <ul className="grid-logos">
+  <ul className={`grid-logos ${links.length === 11 && `grid-logos-odd`}`}>
     {links.map((link, index) => (
       <li key={index}>
         {link.url ? (

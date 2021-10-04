@@ -180,7 +180,7 @@ main {
   grid-column: span 2;
 }
 
-.grid-logos > li:nth-last-child(2) {
+.grid-logos-odd > li:nth-last-child(2) {
   grid-column-end: -4;
 }
 
@@ -192,11 +192,7 @@ main {
     grid-row-gap: 1.5rem;
   }
 
-  .grid-logos > li {
-    grid-column: span 2;
-  }
-
-  .grid-logos > li:nth-last-child(5) {
+  .grid-logos-odd > li:nth-last-child(5) {
     grid-column-end: -10;
   }
 }
@@ -510,6 +506,12 @@ ul.unformatted {
 .banner-location {
   font-size: 1rem;
   display: block;
+}
+
+.banner-image {
+  display: flex;
+  align-items: center;
+  padding: 24px;
 }
 
 .postcard {

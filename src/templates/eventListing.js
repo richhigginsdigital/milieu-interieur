@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -32,7 +33,14 @@ const EventListing = ({ data, location, pageContext }) => {
 
                     <span className="banner-location">{event.location}</span>
                   </span>
-                  <span className="banner-image">{/* TODO image */}</span>
+                  <span className="banner-image">
+                    {event.image && event.image.gatsbyImageData && (
+                      <GatsbyImage
+                        alt={event.image.description}
+                        image={event.image.gatsbyImageData}
+                      />
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -78,6 +86,10 @@ export const query = graphql`
         category
         location
         link
+        image {
+          description
+          gatsbyImageData(height: 74, placeholder: BLURRED)
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: $locale }) {
