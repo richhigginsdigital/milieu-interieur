@@ -15,7 +15,6 @@ const Page = ({ data, location, pageContext }) => {
       menuSubPages={data.contentfulMenuSubPages}
       location={location}
       type="article"
-      socialImage={data.contentfulNews.image}
     >
       <Seo
         description={
@@ -27,7 +26,8 @@ const Page = ({ data, location, pageContext }) => {
         socialImage={
           data.contentfulNews.image &&
           data.contentfulNews.image.gatsbyImageData &&
-          data.contentfulNews.image.gatsbyImageData.images.fallback.src
+          data.contentfulNews.image.gatsbyImageData.images.fallback.src +
+            `&fit=crop`
         }
       />
 
