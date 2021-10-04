@@ -274,7 +274,7 @@ export const query = graphql`
         location
         link
         image {
-          gatsbyImageData(width: 142, placeholder: BLURRED)
+          gatsbyImageData(height: 73, placeholder: BLURRED)
           description
         }
       }
