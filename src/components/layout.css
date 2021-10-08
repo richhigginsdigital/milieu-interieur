@@ -451,7 +451,7 @@ ul.unformatted {
   .banner {
     padding: 1rem 2rem;
     display: grid;
-    grid-template-columns: 0.25fr 0.45fr 0.15fr;
+    grid-template-columns: 0.3fr 0.52fr 0.18fr;
     grid-column-gap: 24px;
   }
 }
@@ -526,7 +526,7 @@ ul.unformatted {
 
 @media only screen and (min-width: 1024px) {
   .banner-image {
-    padding: 24px;
+    padding: 0;
   }
 }
 

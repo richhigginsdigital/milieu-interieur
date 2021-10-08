@@ -96,7 +96,7 @@ export const query = graphql`
         link
         image {
           description
-          gatsbyImageData(height: 73, placeholder: BLURRED)
+          gatsbyImageData(height: 49, placeholder: BLURRED)
         }
       }
     }
