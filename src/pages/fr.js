@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
 import ConsortiumLogos from "../components/consortiumLogos"
+import ConsortiumLinks from "../components/consortiumLinks"
 import CollaborateBanner from "../components/collaborateBanner"
 
 const FrIndexPage = ({ data }) => {
@@ -33,8 +34,7 @@ const FrIndexPage = ({ data }) => {
 
       <div className="l-constrained" style={{ marginBottom: "2rem" }}>
         <h2>Membres du consortium</h2>
-
-        <ConsortiumLogos logos={data.contentfulHomepage.consortiumLogos} />
+        <ConsortiumLinks links={data.contentfulHomepage.consortiumLinks} />
       </div>
 
       <div className="l-constrained" style={{ marginBottom: "4rem" }}>
@@ -199,13 +199,13 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-      consortiumLogos {
-        gatsbyImageData(height: 74, placeholder: BLURRED)
-        description
-      }
-      fundingAgencyLogos {
-        gatsbyImageData(height: 74, placeholder: BLURRED)
-        description
+      consortiumLinks {
+        title
+        url
+        image {
+          gatsbyImageData(height: 74, placeholder: BLURRED)
+          description
+        }
       }
     }
     contentfulMenu(title: { eq: "Main menu" }, node_locale: { eq: "fr" }) {
