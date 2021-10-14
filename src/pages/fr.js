@@ -6,7 +6,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Hero from "../components/hero"
-import ConsortiumLogos from "../components/consortiumLogos"
 import ConsortiumLinks from "../components/consortiumLinks"
 import CollaborateBanner from "../components/collaborateBanner"
 

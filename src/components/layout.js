@@ -97,6 +97,13 @@ const Layout = ({
                                     </Link>
                                   </li>
                                 ))}
+                              {page.slug === "contact-us" && (
+                                <li>
+                                  <a href="https://twitter.com/LabExMI">
+                                    Twitter
+                                  </a>
+                                </li>
+                              )}
                             </ul>
                           )}
                         </li>
