@@ -13,6 +13,7 @@ const publicationPage = ({ data, location }) => (
     menuSubPages={data.contentfulMenuSubPages}
     location={location}
   >
+    <Seo title="Publications" lang="en" />
     <div className="l-constrained-narrow">
       <nav className="breadcrumb">
         <p>
