@@ -31,7 +31,7 @@ const Layout = ({
             type !== "article" && `l-outer-wrapper-blue`
           }`}
         >
-          <CookieBanner />
+          <CookieBanner locale={locale} />
 
           {type === "home" && <Shapes />}
 

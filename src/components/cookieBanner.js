@@ -1,11 +1,11 @@
 import * as React from "react"
 import CookieConsent from "react-cookie-consent"
 
-const CookieBanner = () => (
+const CookieBanner = ({ locale }) => (
   <CookieConsent
     location="bottom"
-    buttonText="That's ok"
-    declineButtonText="No thanks"
+    buttonText={locale === "fr" ? "C'est bon" : "That's ok"}
+    declineButtonText={locale === "fr" ? "Non merci" : "No thanks"}
     cookieName="gatsby-gdpr-google-analytics"
     enableDeclineButton
     style={{ background: "#2C4258" }}
@@ -22,8 +22,9 @@ const CookieBanner = () => (
     flipButtons
   >
     <div style={{ margin: "-15px", padding: "1rem" }}>
-      We'd like to set Google Analytics cookies to help us to improve our
-      website by collecting and reporting information on how you use it.
+      {locale === "fr"
+        ? "Nous souhaitons installer des cookies Google Analytics pour nous aider à améliorer notre site web en collectant et en rapportant des informations sur la façon dont vous l'utilisez."
+        : "We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it."}
     </div>
   </CookieConsent>
 )
