@@ -21,40 +21,11 @@ const PublicationListing = ({ data, location, pageContext }) => {
         <nav className="breadcrumb">
           <p>
             {locale === "fr" ? "Partie de" : "Part of"}:{" "}
-            <Link to={`/${locale}/research/`}>Research</Link>
+            <Link to={`/${locale}/research/publications/`}>Publications</Link>
           </p>
         </nav>
+
         <h1 className="article-heading">{pageContext.category}</h1>
-
-        <ul className="unformatted">
-          <li key="lead" style={{ display: "inline" }}>
-            <Link
-              style={{ color: "black" }}
-              to={`/${locale}/research/publications/lead/`}
-            >
-              Milieu Intérieur lead publications
-            </Link>{" "}
-            |{" "}
-          </li>
-          <li key="supported" style={{ display: "inline" }}>
-            <Link
-              style={{ color: "black" }}
-              to={`/${locale}/research/publications/supported/`}
-            >
-              Milieu Intérieur supported publications
-            </Link>{" "}
-            |{" "}
-          </li>
-          <li key="data">
-            <Link
-              style={{ color: "black" }}
-              to={`/${locale}/research/publications/data/`}
-            >
-              Publications using Milieu Intérieur data
-            </Link>
-          </li>
-        </ul>
-
         <div>
           <nav>
             <ul className="unformatted">
@@ -114,7 +85,6 @@ const PublicationListing = ({ data, location, pageContext }) => {
             </ul>
           </nav>
         </div>
-
         <nav className="paging">
           <p>
             {pageContext.numPublications >

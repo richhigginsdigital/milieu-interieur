@@ -93,7 +93,7 @@ const FrIndexPage = ({ data }) => {
           )}
         </ul>
         <div className="centered">
-          <Link className="button" to="/fr/research/publications/lead/">
+          <Link className="button" to="/fr/research/publications/">
             Voir tous les publications
           </Link>
         </div>
