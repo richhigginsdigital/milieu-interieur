@@ -21,6 +21,8 @@ const publicationPage = ({ data, location }) => (
         </p>
       </nav>
 
+      <h1 className="article-heading">Publications</h1>
+
       <div className="section-menu">
         <nav>
           <ul>
