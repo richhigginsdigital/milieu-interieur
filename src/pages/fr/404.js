@@ -10,6 +10,7 @@ const FrNotFoundPage = ({ data }) => {
       locale="fr"
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
+      socialLinks={data.allContentfulSocialLink}
     >
       <Seo title="404: non trouvée" />
       <div
@@ -49,6 +50,12 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulSocialLink(filter: { node_locale: { eq: "fr" } }) {
+      nodes {
+        title
+        url
       }
     }
   }

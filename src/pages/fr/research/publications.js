@@ -11,6 +11,7 @@ const publicationPage = ({ data, location }) => (
     locale="fr"
     menuData={data.contentfulMenu}
     menuSubPages={data.contentfulMenuSubPages}
+    socialLinks={data.allContentfulSocialLink}
     location={location}
   >
     <Seo title="Publications" lang="fr" />
@@ -88,6 +89,12 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulSocialLink(filter: { node_locale: { eq: "fr" } }) {
+      nodes {
+        title
+        url
       }
     }
     allContentfulPublication(

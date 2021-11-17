@@ -15,6 +15,7 @@ const EnIndexPage = ({ data }) => {
       locale="en"
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
+      socialLinks={data.allContentfulSocialLink}
       type="home"
     >
       <Seo
@@ -248,6 +249,12 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulSocialLink(filter: { node_locale: { eq: "en-US" } }) {
+      nodes {
+        title
+        url
       }
     }
     allContentfulPublication(

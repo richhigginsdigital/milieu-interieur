@@ -51,6 +51,12 @@ export const query = graphql`
         }
       }
     }
+    allContentfulSocialLink(filter: { node_locale: { eq: "en-US" } }) {
+      nodes {
+        title
+        url
+      }
+    }
   }
 `
 

@@ -1,4 +1,4 @@
-### Type definitions saved at 2021-10-04T20:29:57.330Z ###
+### Type definitions saved at 2021-11-17T21:37:39.337Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -464,12 +464,12 @@ type ContentfulPage implements ContentfulReference & ContentfulEntry & Node @der
   title: String
   slug: String
   mainContent: ContentfulPageMainContent
+  menuOrder: Int
+  parentPage: ContentfulPage @link(by: "id", from: "parentPage___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulPageSys
-  menuOrder: Int
-  parentPage: ContentfulPage @link(by: "id", from: "parentPage___NODE")
   metaDescription: contentfulPageMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
   page: [ContentfulPage] @link(by: "id", from: "page___NODE")
   menu: [ContentfulMenu] @link(by: "id", from: "menu___NODE")
@@ -540,30 +540,23 @@ type ContentfulEvent implements ContentfulReference & ContentfulEntry & Node @de
   title: String
   slug: String
   date: Date @dateformat
-  endDate: Date @dateformat
   location: String
   category: String
   link: String
-  mainContent: ContentfulEventMainContent
   image: ContentfulAsset @link(by: "id", from: "image___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulEventSys
+  mainContent: ContentfulEventMainContent
+  endDate: Date @dateformat
   metaDescription: contentfulEventMetaDescriptionTextNode @link(by: "id", from: "metaDescription___NODE")
 }
 
-type ContentfulEventMainContent {
-  raw: String
-  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
-}
-
-union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
-
 type ContentfulEventSys @derivedTypes {
   type: String
-  contentType: ContentfulEventSysContentType
   revision: Int
+  contentType: ContentfulEventSysContentType
 }
 
 type ContentfulEventSysContentType @derivedTypes {
@@ -575,6 +568,13 @@ type ContentfulEventSysContentTypeSys {
   linkType: String
   id: String
 }
+
+type ContentfulEventMainContent {
+  raw: String
+  references: [ContentfulAssetContentfulPageUnion] @link(by: "id", from: "references___NODE")
+}
+
+union ContentfulAssetContentfulPageUnion = ContentfulAsset | ContentfulPage
 
 type contentfulEventMetaDescriptionTextNode implements Node @derivedTypes @childOf(types: ["ContentfulEvent"]) @dontInfer {
   metaDescription: String
@@ -807,14 +807,14 @@ type ContentfulNews implements ContentfulReference & ContentfulEntry & Node @der
   node_locale: String!
   title: String
   slug: String
+  date: Date @dateformat
   cardText: ContentfulNewsCardText
   mainContent: ContentfulNewsMainContent
+  image: ContentfulAsset @link(by: "id", from: "image___NODE")
   spaceId: String
   createdAt: Date @dateformat
   updatedAt: Date @dateformat
   sys: ContentfulNewsSys
-  date: Date @dateformat
-  image: ContentfulAsset @link(by: "id", from: "image___NODE")
 }
 
 type ContentfulNewsCardText {
@@ -828,8 +828,8 @@ type ContentfulNewsMainContent {
 
 type ContentfulNewsSys @derivedTypes {
   type: String
-  contentType: ContentfulNewsSysContentType
   revision: Int
+  contentType: ContentfulNewsSysContentType
 }
 
 type ContentfulNewsSysContentType @derivedTypes {
@@ -873,6 +873,33 @@ type ContentfulHeroVideoSysContentType @derivedTypes {
 }
 
 type ContentfulHeroVideoSysContentTypeSys {
+  type: String
+  linkType: String
+  id: String
+}
+
+type ContentfulSocialLink implements ContentfulReference & ContentfulEntry & Node @derivedTypes @dontInfer {
+  contentful_id: String!
+  node_locale: String!
+  title: String
+  url: String
+  spaceId: String
+  createdAt: Date @dateformat
+  updatedAt: Date @dateformat
+  sys: ContentfulSocialLinkSys
+}
+
+type ContentfulSocialLinkSys @derivedTypes {
+  type: String
+  revision: Int
+  contentType: ContentfulSocialLinkSysContentType
+}
+
+type ContentfulSocialLinkSysContentType @derivedTypes {
+  sys: ContentfulSocialLinkSysContentTypeSys
+}
+
+type ContentfulSocialLinkSysContentTypeSys {
   type: String
   linkType: String
   id: String

@@ -13,6 +13,7 @@ const EventListing = ({ data, location, pageContext }) => {
       locale={locale}
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
+      socialLinks={data.allContentfulSocialLink}
       location={location}
     >
       <Seo title={locale === "fr" ? "Événements" : "Events"} lang={locale} />
@@ -121,6 +122,12 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulSocialLink(filter: { node_locale: { eq: $locale } }) {
+      nodes {
+        title
+        url
       }
     }
   }

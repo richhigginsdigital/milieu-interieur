@@ -21,6 +21,7 @@ const Layout = ({
   sectionSlug,
   menuData,
   menuSubPages,
+  socialLinks,
   type,
 }) => {
   return (
@@ -97,13 +98,15 @@ const Layout = ({
                                     </Link>
                                   </li>
                                 ))}
-                              {page.slug === "contact-us" && (
-                                <li>
-                                  <a href="https://twitter.com/LabExMI">
-                                    Twitter
-                                  </a>
-                                </li>
-                              )}
+                              {page.slug === "contact-us" &&
+                                socialLinks &&
+                                socialLinks.nodes.map(socialLink => (
+                                  <li>
+                                    <a href={socialLink.url}>
+                                      {socialLink.title}
+                                    </a>
+                                  </li>
+                                ))}
                             </ul>
                           )}
                         </li>

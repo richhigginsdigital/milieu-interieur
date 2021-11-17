@@ -13,6 +13,7 @@ const Page = ({ data, location, pageContext }) => {
       locale={locale}
       menuData={data.contentfulMenu}
       menuSubPages={data.contentfulMenuSubPages}
+      socialLinks={data.allContentfulSocialLink}
       location={location}
       type="article"
       socialImage={data.contentfulNews.image}
@@ -204,6 +205,12 @@ export const query = graphql`
         parentPage {
           slug
         }
+      }
+    }
+    allContentfulSocialLink(filter: { node_locale: { eq: $locale } }) {
+      nodes {
+        title
+        url
       }
     }
   }
