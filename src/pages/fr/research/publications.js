@@ -29,19 +29,21 @@ const publicationPage = ({ data, location }) => (
           <ul>
             <li key="lead">
               <Link to={`/fr/research/publications/lead/`}>
-                <span>Milieu Intérieur lead publications</span>
+                <span>Principales publications du Milieu Intérieur</span>
                 <ArrowIcon />
               </Link>
             </li>
             <li key="supported">
               <Link to={`/fr/research/publications/supported/`}>
-                <span>Milieu Intérieur supported publications</span>
+                <span>Publications soutenues par Milieu Intérieur</span>
                 <ArrowIcon />
               </Link>
             </li>
             <li key="data">
               <Link to={`/fr/research/publications/data/`}>
-                <span>Publications using Milieu Intérieur data</span>
+                <span>
+                  Publications utilisant les données du Milieu Intérieur
+                </span>
                 <ArrowIcon />
               </Link>
             </li>
