@@ -17,7 +17,7 @@ const NewsListing = ({ data, location, pageContext }) => {
       socialLinks={data.allContentfulSocialLink}
       location={location}
     >
-      <Seo title={locale === "fr" ? "Événements" : "Events"} lang={locale} />
+      <Seo title={locale === "fr" ? "Nouvelles" : "News"} lang={locale} />
 
       <div className="l-constrained-narrow">
         <h1 className="h4">{locale === "fr" ? "Nouvelles" : "News"}</h1>
