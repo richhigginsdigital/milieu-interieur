@@ -26,7 +26,7 @@ const PublicationListing = ({ data, location, pageContext }) => {
           </p>
         </nav>
 
-        <h1 className="article-heading">{pageContext.category}</h1>
+        <h1 className="article-heading">{pageContext.categoryHeading}</h1>
         <div>
           <nav>
             <ul className="unformatted">

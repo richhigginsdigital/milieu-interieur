@@ -120,16 +120,36 @@ const createContentfulNewsListPages = (pages, createPage) => {
 
 const createContentfulPublicationListPages = (pages, createPage) => {
   const categories = [
-    { title: "Milieu Intérieur lead publications", slug: "lead" },
-    { title: "Milieu Intérieur supported publications", slug: "supported" },
-    { title: "Publications using Milieu Intérieur data", slug: "data" },
+    {
+      title: {
+        "en-US": "Milieu Intérieur lead publications",
+        fr: "Principales publications du Milieu Intérieur",
+      },
+      slug: "lead",
+    },
+    {
+      title: {
+        "en-US": "Milieu Intérieur supported publications",
+        fr: "Publications soutenues par Milieu Intérieur",
+      },
+      slug: "supported",
+    },
+    {
+      title: {
+        "en-US": "Publications using Milieu Intérieur data",
+        fr: "Publications utilisant les données du Milieu Intérieur",
+      },
+      slug: "data",
+    },
   ]
 
   const pageTemplate = require.resolve("./src/templates/publicationListing.js")
 
   categories.forEach(category => {
     //const publications = pages
-    const publications = pages.filter(page => page.category === category.title)
+    const publications = pages.filter(
+      page => page.category === category.title["en-US"]
+    )
     const publicationsPerPage = 20
     const numPublications = Math.ceil(publications.length / publicationsPerPage)
 
@@ -153,7 +173,8 @@ const createContentfulPublicationListPages = (pages, createPage) => {
             numPublications,
             currentPage: i + 1,
             locale,
-            category: category.title,
+            category: category.title["en-US"],
+            categoryHeading: category.title[locale],
           },
         })
       })
