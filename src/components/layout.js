@@ -67,7 +67,7 @@ const Layout = ({
               >
                 <nav>
                   <ul className="footer-nav">
-                    {process.env.GATSBY_HIDE_MENU !== "true" &&
+                    {menuData.pages &&
                       menuData.pages.map((page, index) => (
                         <li key={index}>
                           <Link
