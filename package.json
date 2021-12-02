@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "milieu-interieur",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "The Milieu Intérieur project provides insight into the core of human diversity by dissecting the interplay between genetics and environment and their impact on the immune system.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "@richhigginsdigital",
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@svgr/webpack": "^5.5.0",
