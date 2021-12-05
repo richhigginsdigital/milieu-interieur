@@ -13,10 +13,13 @@ Prerequisite: you will need [NodeJS](https://nodejs.org/en/) installed on your m
 
 ### Environment variables
 
-The development scripts rely on local environment configuration files to store the required environment variables. Create those config files by copying the sample, then populate them with the required config values:
+The development scripts rely on local environment configuration files to store the required environment variables.
+
+As all keys are public facing these files are included for convenience.
 
 ```shell script
-cp .env.sample .env.development && cp .env.sample .env.production
+.env.development
+.env.production
 ```
 
 ### Run the development script
