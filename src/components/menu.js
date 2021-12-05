@@ -70,10 +70,6 @@ const Menu = ({ locale, sectionSlug, data, subPages }) => {
                     )}
                   </li>
                 ))}
-
-              {/*<li>
-          <Search locale={locale} />
-        </li>*/}
             </ul>
 
             <LanguageMenu locale={locale} />
