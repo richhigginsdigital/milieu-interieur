@@ -1,12 +1,10 @@
 # milieu-interieur
 
-## What is this repository for?
-
 - This package builds the Milieu Intérieur project website.
 - The website is built using the [Gatsby](https://github.com/gatsbyjs/gatsby/tree/gatsby%403.14.0) web framework.
 - [Contentful](https://www.contentful.com/) is used as the production CMS and [as a Gatsby data source](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-contentful)
 
-## How do I get set up?
+## Setting up locally
 
 Prerequisite: you will need [NodeJS](https://nodejs.org/en/) installed on your machine.
 
@@ -30,7 +28,7 @@ The site should now be running locally and available at http://localhost:8000 wi
 - Builds are also be triggered via a webhook from Contentful
 - The live site can be viewed at https://www.milieuinterieur.fr/en/
 
-## Editor Preview
+## Editor preview
 
 - [Gatsby Cloud CMS Preview](https://www.gatsbyjs.com/products/cloud/previews/) is used to enable preview before publishing https://preview-milieuinterieurmaster43271.gtsb.io/en/
 - Editing content in Contentful triggers a preview refresh. This normally takes a few seconds, sometimes longer for bigger changes.
