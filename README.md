@@ -1,6 +1,6 @@
 # milieu-interieur
 
-- This package builds the Milieu Intérieur project website.
+- This package builds the [Milieu Intérieur project website](https://www.milieuinterieur.fr/en/).
 - The website is built using the [Gatsby](https://github.com/gatsbyjs/gatsby/tree/gatsby%403.14.0) web framework.
 - [Contentful](https://www.contentful.com/) is used as the production CMS and [as a Gatsby data source](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-contentful)
 
