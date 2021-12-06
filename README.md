@@ -1,50 +1,49 @@
-# Milieu Intérieur
+# milieu-interieur
 
-This package builds the Milieu Intérieur project website.
+## What is this repository for?
 
-## Local development
+- This package builds the Milieu Intérieur project website.
+- The website is built using the [Gatsby](https://www.gatsbyjs.com/) web framework.
+- [Contentful](https://www.contentful.com/) is used as the production CMS and [as a Gatsby data source](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-contentful)
+
+## How do I get set up?
 
 Prerequisite: you will need [NodeJS](https://nodejs.org/en/) installed on your machine.
 
-- Install [npm](https://www.npmjs.com/) if required.
+- Install [npm](https://www.npmjs.com/)
 - Clone the repository `git clone git@github.com:richhigginsdigital/milieu-interieur.git` on to your machine and navigate to the repository root in a terminal window.
 - Install Gatsby's command line tool `npm install --global gatsby-cli`
 - Install the NPM dependencies run `npm install`
+- Run the site locally `npm run develop`
 
-### Environment variables
+The site should now be running locally and available at http://localhost:8000 with GraphiQL available at http://localhost:8000/\_\_\_graphql
 
-The development scripts rely on local environment configuration files to store the required environment variables.
+## NPM run scripts
 
-As all keys are public facing these files are included for convenience and
+- `npm run develop` starts a local Gatsby dev environment
+- `npm run build` performs an optimized production build of the site generating static HTML and per-route JavaScript code bundles
 
-```shell script
-.env.development
-.env.production
-```
+## Deployment
 
-### Run the development script
+- [Netlify](https://www.netlify.com/) is used to build, deploy and host the website.
+- Pushing code to master triggers a build & deployment.
+- Builds are also be triggered via a webhook from Contentful
+- The live site can be viewed at https://www.milieuinterieur.fr/en/
 
-The development script builds and serves the site on <http://localhost:8000> based on the environment variables found in `.env.development`, and automatically reloads on file changes:
+## Editor Preview
 
-```shell script
-npm run develop
-```
+- [Gatsby Cloud CMS Preview](https://www.gatsbyjs.com/products/cloud/previews/) is used to enable preview before publishing https://preview-milieuinterieurmaster43271.gtsb.io/en/
+- Editing content in Contentful triggers a preview refresh. This normally takes a few seconds, sometimes longer for bigger changes.
+- Pushing code to master triggers a preview re-build.
 
-### Run a production build
+## Architecture
 
-You can test the production build, which will use the environment variables found in `.env.production`, by running the following:
+![Image](architecture.png)
 
-```shell script
-npm run build
-```
+## Who do I talk to?
 
-This will compile the site in a production-like state. It can then be served on <http://localhost:9000> by running:
-
-```shell script
-npm run serve
-```
-
-### Gatsby v3 readme:
+- hello@iamrichhiggins.com (site developer)
+- divya.unni@pasteur.fr (project owner within Pasteur)
 
 <p align="center">
   <a href="https://www.gatsbyjs.com">
