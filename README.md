@@ -16,7 +16,7 @@ Prerequisite: you will need [NodeJS](https://nodejs.org/en/) installed on your m
 - Install the NPM dependencies run `npm install`
 - Run the site locally `npm run develop`
 
-The site should now be running locally and available at http://localhost:8000 with GraphiQL available at http://localhost:8000/\_\_\_graphql
+The site should now be running locally and available at http://localhost:8000 with GraphiQL available at http://localhost:8000/___graphql
 
 ## NPM run scripts
 
