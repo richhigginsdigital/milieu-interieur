@@ -91,7 +91,23 @@ const RichText = ({ data }) => {
           <Video video={node.data.target} />
         ) : (
           <div className="highlight">
-            {node.data.target.text && renderRichText(node.data.target.text)}
+            {node.data.target.text &&
+              renderRichText(node.data.target.text, {
+                renderNode: {
+                  [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+                    return node.data.target ? (
+                      <Link to={pageLink(node.data.target, true)}>
+                        {children}
+                      </Link>
+                    ) : (
+                      children
+                    )
+                  },
+                  [INLINES.ASSET_HYPERLINK]: (node, children) => {
+                    return <a href={node.data.target.file.url}>{children}</a>
+                  },
+                },
+              })}
           </div>
         )
       },
