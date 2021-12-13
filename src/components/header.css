@@ -72,6 +72,7 @@ header {
   width: 50%;
   box-sizing: border-box;
   color: black;
+  height: auto;
 }
 
 @media screen and (min-width: 375px) {
