@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import "./hero.css"
 
 const Hero = ({ locale, text, video }) => {
-  const splitVideoUrl = video.url.split(/v=|https:\/\/youtu.be\//)
+  const splitVideoUrl = video.split(/v=|https:\/\/youtu.be\//)
 
   return (
     <div className="l-constrained-wide" style={{ marginBottom: "2rem" }}>
