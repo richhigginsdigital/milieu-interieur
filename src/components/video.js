@@ -1,7 +1,7 @@
 import * as React from "react"
 
 const Video = ({ video, locale }) => {
-  const splitVideoUrl = video.url.split("v=")
+  const splitVideoUrl = video.url.split(/v=|https:\/\/youtu.be\//)
   return (
     <div className="hero-image">
       <figure>
