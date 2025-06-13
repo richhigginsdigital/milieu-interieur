@@ -19,7 +19,7 @@ const CollaborateBanner = ({ locale, layout }) => {
         {locale === "fr" ? (
           <>
             <h2>
-              Accéder aux données et échantillons Milieu Intérieur
+              Accéder aux données et échantillons 
               Milieu Intérieur
             </h2>
 
