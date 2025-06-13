@@ -54,7 +54,7 @@ const CollaborateBanner = ({ locale, layout }) => {
           <input
             type="text"
             readOnly={true}
-            value="https://redcap.pasteur.fr/surveys/?s=ND8TP8MDD3"
+            value="redcap Form here"
             onClick={copyToClipboard}
             onBlur={() => setCopied(false)}
             id="copylink"
