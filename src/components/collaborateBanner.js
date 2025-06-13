@@ -9,7 +9,7 @@ const CollaborateBanner = ({ locale, layout }) => {
 
   const copyToClipboard = event => {
     event.target.select()
-    navigator.clipboard.writeText("milieuinterieur@pasteur.fr")
+    navigator.clipboard.writeText("https://redcap.pasteur.fr/surveys/?s=ND8TP8MDD3")
     setCopied(true)
   }
 
