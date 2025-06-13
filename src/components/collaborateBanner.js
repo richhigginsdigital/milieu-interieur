@@ -19,7 +19,7 @@ const CollaborateBanner = ({ locale, layout }) => {
         {locale === "fr" ? (
           <>
             <h2>
-              Voulez-vous en savoir plus sur l'utilisation des données de la
+              Accéder aux donnée de oulez-vous en savoir plus sur l'utilisation des données de la
               cohorte
             </h2>
 
