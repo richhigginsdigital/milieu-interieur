@@ -70,8 +70,8 @@ const CollaborateBanner = ({ locale, layout }) => {
         <p>
           <Link to={`/${locale}/about-us/collaborations/`}>
             {locale === "fr"
-              ? `Collaborations actuelles`
-              : `Current collaborations`}
+              ? `Projets acceptés`
+              : `Accepted projects`}
           </Link>
         </p>
       </div>
