@@ -24,9 +24,9 @@ const CollaborateBanner = ({ locale, layout }) => {
             </h2>
 
             <p>
-              Les données et les échantillons fournis par la cohorte Milieu
-              Intérieur ont été utilisés dans plusieurs études qui ont permis
-              d'accroître nos connaissances sur les réponses immunitaires.
+              Plus de 70 projets utilisant les données Milieu Intérieur
+              ont été acceptés, contribuant à accroître nos connaissances
+              sur la variation immunitaire humaine et ses déterminants.
             </p>
           </>
         ) : (
@@ -34,8 +34,8 @@ const CollaborateBanner = ({ locale, layout }) => {
             <h2>How to collaborate with&nbsp;us</h2>
             <p>
               Researchers can request access to the Milieu Intérieur data
-              and/or biological samples by filling the Data Access Request Form
-              proposal to:
+              and/or biological samples by filling 
+              the Data Access Request Form
             </p>
           </>
         )}
