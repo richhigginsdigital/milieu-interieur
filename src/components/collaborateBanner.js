@@ -24,18 +24,18 @@ const CollaborateBanner = ({ locale, layout }) => {
             </h2>
 
             <p>
-              Les chercheuses et chercheurs peuvent demander accès aux données et/ou échantillons Milieu Intérieur en remplissant le formulaire :
-               
-              Plus de 70 projets utilisant les données Milieu Intérieur ont été acceptés, contribuant à accroître nos connaissances sur la variation immunitaire humaine et ses déterminant:
+              Les chercheuses et chercheurs peuvent demander accès aux données et/ou échantillons Milieu Intérieur en remplissant le formulaire : <br />
+              Plus de 70 projets utilisant les données Milieu Intérieur ont été acceptés, contribuant à accroître nos connaissances sur la variation immunitaire humaine
+               et ses déterminant:
             </p>
           </>
         ) : (
           <>
             <h2>How to access Milieu Intérieur data/samples</h2>
             <p>
-              Researchers can request access to the Milieu Intérieur data
-              and/or biological samples by filling 
-              the Data Access Request Form
+              Researchers can request access to the Milieu Intérieur data and/or biological samples by filling the Data Access Request Form: <br />
+              More than 70 projects using Milieu Intérieur data have been accepted, contributing to increase  
+              knowledge on human immune variation and its determinants:
             </p>
           </>
         )}
