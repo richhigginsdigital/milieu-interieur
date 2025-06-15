@@ -24,9 +24,9 @@ const CollaborateBanner = ({ locale, layout }) => {
             </h2>
 
             <p>
-              Les chercheuses et chercheurs peuvent demander accès 
-              aux données et/ou échantillons Milieu Intérieur 
-              en remplissant le formulaire :
+              Les chercheuses et chercheurs peuvent demander accès aux données et/ou échantillons Milieu Intérieur en remplissant le formulaire :
+               
+              Plus de 70 projets utilisant les données Milieu Intérieur ont été acceptés, contribuant à accroître nos connaissances sur la variation immunitaire humaine et ses déterminant:
             </p>
           </>
         ) : (
