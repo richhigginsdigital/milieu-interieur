@@ -25,8 +25,8 @@ const CollaborateBanner = ({ locale, layout }) => {
 
             <p>
               Les chercheuses et chercheurs peuvent demander accès aux données et/ou échantillons Milieu Intérieur en remplissant le formulaire : <br />
-              Plus de 70 projets utilisant les données Milieu Intérieur ont été acceptés, contribuant à accroître nos connaissances sur la variation immunitaire humaine
-               et ses déterminant:
+              Pour toute question realive aux données/echantillons MI, merci de nous écrire à: milieuinterieurdac@pasteur.fr <br /> <br />
+              Plus de 70 projets utilisant les données Milieu Intérieur ont été acceptés, contribuant à accroître nos connaissances sur la variation immunitaire humaine et ses déterminant:
             </p>
           </>
         ) : (
@@ -34,8 +34,8 @@ const CollaborateBanner = ({ locale, layout }) => {
             <h2>How to access Milieu Intérieur data/samples</h2>
             <p>
               Researchers can request access to the Milieu Intérieur data and/or biological samples by filling the Data Access Request Form: <br />
-              More than 70 projects using Milieu Intérieur data have been accepted, contributing to increase  
-              knowledge on human immune variation and its determinants:
+              For any question on MI data/sample access, please write to: milieuinterieurdac@pasteur.fr <br /> <br />
+              More than 70 projects using Milieu Intérieur data have been accepted, contributing to increase knowledge on human immune variation and its determinants:
             </p>
           </>
         )}
@@ -54,7 +54,7 @@ const CollaborateBanner = ({ locale, layout }) => {
           <input
             type="text"
             readOnly={true}
-            value="redcap Form here"
+            value="Data Access Form"
             onClick={copyToClipboard}
             onBlur={() => setCopied(false)}
             id="copylink"
