@@ -2,14 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-exports.onCreateNode = ({ node }) => {
-  if (node.internal.type === "ContentfulHomepage") {
-    console.log(
-      "CONTENTFUL HOMEPAGE DATA:",
-      JSON.stringify(node, null, 2)
-    )
-  }
-}
+
 
 module.exports = {
 
