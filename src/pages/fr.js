@@ -199,7 +199,6 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-      test
       consortiumLinks {
         title
         url
