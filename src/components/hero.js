@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import "./hero.css"
 
+
 const Hero = ({ locale, text, video }) => {
   const splitVideoUrl = video ? video.split(/v=|https:\/\/yout.../) : null;
 
@@ -9,6 +10,7 @@ const Hero = ({ locale, text, video }) => {
     <div className="l-constrained-wide" style={{ marginBottom: "2rem" }}>
       <div className="grid-hero">
         <div>
+          {splitVideoUrl && (
           <div className="video">
             <iframe
               src={`https://www.youtube.com/embed/${
@@ -22,6 +24,7 @@ const Hero = ({ locale, text, video }) => {
               allowFullScreen
             />
           </div>
+          )}
         </div>
         <div className="flex-column">
           <div className={locale === "fr" ? `mission fr` : `mission`}>
