@@ -2,6 +2,9 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+console.log("CONTENTFUL ENVIRONMENT:", process.env.CONTENTFUL_ENVIRONMENT)
+console.log("CONTENTFUL HOST:", process.env.CONTENTFUL_HOST)
+
 module.exports = {
   siteMetadata: {
     title: `Milieu Intérieur`,
