@@ -72,7 +72,7 @@ const EnIndexPage = ({ data }) => {
           />
 
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-            <ConsortiumLinks links={data.contentfulHomepage.test} />
+            <Test={data.contentfulHomepage.test} />
           </div>
             
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
