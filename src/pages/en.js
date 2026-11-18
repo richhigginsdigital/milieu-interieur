@@ -72,7 +72,7 @@ const EnIndexPage = ({ data }) => {
           />
 
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-            <Test={data.contentfulHomepage.test} />
+            test={data.contentfulHomepage.test}
           </div>
             
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
