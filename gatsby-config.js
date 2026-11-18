@@ -6,14 +6,6 @@ require("dotenv").config({
 
 module.exports = {
 
-  process.env.GATSBY_HOLDING_PAGE === "true"
-    ? { onCreatePage, onCreateNode: exports.onCreateNode }
-    : {
-        createPages,
-        onCreatePage,
-        onCreateNode: exports.onCreateNode,
-      }
-
   siteMetadata: {
     title: `Milieu Intérieur`,
     description: `The Milieu Intérieur project provides insight into the core of human diversity by dissecting the interplay between genetics and environment and their impact on the immune system.`,
