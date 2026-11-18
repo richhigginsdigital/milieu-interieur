@@ -69,6 +69,8 @@ const EnIndexPage = ({ data }) => {
             locale="en"
             text={data.contentfulHomepage.missionStatement.missionStatement}
             video={data.contentfulHomepage.videoUrl}
+            text={data.contentfulHomepage.test}
+          </div>
           />
 
             
@@ -84,9 +86,7 @@ const EnIndexPage = ({ data }) => {
           {
             // start homepage listings
           }
-          <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-          <h2>{data.contentfulHomepage.test}</h2>
-          </div>
+  
             
           <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <h2 className="h4">Publications</h2>
