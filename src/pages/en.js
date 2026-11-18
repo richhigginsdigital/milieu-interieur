@@ -72,7 +72,7 @@ const EnIndexPage = ({ data }) => {
           />
 
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-            test={data.contentfulHomepage.test}
+            test={data.contentfulHomepage.testHomepage.testHomepage}
           </div>
             
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
@@ -225,8 +225,10 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-
-      test
+      testHomepage {
+        testHomepage
+      }
+      
       
       consortiumLinks {
         title
