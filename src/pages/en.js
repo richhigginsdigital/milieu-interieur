@@ -69,9 +69,11 @@ const EnIndexPage = ({ data }) => {
             locale="en"
             text={data.contentfulHomepage.missionStatement.missionStatement}
             video={data.contentfulHomepage.videoUrl}
-            text2={data.contentfulHomepage.test}
           />
 
+          <div className="l-constrained" style={{ marginBottom: "2rem" }}>
+            <ConsortiumLinks links={data.contentfulHomepage.test} />
+          </div>
             
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
             <h2 className="h4">Consortium members</h2>
