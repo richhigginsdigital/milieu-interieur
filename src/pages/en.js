@@ -69,8 +69,7 @@ const EnIndexPage = ({ data }) => {
             locale="en"
             text={data.contentfulHomepage.missionStatement.missionStatement}
             video={data.contentfulHomepage.videoUrl}
-            text={data.contentfulHomepage.test}
-          </div>
+            text2={data.contentfulHomepage.test}
           />
 
             
