@@ -8,6 +8,7 @@ import Seo from "../components/seo"
 import Hero from "../components/hero"
 import ConsortiumLinks from "../components/consortiumLinks"
 import CollaborateBanner from "../components/collaborateBanner"
+import JournalCovers from "../components/journalCovers"
 
 const FrIndexPage = ({ data }) => {
   return (
@@ -39,6 +40,11 @@ const FrIndexPage = ({ data }) => {
 
       <div className="l-constrained" style={{ marginBottom: "4rem" }}>
         <CollaborateBanner locale="fr" />
+      </div>
+
+      <div className="l-constrained" style={{ marginBottom: "4rem" }}>
+        <h2 className="h4">MI dans les revues scientifiques</h2>
+        <JournalCovers covers={data.contentfulHomepage.miJournalsCovers} />
       </div>
 
       {
@@ -199,6 +205,11 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
+      miJournalsCovers {
+        title
+        description
+        gatsbyImageData(height: 260, placeholder: BLURRED)
+      }
       consortiumLinks {
         title
         url

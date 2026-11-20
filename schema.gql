@@ -649,6 +649,7 @@ type ContentfulHomepage implements ContentfulReference & ContentfulEntry & Node 
   consortiumLogos: [ContentfulAsset] @link(by: "id", from: "consortiumLogos___NODE")
   fundingAgencyLogos: [ContentfulAsset] @link(by: "id", from: "fundingAgencyLogos___NODE")
   consortiumLinks: [ContentfulLinkedImage] @link(by: "id", from: "consortiumLinks___NODE")
+  miJournalsCovers: [ContentfulAsset] @link(by: "id", from: "miJournalsCovers___NODE")
   missionStatement: contentfulHomepageMissionStatementTextNode @link(by: "id", from: "missionStatement___NODE")
   spaceId: String
   createdAt: Date @dateformat

@@ -8,6 +8,7 @@ import Seo from "../components/seo"
 import Hero from "../components/hero"
 import ConsortiumLinks from "../components/consortiumLinks"
 import CollaborateBanner from "../components/collaborateBanner"
+import JournalCovers from "../components/journalCovers"
 
 const EnIndexPage = ({ data }) => {
   return (
@@ -72,16 +73,17 @@ const EnIndexPage = ({ data }) => {
           />
 
           <div className="l-constrained" style={{ marginBottom: "2rem" }}>
-            test={data.contentfulHomepage.testHomepage.testHomepage}
-          </div>
-            
-          <div className="l-constrained" style={{ marginBottom: "2rem" }}>
             <h2 className="h4">Consortium members</h2>
             <ConsortiumLinks links={data.contentfulHomepage.consortiumLinks} />
           </div>
 
           <div className="l-constrained" style={{ marginBottom: "4rem" }}>
             <CollaborateBanner locale="en" />
+          </div>
+
+          <div className="l-constrained" style={{ marginBottom: "4rem" }}>
+            <h2 className="h4">MI in scientific journals</h2>
+            <JournalCovers covers={data.contentfulHomepage.miJournalsCovers} />
           </div>
 
           {
@@ -225,11 +227,11 @@ export const query = graphql`
         missionStatement
       }
       videoUrl
-      testHomepage {
-        testHomepage
+      miJournalsCovers {
+        title
+        description
+        gatsbyImageData(height: 260, placeholder: BLURRED)
       }
-      
-      
       consortiumLinks {
         title
         url

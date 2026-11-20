@@ -343,6 +343,7 @@ footer svg {
 .footer-copyright {
   color: white;
   font-size: 1rem;
+  margin: 1em 0;
 }
 
 .footer-copyright-logos {
@@ -357,8 +358,10 @@ footer svg {
   }
 }
 
-.footer-copyright img:nth-of-type(2) {
-  margin-left: 0.75rem;
+.footer-funding-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.75rem;
 }
 
 figure {
@@ -589,5 +592,24 @@ ul.unformatted {
 
   .postcard-grid div {
     direction: ltr;
+  }
+}
+
+.grid-journal-covers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.grid-journal-covers > li {
+  border: 1px solid black;
+  line-height: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .grid-journal-covers {
+    gap: 1.5rem;
   }
 }

@@ -9,8 +9,7 @@ import Menu from "./menu"
 import CollaborateBanner from "./collaborateBanner"
 import Shapes from "./shapes"
 import { pageLink } from "../helpers/pageLink"
-import anrLogo from "../images/anr-40h.png"
-import iALogo from "../images/investir-lavenir-40h.png"
+import FooterFundingLogos from "./footerFundingLogos"
 import { ReactComponent as Pasteurlogo } from "../images/institut-pasteur.svg"
 
 import "./layout.css"
@@ -114,25 +113,14 @@ const Layout = ({
                   </ul>
                 </nav>
 
-                <p className="footer-copyright">
+                <div className="footer-copyright">
                   <span className="footer-copyright-logos">
-                    <img
-                      src={anrLogo}
-                      height="40"
-                      width="110"
-                      alt="l’Agence nationale de la recherche"
-                    />
-                    <img
-                      src={iALogo}
-                      height="40"
-                      width="40"
-                      alt="Le Programme d'investissements d'avenir"
-                    />
+                    <FooterFundingLogos />
                     <Pasteurlogo />
                   </span>
                   Copyright {new Date().getFullYear()} Millieuinterieur.fr |
                   Pasteur.fr
-                </p>
+                </div>
               </footer>
             </div>
           </div>
